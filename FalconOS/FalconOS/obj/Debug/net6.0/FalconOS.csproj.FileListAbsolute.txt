@@ -1,0 +1,12 @@
+E:\Projects\FalconOS\FalconOS\bin\Debug\net6.0\FalconOS.deps.json
+E:\Projects\FalconOS\FalconOS\bin\Debug\net6.0\FalconOS.dll
+E:\Projects\FalconOS\FalconOS\bin\Debug\net6.0\FalconOS.pdb
+E:\Projects\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.csproj.AssemblyReference.cache
+E:\Projects\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projects\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.AssemblyInfoInputs.cache
+E:\Projects\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.AssemblyInfo.cs
+E:\Projects\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.csproj.CoreCompileInputs.cache
+E:\Projects\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.dll
+E:\Projects\FalconOS\FalconOS\obj\Debug\net6.0\refint\FalconOS.dll
+E:\Projects\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.pdb
+E:\Projects\FalconOS\FalconOS\obj\Debug\net6.0\ref\FalconOS.dll
