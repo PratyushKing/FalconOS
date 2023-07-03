@@ -66,77 +66,131 @@ namespace FalconOS
                 {
                     Console.WriteLine("Falnfo: Unrecognized Command");
                 }
-            } else if (cmd.StartsWith("make "))
+            } else if (cmd.StartsWith("mk"))
             {
                 try
                 {
-                    File.Create(data.currentDir + cmd.Replace("make ", ""));
+                    File.Create(data.currentDir + cmd.Replace("mk ", ""));
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("Can't 'MAKE' a file.");
+                    Console.WriteLine("Can't make a file.");
                 }
             }
-            else if (cmd.StartsWith("rem "))
+            else if (cmd.StartsWith("rm"))
             {
                 try
                 {
-                    File.Delete(data.currentDir + cmd.Replace("rem ", ""));
+                    File.Delete(data.currentDir + cmd.Replace("rm ", ""));
                 }
                 catch (Exception)
                 {
                     Console.WriteLine("Can't remove the file.");
                 }
             }
-            else if (cmd.StartsWith("makedir "))
+            else if (cmd.StartsWith("mkdir"))
             {
-                try
+                if (!Directory.Exists(cmd.Replace("mkdir ", data.currentDir)))
                 {
-                    Directory.CreateDirectory(data.currentDir + cmd.Replace("makedir ", ""));
-                }
-                catch (Exception)
+                    Directory.CreateDirectory(cmd.Replace("mkdir ", data.currentDir));
+                } else
                 {
-                    Console.WriteLine("Can't make the directory.");
+                    Console.WriteLine("ERROR: Can't make directory, (does it already exist?)");
                 }
             }
-            else if (cmd.StartsWith("remdir "))
+            else if (cmd.StartsWith("rmdir"))
             {
-                try
+                if (Directory.Exists(cmd.Replace("rmdir ", data.currentDir)))
                 {
-                    Directory.Delete(data.currentDir + cmd.Replace("remdir ", ""));
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Can't remove the directory. [Make sure it's an empty directory]");
+                    Directory.Delete(cmd.Replace("rmdir ", data.currentDir));
                 }
             }
-            else if (cmd.StartsWith("changedir "))
+            else if (cmd.StartsWith("cd"))
             {
-                if (Directory.Exists(cmd.Replace("changedir ", data.currentDir + "\\")))
+                if (Directory.Exists(cmd.Replace("cd ", data.currentDir + "\\")))
                 {
-                    data.currentDir += "\\" + cmd.Replace("changedir ", "") + "\\";
+                    data.currentDir += cmd.Replace("cd ", "") + "\\";
+                } else
+                {
+                    Console.WriteLine("Invalid Directory!");
                 }
             }
-            else if (cmd.StartsWith("listdir"))
+            else if (cmd.StartsWith("ls"))
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write(Directory.GetDirectories(data.currentDir));
+                foreach (var dirs in Directory.GetDirectories(data.currentDir))
+                {
+                    Console.Write(dirs + " ");
+                }
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(Directory.GetFiles(data.currentDir) + "\n");
-            } else if (cmd.StartsWith("dirinfo"))
-            {
-                //Console.WriteLine("Directory made on: " + Directory.GetCreationTime(data.currentDir).ToString());
-                //Console.WriteLine("Last modified    : " + Directory.GetLastWriteTime(data.currentDir).ToString());
-                //Console.WriteLine("Directory Parent : " + Directory.GetParent(data.currentDir).ToString());
+                foreach (var files in Directory.GetFiles(data.currentDir))
+                {
+                    Console.Write(files + " ");
+                }
+                Console.Write("\n");
             } else if (cmd.StartsWith("fedit "))
             {
-                feditor.Run(cmd.Split(' '));                
+                feditor.Run(cmd.Split(' '));
             } else if (cmd.StartsWith("clear"))
             {
                 Console.Clear();
             } else if (cmd.StartsWith("exit"))
             {
                 Sys.Power.Shutdown();
+            } else if (cmd == "") { }
+            else if (cmd.StartsWith("fash "))
+            {
+                Console.WriteLine("Starting fash..");
+                if (File.Exists(cmd.Replace("fash ", data.currentDir)) && cmd.Replace("fash ", data.currentDir).EndsWith(".ash"))
+                {
+                    string[] lines = File.ReadAllLines(cmd.Replace("fash ", data.currentDir));
+
+                    foreach (string line in lines)
+                    {
+                        if (!line.StartsWith("! "))
+                        {
+                            exec(line);
+                        }
+                    }
+                } else
+                {
+                    Console.WriteLine("Error: Either file doesn't exist [Use: fash <file.ash>] or doesn't end in .ash");
+                }
+            } else if (cmd.StartsWith("echo"))
+            {
+                if (cmd.StartsWith("echo --no-new-line \""))
+                {
+                    cmd = cmd.Replace("echo --no-new-line ", "echo ");
+                }
+                if (cmd.StartsWith("echo \"") && cmd.EndsWith("\""))
+                {
+                    Console.WriteLine(cmd.Replace("echo \"", "").TrimEnd('\"'));
+                }
+            } else if (cmd.StartsWith("sleep"))
+            {
+                if (cmd.StartsWith("sleep "))
+                {
+                    try
+                    {
+                        Thread.Sleep(Convert.ToInt32(cmd.Replace("wait ", "")));
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Invalid time [Use: wait <milliseconds>]");
+                    }
+                }
+            } else if (cmd.StartsWith("cat"))
+            {
+                if (cmd.StartsWith("cat "))
+                {
+                    if (File.Exists(cmd.Replace("cat ", data.currentDir)))
+                    {
+                        Console.WriteLine(File.ReadAllText("cat "));
+                    } else
+                    {
+                        Console.WriteLine("ERROR: Invalid File. [Use: cat <file>]");
+                    }
+                }
             }
             else
             {

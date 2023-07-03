@@ -51,7 +51,7 @@ namespace FalconOS
             else if (argv[1] == "--ide") { IDE = true; }
             else
             {
-                if (!(argv[1].StartsWith("0:\\")))
+                if (!(argv[1].StartsWith(data.currentDir)))
                 {
                     argv[1] = data.currentDir + argv[1];
                 }
