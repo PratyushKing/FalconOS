@@ -13,8 +13,17 @@ namespace FalconOS
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("[ " + topic + " ] ");
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ResetColor();
             Console.WriteLine(message);
+            return;
+        }
+
+        public static void programPrint(string program, string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(program);
+            Console.ResetColor();
+            Console.WriteLine(": " + message);
             return;
         }
 

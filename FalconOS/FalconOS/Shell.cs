@@ -107,6 +107,10 @@ namespace FalconOS
             }
             else if (cmd.StartsWith("cd"))
             {
+                if (cmd.StartsWith("cd ..."))
+                {
+                    data.currentDir = "0:\\";
+                }
                 if (Directory.Exists(cmd.Replace("cd ", data.currentDir + "\\")))
                 {
                     data.currentDir += cmd.Replace("cd ", "") + "\\";
@@ -190,6 +194,39 @@ namespace FalconOS
                     {
                         Console.WriteLine("ERROR: Invalid File. [Use: cat <file>]");
                     }
+                }
+            } else if (cmd.StartsWith("ver"))
+            {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(this.os + " ");
+                Console.ResetColor();
+                Console.WriteLine(this.ver);
+            } else if (cmd.StartsWith("falcp"))
+            {
+                if (cmd.StartsWith("falcp "))
+                {
+                    if (cmd.StartsWith("falcp --help") || cmd.StartsWith("falcp -h"))
+                    {
+                        Console.WriteLine("FalCompile [falcp] v0.5");
+                        Console.WriteLine("FalCompile is a FalVM compiler to compile .fal files to .fex [Falcon Executable]");
+                        Console.WriteLine("Uses:\n   falcp <file> (to get a <file>.fex file that is compiled)\n   falcp --help/-h (to get this prompt)");
+                    } else if (cmd.EndsWith(".fa"))
+                    {
+                        string[] program;
+                        if (File.Exists(cmd.Replace("falcp ", "")))
+                        {
+                            program = File.ReadAllLines(cmd.Replace("falcp ", data.currentDir));
+                        } else
+                        {
+                            log.programPrint("falcp", "ERROR: File doesn't exist.");
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("FalCompile [falcp] v0.5");
+                    Console.WriteLine("FalCompile is a FalVM compiler to compile .fal files to .fex [Falcon Executable]");
+                    Console.WriteLine("Uses:\n   falcp <file>.fa (to get a <file>.fex file that is compiled)\n   falcp --help/-h (to get this prompt)");
                 }
             }
             else

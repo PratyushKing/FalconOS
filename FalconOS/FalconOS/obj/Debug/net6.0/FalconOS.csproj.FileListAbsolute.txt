@@ -22,3 +22,15 @@ C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\obj\Debug\net6.0\Falcon
 C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\obj\Debug\net6.0\refint\FalconOS.dll
 C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.pdb
 C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\obj\Debug\net6.0\ref\FalconOS.dll
+E:\Git Repos\FalconOS\FalconOS\FalconOS\bin\Debug\net6.0\FalconOS.deps.json
+E:\Git Repos\FalconOS\FalconOS\FalconOS\bin\Debug\net6.0\FalconOS.dll
+E:\Git Repos\FalconOS\FalconOS\FalconOS\bin\Debug\net6.0\FalconOS.pdb
+E:\Git Repos\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.csproj.AssemblyReference.cache
+E:\Git Repos\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.GeneratedMSBuildEditorConfig.editorconfig
+E:\Git Repos\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.AssemblyInfoInputs.cache
+E:\Git Repos\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.AssemblyInfo.cs
+E:\Git Repos\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.csproj.CoreCompileInputs.cache
+E:\Git Repos\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.dll
+E:\Git Repos\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\refint\FalconOS.dll
+E:\Git Repos\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.pdb
+E:\Git Repos\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\ref\FalconOS.dll
