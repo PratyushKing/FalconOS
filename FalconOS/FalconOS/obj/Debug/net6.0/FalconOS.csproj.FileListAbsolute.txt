@@ -10,18 +10,6 @@ E:\Projects\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.dll
 E:\Projects\FalconOS\FalconOS\obj\Debug\net6.0\refint\FalconOS.dll
 E:\Projects\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.pdb
 E:\Projects\FalconOS\FalconOS\obj\Debug\net6.0\ref\FalconOS.dll
-C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\bin\Debug\net6.0\FalconOS.deps.json
-C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\bin\Debug\net6.0\FalconOS.dll
-C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\bin\Debug\net6.0\FalconOS.pdb
-C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.csproj.AssemblyReference.cache
-C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.AssemblyInfoInputs.cache
-C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.AssemblyInfo.cs
-C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.csproj.CoreCompileInputs.cache
-C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.dll
-C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\obj\Debug\net6.0\refint\FalconOS.dll
-C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.pdb
-C:\Users\praty\Downloads\FalconOS-main\FalconOS\FalconOS\obj\Debug\net6.0\ref\FalconOS.dll
 E:\Git Repos\FalconOS\FalconOS\FalconOS\bin\Debug\net6.0\FalconOS.deps.json
 E:\Git Repos\FalconOS\FalconOS\FalconOS\bin\Debug\net6.0\FalconOS.dll
 E:\Git Repos\FalconOS\FalconOS\FalconOS\bin\Debug\net6.0\FalconOS.pdb

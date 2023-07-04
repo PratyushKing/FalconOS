@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Threading;
 using System.IO;
+using Cosmos.System.FileSystem.VFS;
 
 namespace FalconOS
 {
@@ -44,7 +45,7 @@ namespace FalconOS
                 Console.WriteLine("Disk Space: " + data.fs.GetTotalFreeSpace("0:\\") + "/" + data.fs.GetTotalSize("0:\\"));
                 Console.WriteLine("Virtual Machine? [VirtualBox/VMWare/QEMU]: " + Sys.VMTools.IsVirtualBox + "/" + Sys.VMTools.IsVMWare + "/" + Sys.VMTools.IsQEMU);
                 Console.WriteLine("Disks Count: " + data.fs.Disks.Count.ToString());
-            } else if (cmd.StartsWith("sysctl "))
+            } else if (cmd.StartsWith("sysctl"))
             {
                 Console.WriteLine("Invalid Args");
             } else if (cmd.StartsWith("falnfo"))
@@ -66,43 +67,55 @@ namespace FalconOS
                 {
                     Console.WriteLine("Falnfo: Unrecognized Command");
                 }
-            } else if (cmd.StartsWith("mk"))
+            } else if (cmd.StartsWith("touch"))
             {
                 try
                 {
-                    File.Create(data.currentDir + cmd.Replace("mk ", ""));
+                    File.Create(data.currentDir + cmd.Replace("touch ", ""));
                 }
                 catch (Exception)
                 {
                     Console.WriteLine("Can't make a file.");
                 }
             }
-            else if (cmd.StartsWith("rm"))
+            else if (cmd.StartsWith("rm") && cmd.StartsWith("rm "))
             {
                 try
                 {
-                    File.Delete(data.currentDir + cmd.Replace("rm ", ""));
+                    File.Delete(cmd.Replace("rm ", data.currentDir));
                 }
                 catch (Exception)
                 {
                     Console.WriteLine("Can't remove the file.");
                 }
             }
-            else if (cmd.StartsWith("mkdir"))
+            else if (cmd.StartsWith("mkdir") && cmd.StartsWith("mkdir "))
             {
-                if (!Directory.Exists(cmd.Replace("mkdir ", data.currentDir)))
+                try
                 {
-                    Directory.CreateDirectory(cmd.Replace("mkdir ", data.currentDir));
-                } else
+                    if (!Directory.Exists(cmd.Replace("mkdir ", data.currentDir)))
+                    {
+                        Directory.CreateDirectory(cmd.Replace("mkdir ", data.currentDir));
+                    }
+                    else
+                    {
+                        Console.WriteLine("ERROR: Can't make directory, (does it already exist?)");
+                    }
+                }
+                catch (Exception)
                 {
                     Console.WriteLine("ERROR: Can't make directory, (does it already exist?)");
                 }
             }
-            else if (cmd.StartsWith("rmdir"))
+            else if (cmd.StartsWith("rmdir") && cmd.StartsWith("rmdir "))
             {
-                if (Directory.Exists(cmd.Replace("rmdir ", data.currentDir)))
+                try
                 {
-                    Directory.Delete(cmd.Replace("rmdir ", data.currentDir));
+                    Directory.Delete(data.currentDir + cmd.Replace("rmdir ", data.currentDir));
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Can't remove the directory.");
                 }
             }
             else if (cmd.StartsWith("cd"))
@@ -110,6 +123,7 @@ namespace FalconOS
                 if (cmd.StartsWith("cd ..."))
                 {
                     data.currentDir = "0:\\";
+                    return;
                 }
                 if (Directory.Exists(cmd.Replace("cd ", data.currentDir + "\\")))
                 {
