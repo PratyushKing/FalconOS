@@ -14,6 +14,10 @@ namespace FalconOS
         public static string currentDir = @"0:\";
         public static string lastDir = @"0:";
 
+        public static string osname = "FalconOS";
+        public static string vername = "Ape";
+        public static string ver = "v1.0.1";
+
         public static processMgr ProcMgr;
     }
 }

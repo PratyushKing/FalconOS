@@ -45,6 +45,13 @@ namespace FalconOS
                 Console.WriteLine("Disk Space: " + data.fs.GetTotalFreeSpace("0:\\") + "/" + data.fs.GetTotalSize("0:\\"));
                 Console.WriteLine("Virtual Machine? [VirtualBox/VMWare/QEMU]: " + Sys.VMTools.IsVirtualBox + "/" + Sys.VMTools.IsVMWare + "/" + Sys.VMTools.IsQEMU);
                 Console.WriteLine("Disks Count: " + data.fs.Disks.Count.ToString());
+            } else if (cmd.StartsWith("sysctl proclist"))
+            {
+                Console.WriteLine("Processes(" + data.ProcMgr.processes.Count + "):");
+                foreach (var process in data.ProcMgr.processes)
+                {
+                    Console.WriteLine(process);
+                }
             } else if (cmd.StartsWith("sysctl"))
             {
                 Console.WriteLine("Invalid Args");
@@ -125,7 +132,7 @@ namespace FalconOS
                     data.currentDir.TrimEnd(data.lastDir.ToCharArray());
                     data.lastDir = data.currentDir;
                     return;
-                } 
+                }
                 if (cmd.StartsWith("cd ..."))
                 {
                     data.currentDir = "0:\\";
@@ -138,6 +145,37 @@ namespace FalconOS
                 } else
                 {
                     Console.WriteLine("Invalid Directory!");
+                }
+            } else if (cmd.StartsWith("uname"))
+            {
+                Console.WriteLine("uname v1.0 utility");
+                if (cmd.StartsWith("uname "))
+                {
+                    if (cmd.StartsWith("uname -a"))
+                    {
+                        log.programPrint("uname", data.osname + " " + data.vername + " " + data.ver);
+                    } else if (cmd.StartsWith("uname -s"))
+                    {
+                        log.programPrint("uname", "Falcon Stable");
+                    } else if (cmd.StartsWith("uname -n"))
+                    {
+                        log.programPrint("uname", "falcon");
+                    } else if (cmd.StartsWith("uname -r"))
+                    {
+                        log.programPrint("uname", "1.0.1-normal");
+                    } else if (cmd.StartsWith("uname -v"))
+                    {
+                        log.programPrint("uname", "Not available.");
+                    } else if (cmd.StartsWith("uname -m") || cmd.StartsWith("uname -p") || cmd.StartsWith("uname -i"))
+                    {
+                        log.programPrint("uname", "Can't fetch architecture");
+                    } else if (cmd.StartsWith("uname -o"))
+                    {
+                        log.programPrint("uname", "Falcon");
+                    } else
+                    {
+                        log.programPrint("uname", "Unrecognized Command!");
+                    }
                 }
             }
             else if (cmd.StartsWith("ls"))
@@ -249,6 +287,9 @@ namespace FalconOS
                     Console.WriteLine("FalCompile is a FalVM compiler to compile .fal files to .fex [Falcon Executable]");
                     Console.WriteLine("Uses:\n   falcp <file>.fa (to get a <file>.fex file that is compiled)\n   falcp --help/-h (to get this prompt)");
                 }
+            } else if (cmd.StartsWith("pwd"))
+            {
+                Console.WriteLine(data.currentDir);
             }
             else
             {
