@@ -9,7 +9,7 @@ namespace FalconOS
 {
     public class Kernel : Sys.Kernel
     {
-        public static Shell shell = new Shell("FalconOS", "v1.0.1");
+        public static Shell shell = new Shell(data.osname, data.ver);
 
         protected override void BeforeRun()
         {

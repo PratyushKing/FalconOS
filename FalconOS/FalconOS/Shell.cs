@@ -71,7 +71,7 @@ namespace FalconOS
             {
                 try
                 {
-                    File.Create(data.currentDir + cmd.Replace("touch ", ""));
+                    File.Create(cmd.Replace("touch ", data.currentDir));
                 }
                 catch (Exception)
                 {
@@ -111,7 +111,7 @@ namespace FalconOS
             {
                 try
                 {
-                    Directory.Delete(data.currentDir + cmd.Replace("rmdir ", data.currentDir));
+                    Directory.Delete(cmd.Replace("rmdir ", data.currentDir));
                 }
                 catch (Exception)
                 {
@@ -120,6 +120,12 @@ namespace FalconOS
             }
             else if (cmd.StartsWith("cd"))
             {
+                if (cmd.StartsWith("cd .."))
+                {
+                    data.currentDir.TrimEnd(data.lastDir.ToCharArray());
+                    data.lastDir = data.currentDir;
+                    return;
+                } 
                 if (cmd.StartsWith("cd ..."))
                 {
                     data.currentDir = "0:\\";
@@ -128,6 +134,7 @@ namespace FalconOS
                 if (Directory.Exists(cmd.Replace("cd ", data.currentDir + "\\")))
                 {
                     data.currentDir += cmd.Replace("cd ", "") + "\\";
+                    data.lastDir = cmd.Replace("cd ", "") + "\\";
                 } else
                 {
                     Console.WriteLine("Invalid Directory!");
@@ -203,7 +210,7 @@ namespace FalconOS
                 {
                     if (File.Exists(cmd.Replace("cat ", data.currentDir)))
                     {
-                        Console.WriteLine(File.ReadAllText("cat "));
+                        Console.WriteLine(File.ReadAllText(cmd.Replace("cat ", data.currentDir)));
                     } else
                     {
                         Console.WriteLine("ERROR: Invalid File. [Use: cat <file>]");

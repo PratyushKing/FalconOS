@@ -12,6 +12,7 @@ namespace FalconOS
         public static CosmosVFS fs = new CosmosVFS();
 
         public static string currentDir = @"0:\";
+        public static string lastDir = @"0:";
 
         public static processMgr ProcMgr;
     }
