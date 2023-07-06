@@ -22,7 +22,7 @@ namespace FalconOS
             this.ver = ver;
         }
 
-        public void exec(string cmd)
+        public void exec(string cmd, bool root = false)
         {
             data.ProcMgr.addProc(cmd);
             if (cmd == "starty")
@@ -299,6 +299,10 @@ namespace FalconOS
             } else if (cmd.StartsWith("pwd"))
             {
                 Console.WriteLine(data.currentDir);
+            } else if (cmd.StartsWith("sudo "))
+            {
+                sudo su = new sudo(Kernel.cUser);
+                su.execAsRoot(cmd.TrimStart('s', 'u', 'd', 'o', ' '));
             }
             else
             {

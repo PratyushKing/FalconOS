@@ -1,6 +1,8 @@
 ﻿using Cosmos.System.FileSystem.VFS;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading;
 using Sys = Cosmos.System;
@@ -10,6 +12,8 @@ namespace FalconOS
     public class Kernel : Sys.Kernel
     {
         public static Shell shell = new Shell(data.osname, data.ver);
+        public static string cUser;
+        public static bool asRoot = false;
 
         protected override void BeforeRun()
         {
@@ -25,6 +29,28 @@ namespace FalconOS
             Thread.Sleep(1000);
             log.print("Kernel", "Setting filesystem up!");
             VFSManager.RegisterVFS(data.fs);
+            try
+            {
+                if (!Directory.Exists("0:\\Config\\")) { Directory.CreateDirectory("0:\\Config\\"); }
+                if (!File.Exists("0:\\Config\\root.ers"))
+                {
+                    File.Create("0:\\Config\\root.ers");
+                }
+                if (!File.Exists("0:\\Config\\pwd.s"))
+                {
+                    File.Create("0:\\Config\\pwd.s");
+                    File.WriteAllText("0:\\Config\\pwd.s", "passwordtest");
+                }
+                if (!File.Exists("0:\\Config\\user.s"))
+                {
+                    File.Create("0:\\Config\\user.s");
+                    File.WriteAllText("0:\\Config\\user.s", "user admin");
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Cannot make configs, System may break.");
+            }
             Thread.Sleep(200);
             log.print("Kernel", "Booting into console mode.");
             Thread.Sleep(2000);
@@ -32,23 +58,39 @@ namespace FalconOS
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
+            Console.Write("Login to FalconOS!\nUsername: ");
+            var usr = Console.ReadLine();
+            if (!(File.ReadAllText("0:\\Config\\user.s").Contains(usr))) {
+                Console.WriteLine("Invalid User, Rebooting!");
+                Thread.Sleep(2000);
+                Sys.Power.Reboot();
+            }
+            Console.Write("Password: ");
+            var pass = Console.ReadLine();
+            if (File.ReadAllText("0:\\Config\\pwd.s").Contains(pass))
+            {
+                cUser = usr;
+            } else
+            {
+                Console.WriteLine("Invalid password, Rebooting!");
+                Thread.Sleep(3000);
+                Sys.Power.Reboot();
+            }
             Console.WriteLine("\nLogging in as [root]");
             log.drawTitleBar("FalconOS: Shell");
+            if (cUser == "root")
+            {
+                asRoot = true;
+            }
             Console.SetCursorPosition(0, 8);
         }
 
         protected override void Run()
         {
-            Cosmos.System.KeyEvent keyy;
-            var key = Cosmos.System.KeyboardManager.TryReadKey(out keyy);
-            if (keyy.Key == Sys.ConsoleKeyEx.UpArrow)
-            {
-                Console.WriteLine("UP");
-            }
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("root@falcon:" + data.currentDir + "$ ");
+            Console.Write(cUser + "@falcon:" + data.currentDir + "$ ");
             var input = Console.ReadLine();
-            shell.exec(input);
+            shell.exec(input, asRoot);
         }
     }
 }
