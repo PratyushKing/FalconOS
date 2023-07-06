@@ -302,7 +302,14 @@ namespace FalconOS
             } else if (cmd.StartsWith("sudo "))
             {
                 sudo su = new sudo(Kernel.cUser);
-                su.execAsRoot(cmd.TrimStart('s', 'u', 'd', 'o', ' '));
+                su.execAsRoot(cmd.Replace("sudo ", ""));
+            } else if (cmd.StartsWith("usrname"))
+            {
+                Console.WriteLine(Kernel.cUser);
+            } else if (cmd.StartsWith("fpkg"))
+            {
+                Console.WriteLine("fpkg v0.1 Package Manager.");
+                //will implement
             }
             else
             {

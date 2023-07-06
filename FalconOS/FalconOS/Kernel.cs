@@ -64,6 +64,9 @@ namespace FalconOS
                 Console.WriteLine("Invalid User, Rebooting!");
                 Thread.Sleep(2000);
                 Sys.Power.Reboot();
+            } else if (usr == "root")
+            {
+                cUser = "root";
             }
             Console.Write("Password: ");
             var pass = Console.ReadLine();
@@ -72,23 +75,26 @@ namespace FalconOS
                 cUser = usr;
             } else
             {
-                Console.WriteLine("Invalid password, Rebooting!");
-                Thread.Sleep(3000);
-                Sys.Power.Reboot();
+                if (!(usr == "root"))
+                {
+                    Console.WriteLine("Invalid password, Rebooting!");
+                    Thread.Sleep(3000);
+                    Sys.Power.Reboot();
+                }
             }
-            Console.WriteLine("\nLogging in as [root]");
+            Console.WriteLine("\nLogging in as " + cUser);
             log.drawTitleBar("FalconOS: Shell");
             if (cUser == "root")
             {
                 asRoot = true;
             }
-            Console.SetCursorPosition(0, 8);
+            Console.SetCursorPosition(0, 9);
         }
 
         protected override void Run()
         {
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write(cUser + "@falcon:" + data.currentDir + "$ ");
+            Console.Write(cUser + "@falcon:" + data.currentDir + "# ");
             var input = Console.ReadLine();
             shell.exec(input, asRoot);
         }
