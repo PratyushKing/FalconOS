@@ -27,7 +27,7 @@ namespace FalconOS
             VFSManager.RegisterVFS(data.fs);
             Thread.Sleep(200);
             log.print("Kernel", "Booting into console mode.");
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             data.ProcMgr = new processMgr();
 
             Console.ForegroundColor = ConsoleColor.White;
@@ -39,6 +39,12 @@ namespace FalconOS
 
         protected override void Run()
         {
+            Cosmos.System.KeyEvent keyy;
+            var key = Cosmos.System.KeyboardManager.TryReadKey(out keyy);
+            if (keyy.Key == Sys.ConsoleKeyEx.UpArrow)
+            {
+                Console.WriteLine("UP");
+            }
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("root@falcon:" + data.currentDir + "$ ");
             var input = Console.ReadLine();

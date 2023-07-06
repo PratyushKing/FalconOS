@@ -533,19 +533,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\praty\\.nuget\\packages\\": {}
+    "C:\\Users\\praty\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Git Repos\\FalconOS\\FalconOS\\FalconOS\\FalconOS.csproj",
+      "projectUniqueName": "C:\\Users\\praty\\OneDrive\\Desktop\\FalconOS\\FalconOS\\FalconOS\\FalconOS.csproj",
       "projectName": "FalconOS",
-      "projectPath": "E:\\Git Repos\\FalconOS\\FalconOS\\FalconOS\\FalconOS.csproj",
+      "projectPath": "C:\\Users\\praty\\OneDrive\\Desktop\\FalconOS\\FalconOS\\FalconOS\\FalconOS.csproj",
       "packagesPath": "C:\\Users\\praty\\.nuget\\packages\\",
-      "outputPath": "E:\\Git Repos\\FalconOS\\FalconOS\\FalconOS\\obj\\",
+      "outputPath": "C:\\Users\\praty\\OneDrive\\Desktop\\FalconOS\\FalconOS\\FalconOS\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\praty\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -610,7 +615,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

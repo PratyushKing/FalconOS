@@ -2,4 +2,4 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/FalconOS/FalconOS/bin/Debug/net6.0
+/FalconOS/FalconOS/bin

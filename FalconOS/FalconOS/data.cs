@@ -18,6 +18,8 @@ namespace FalconOS
         public static string vername = "Ape";
         public static string ver = "v1.0.1";
 
+        public static string lastCMD = "";
+
         public static processMgr ProcMgr;
     }
 }

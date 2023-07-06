@@ -52,6 +52,21 @@ namespace FalconOS
                 {
                     Console.WriteLine(process);
                 }
+            } else if (cmd.StartsWith("sysctl console-cursor toggle")) {
+                Console.Write("Console-Cursor: ");
+                if (Console.CursorVisible)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("OFF");
+                    Console.CursorVisible = !Console.CursorVisible;
+                    Console.ResetColor();
+                } else if (!Console.CursorVisible)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("ON");
+                    Console.CursorVisible = !Console.CursorVisible;
+                    Console.ResetColor();
+                }
             } else if (cmd.StartsWith("sysctl"))
             {
                 Console.WriteLine("Invalid Args");
@@ -127,12 +142,6 @@ namespace FalconOS
             }
             else if (cmd.StartsWith("cd"))
             {
-                if (cmd.StartsWith("cd .."))
-                {
-                    data.currentDir.TrimEnd(data.lastDir.ToCharArray());
-                    data.lastDir = data.currentDir;
-                    return;
-                }
                 if (cmd.StartsWith("cd ..."))
                 {
                     data.currentDir = "0:\\";
@@ -297,6 +306,7 @@ namespace FalconOS
                 Console.WriteLine("Unrecognized Command!");
             }
             Console.ResetColor();
+            data.lastCMD = cmd;
             data.ProcMgr.removeProc(cmd);
             return; 
         }
