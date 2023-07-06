@@ -2,10 +2,10 @@
 Highly advanced OS, focuses on pure command line. (but better)
 
 ## Recent Changes:
-- Semi-Sudo?
-- cd Changes
-- rmdir Bug Fix
-- uname Command
+- sudo Added
+- FileSystem fixes
+- A proper user system
+- plan to make a package manager (after the falcompiler)
 
 ## Building
 ### Requires: Visual Studio, VMWare, Cosmos UserKit and The Source File
