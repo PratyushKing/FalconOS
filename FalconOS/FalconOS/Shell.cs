@@ -9,6 +9,11 @@ using System.Data;
 using System.Threading;
 using System.IO;
 using Cosmos.System.FileSystem.VFS;
+using Cosmos.System.Graphics;
+using Cosmos.System.Network;
+using Cosmos.HAL;
+using Cosmos.System.Network.IPv4.UDP.DHCP;
+using Cosmos.Core;
 
 namespace FalconOS
 {
@@ -104,7 +109,7 @@ namespace FalconOS
             {
                 try
                 {
-                    File.Delete(cmd.Replace("rm ", data.currentDir));
+                    VFSManager.DeleteFile(cmd.Replace("rm ", data.currentDir));
                 }
                 catch (Exception)
                 {
@@ -177,7 +182,7 @@ namespace FalconOS
                         log.programPrint("uname", "Not available.");
                     } else if (cmd.StartsWith("uname -m") || cmd.StartsWith("uname -p") || cmd.StartsWith("uname -i"))
                     {
-                        log.programPrint("uname", "Can't fetch architecture");
+                        log.programPrint("uname", "x86");
                     } else if (cmd.StartsWith("uname -o"))
                     {
                         log.programPrint("uname", "Falcon");
@@ -306,10 +311,6 @@ namespace FalconOS
             } else if (cmd.StartsWith("usrname"))
             {
                 Console.WriteLine(Kernel.cUser);
-            } else if (cmd.StartsWith("fpkg"))
-            {
-                Console.WriteLine("fpkg v0.1 Package Manager.");
-                //will implement
             }
             else
             {

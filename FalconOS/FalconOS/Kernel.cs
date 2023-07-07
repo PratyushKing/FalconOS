@@ -88,7 +88,7 @@ namespace FalconOS
             {
                 asRoot = true;
             }
-            Console.SetCursorPosition(0, 9);
+            Console.SetCursorPosition(0, 10);
         }
 
         protected override void Run()
