@@ -109,7 +109,7 @@ namespace FalconOS
             {
                 try
                 {
-                    VFSManager.DeleteFile(cmd.Replace("rm ", data.currentDir));
+                    File.Delete(cmd.Replace("rm ", data.currentDir));
                 }
                 catch (Exception)
                 {
@@ -138,7 +138,7 @@ namespace FalconOS
             {
                 try
                 {
-                    Directory.Delete(cmd.Replace("rmdir ", data.currentDir));
+                    Directory.Delete(cmd.Replace("rmdir ", data.currentDir), true);
                 }
                 catch (Exception)
                 {
@@ -197,12 +197,12 @@ namespace FalconOS
                 Console.ForegroundColor = ConsoleColor.Green;
                 foreach (var dirs in Directory.GetDirectories(data.currentDir))
                 {
-                    Console.Write(dirs + " ");
+                    Console.Write("\"" + dirs + "\" ");
                 }
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 foreach (var files in Directory.GetFiles(data.currentDir))
                 {
-                    Console.Write(files + " ");
+                    Console.Write("\"" + files + "\" ");
                 }
                 Console.Write("\n");
             } else if (cmd.StartsWith("fedit "))
@@ -249,11 +249,11 @@ namespace FalconOS
                 {
                     try
                     {
-                        Thread.Sleep(Convert.ToInt32(cmd.Replace("wait ", "")));
+                        Thread.Sleep(Convert.ToInt32(cmd.Replace("sleep ", "")));
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("Invalid time [Use: wait <milliseconds>]");
+                        Console.WriteLine("Invalid time [Use: sleep <milliseconds>]");
                     }
                 }
             } else if (cmd.StartsWith("cat"))
@@ -311,6 +311,21 @@ namespace FalconOS
             } else if (cmd.StartsWith("usrname"))
             {
                 Console.WriteLine(Kernel.cUser);
+            } else if (cmd.StartsWith("fav"))
+            {
+                if (cmd.StartsWith("fav "))
+                {
+                    if (File.Exists(cmd.Replace("fav ", data.currentDir)))
+                    {
+                        FAV.StartFAV(cmd.Replace("fav ", data.currentDir));
+                    } else
+                    {
+                        log.programPrint("FAV", "Invalid file!");
+                    }
+                } else
+                {
+                    Console.WriteLine("FAV is a copy of VIM (more specifically MIV)");
+                }
             }
             else
             {

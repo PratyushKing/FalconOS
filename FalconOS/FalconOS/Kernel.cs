@@ -29,17 +29,20 @@ namespace FalconOS
             Thread.Sleep(1000);
             log.print("Kernel", "Setting filesystem up!");
             VFSManager.RegisterVFS(data.fs);
+            data.fs.Initialize(true);
             try
             {
                 if (!Directory.Exists("0:\\Config\\")) { Directory.CreateDirectory("0:\\Config\\"); }
                 if (!File.Exists("0:\\Config\\root.ers"))
                 {
                     File.Create("0:\\Config\\root.ers");
+                    File.WriteAllText("0:\\Config\\root.ers", "user ");
                 }
                 if (!File.Exists("0:\\Config\\pwd.s"))
                 {
                     File.Create("0:\\Config\\pwd.s");
                     File.WriteAllText("0:\\Config\\pwd.s", "passwordtest");
+                    File.WriteAllText("0:\\Config\\root.ers", "passwd");
                 }
                 if (!File.Exists("0:\\Config\\user.s"))
                 {
@@ -60,26 +63,30 @@ namespace FalconOS
             Console.BackgroundColor = ConsoleColor.Black;
             Console.Write("Login to FalconOS!\nUsername: ");
             var usr = Console.ReadLine();
-            if (!(File.ReadAllText("0:\\Config\\user.s").Contains(usr))) {
+            if (usr == "root")
+            {
+                cUser = "root";
+            } else if (!(File.ReadAllText("0:\\Config\\user.s").Contains(usr))) {
                 Console.WriteLine("Invalid User, Rebooting!");
                 Thread.Sleep(2000);
                 Sys.Power.Reboot();
-            } else if (usr == "root")
-            {
-                cUser = "root";
             }
-            Console.Write("Password: ");
-            var pass = Console.ReadLine();
-            if (File.ReadAllText("0:\\Config\\pwd.s").Contains(pass))
+            if (!(usr == "root"))
             {
-                cUser = usr;
-            } else
-            {
-                if (!(usr == "root"))
+                Console.Write("Password: ");
+                var pass = Console.ReadLine();
+                if (File.ReadAllText("0:\\Config\\pwd.s").Contains(pass))
                 {
-                    Console.WriteLine("Invalid password, Rebooting!");
-                    Thread.Sleep(3000);
-                    Sys.Power.Reboot();
+                    cUser = usr;
+                }
+                else
+                {
+                    if (!(usr == "root"))
+                    {
+                        Console.WriteLine("Invalid password, Rebooting!");
+                        Thread.Sleep(3000);
+                        Sys.Power.Reboot();
+                    }
                 }
             }
             Console.WriteLine("\nLogging in as " + cUser);
@@ -94,7 +101,7 @@ namespace FalconOS
         protected override void Run()
         {
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write(cUser + "@falcon:" + data.currentDir + "# ");
+            Console.Write(cUser + "@falcon:" + data.currentDir + " # ");
             var input = Console.ReadLine();
             shell.exec(input, asRoot);
         }
