@@ -207,7 +207,7 @@ namespace FalconOS
                             } else if (infoBar == ":bl")
                             {
                                 Console.BackgroundColor = ConsoleColor.Black;
-                                Console.Clear();
+                                Console.Clear();  
                                 printFAVScreen(chars, pos, infoBar, editMode, filename);
                                 break;
                             }
