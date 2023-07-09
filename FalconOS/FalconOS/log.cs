@@ -34,5 +34,13 @@ namespace FalconOS
             Console.WriteLine(title + new string(' ', Console.WindowWidth - title.Length));
             Console.ResetColor();
         }
+
+        public static void drawBar(string text, ConsoleColor back = ConsoleColor.DarkCyan, ConsoleColor fore = ConsoleColor.Black, bool newLine = true)
+        {
+            Console.BackgroundColor = back; Console.ForegroundColor = fore;
+            Console.Write(text + new string(' ', Console.WindowWidth - text.Length - 1));
+            if (newLine) { Console.Write("\n"); }
+            Console.ResetColor();
+        }
     }
 }

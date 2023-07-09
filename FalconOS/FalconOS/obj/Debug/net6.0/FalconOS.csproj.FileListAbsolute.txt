@@ -34,3 +34,15 @@ C:\Users\praty\OneDrive\Desktop\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\Falc
 C:\Users\praty\OneDrive\Desktop\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\refint\FalconOS.dll
 C:\Users\praty\OneDrive\Desktop\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.pdb
 C:\Users\praty\OneDrive\Desktop\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\ref\FalconOS.dll
+D:\Visual Studio Projects\FalconOS\FalconOS\FalconOS\bin\Debug\net6.0\FalconOS.deps.json
+D:\Visual Studio Projects\FalconOS\FalconOS\FalconOS\bin\Debug\net6.0\FalconOS.dll
+D:\Visual Studio Projects\FalconOS\FalconOS\FalconOS\bin\Debug\net6.0\FalconOS.pdb
+D:\Visual Studio Projects\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.csproj.AssemblyReference.cache
+D:\Visual Studio Projects\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.GeneratedMSBuildEditorConfig.editorconfig
+D:\Visual Studio Projects\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.AssemblyInfoInputs.cache
+D:\Visual Studio Projects\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.AssemblyInfo.cs
+D:\Visual Studio Projects\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.csproj.CoreCompileInputs.cache
+D:\Visual Studio Projects\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.dll
+D:\Visual Studio Projects\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\refint\FalconOS.dll
+D:\Visual Studio Projects\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\FalconOS.pdb
+D:\Visual Studio Projects\FalconOS\FalconOS\FalconOS\obj\Debug\net6.0\ref\FalconOS.dll

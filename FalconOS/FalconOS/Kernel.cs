@@ -36,13 +36,12 @@ namespace FalconOS
                 if (!File.Exists("0:\\Config\\root.ers"))
                 {
                     File.Create("0:\\Config\\root.ers");
-                    File.WriteAllText("0:\\Config\\root.ers", "user ");
+                    File.WriteAllText("0:\\Config\\root.ers", "admin ");
                 }
                 if (!File.Exists("0:\\Config\\pwd.s"))
                 {
                     File.Create("0:\\Config\\pwd.s");
-                    File.WriteAllText("0:\\Config\\pwd.s", "passwordtest");
-                    File.WriteAllText("0:\\Config\\root.ers", "passwd");
+                    File.WriteAllText("0:\\Config\\pwd.s", "passwd");
                 }
                 if (!File.Exists("0:\\Config\\user.s"))
                 {
@@ -59,43 +58,8 @@ namespace FalconOS
             Thread.Sleep(2000);
             data.ProcMgr = new processMgr();
 
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.Write("Login to FalconOS!\nUsername: ");
-            var usr = Console.ReadLine();
-            if (usr == "root")
-            {
-                cUser = "root";
-            } else if (!(File.ReadAllText("0:\\Config\\user.s").Contains(usr))) {
-                Console.WriteLine("Invalid User, Rebooting!");
-                Thread.Sleep(2000);
-                Sys.Power.Reboot();
-            }
-            if (!(usr == "root"))
-            {
-                Console.Write("Password: ");
-                var pass = Console.ReadLine();
-                if (File.ReadAllText("0:\\Config\\pwd.s").Contains(pass))
-                {
-                    cUser = usr;
-                }
-                else
-                {
-                    if (!(usr == "root"))
-                    {
-                        Console.WriteLine("Invalid password, Rebooting!");
-                        Thread.Sleep(3000);
-                        Sys.Power.Reboot();
-                    }
-                }
-            }
-            Console.WriteLine("\nLogging in as " + cUser);
-            log.drawTitleBar("FalconOS: Shell");
-            if (cUser == "root")
-            {
-                asRoot = true;
-            }
-            Console.SetCursorPosition(0, 10);
+            sysmgr.login();
+            Console.SetCursorPosition(0, 11);
         }
 
         protected override void Run()

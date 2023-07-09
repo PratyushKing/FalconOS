@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Threading;
 
 namespace FalconOS
 {
     public class FAV
     {
-        public static void printFAVStartScreen()
+        public static string cursor = "_";
+
+        public static void printFAVStartScreen(string fileN)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -27,7 +30,7 @@ namespace FalconOS
             Console.WriteLine("~                               by "); Console.ForegroundColor = ConsoleColor.Yellow; Console.WriteLine(" Code Devel0per");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("~                               Modified from MIV");
-            Console.WriteLine("~                      FIV is a very obvious clone of MIV.");
+            Console.WriteLine("~                      FAV is a very obvious clone of MIV.");
             Console.WriteLine("~");
             Console.WriteLine("~                     type :help<Enter>          for information");
             Console.WriteLine("~                     type :q<Enter>             to exit");
@@ -39,8 +42,9 @@ namespace FalconOS
             Console.WriteLine("~");
             Console.WriteLine("~");
             Console.WriteLine("~");
-            Console.Write("~");
+            Console.WriteLine("~");
             Console.ForegroundColor = ConsoleColor.White;
+            log.drawBar("FalconOS: FAV: Editing " + fileN, ConsoleColor.DarkCyan, ConsoleColor.Black, false);
         }
 
         public static String stringCopy(String value)
@@ -55,7 +59,7 @@ namespace FalconOS
             return newString;
         }
 
-        public static void printFAVScreen(char[] chars, int pos, String infoBar, Boolean editMode)
+        public static void printFAVScreen(char[] chars, int pos, String infoBar, Boolean editMode, string fileNa)
         {
             int countNewLine = 0;
             int countChars = 0;
@@ -81,9 +85,9 @@ namespace FalconOS
                 }
             }
 
-            Console.Write("/");
+            Console.Write(cursor);
 
-            for (int i = 0; i < 23 - countNewLine; i++)
+            for (int i = 0; i < 22 - countNewLine; i++)
             {
                 Console.WriteLine("");
                 Console.ForegroundColor = ConsoleColor.Cyan;
@@ -91,9 +95,12 @@ namespace FalconOS
                 Console.ForegroundColor = ConsoleColor.White;
             }
 
+            Console.WriteLine();
+            log.drawBar("FalconOS: FAV: Editing " + fileNa, ConsoleColor.DarkCyan, ConsoleColor.Black, false);
+
             //PRINT INSTRUCTION
             Console.WriteLine();
-            for (int i = 0; i < 72; i++)
+            for (int i = 0; i < 73; i++)
             {
                 if (i < infoBar.Length)
                 {
@@ -112,16 +119,16 @@ namespace FalconOS
 
         }
 
-        public static String fav(String start)
+        public static String fav(String start, String filename, string baseVal)
         {
             Boolean editMode = false;
             int pos = 0;
             char[] chars = new char[2000];
-            String infoBar = String.Empty;
+            String infoBar = baseVal;
 
             if (start == null)
             {
-                printFAVStartScreen();
+                printFAVStartScreen(filename);
             }
             else
             {
@@ -131,7 +138,7 @@ namespace FalconOS
                 {
                     chars[i] = start[i];
                 }
-                printFAVScreen(chars, pos, infoBar, editMode);
+                printFAVScreen(chars, pos, infoBar, editMode, filename);
             }
 
             ConsoleKeyInfo keyInfo;
@@ -145,7 +152,7 @@ namespace FalconOS
                 else if (!editMode && keyInfo.KeyChar == ':')
                 {
                     infoBar = ":";
-                    printFAVScreen(chars, pos, infoBar, editMode);
+                    printFAVScreen(chars, pos, infoBar, editMode, filename);
                     do
                     {
                         keyInfo = Console.ReadKey(true);
@@ -163,24 +170,58 @@ namespace FalconOS
                             else if (infoBar == ":q")
                             {
                                 return null;
-
                             }
                             else if (infoBar == ":help")
                             {
-                                printFAVStartScreen();
+                                printFAVStartScreen(filename);
+                                break;
+                            } else if (infoBar == ":cursor /")
+                            {
+                                cursor = "/";
+                                break;
+                            } else if (infoBar == ":cursor _")
+                            {
+                                cursor = "_";
+                                break;
+                            } else if (infoBar == ":cursor |")
+                            {
+                                cursor = "|";
+                                break;
+                            } else if (infoBar == ":w")
+                            {
+                                String contents = String.Empty;
+                                for (int i = 0; i < pos; i++)
+                                {
+                                    contents += chars[i];
+                                }
+                                File.WriteAllText(filename, contents);
+                                infoBar = "Saved " + filename + ", Length: " + start.Length;
+                                Thread.Sleep(1500);
+                                break;
+                            } else if (infoBar == ":dg")
+                            {
+                                Console.BackgroundColor = ConsoleColor.DarkGray;
+                                Console.Clear();
+                                printFAVScreen(chars, pos, infoBar, editMode, filename);
+                                break;
+                            } else if (infoBar == ":bl")
+                            {
+                                Console.BackgroundColor = ConsoleColor.Black;
+                                Console.Clear();
+                                printFAVScreen(chars, pos, infoBar, editMode, filename);
                                 break;
                             }
                             else
                             {
                                 infoBar = "ERROR: No such command";
-                                printFAVScreen(chars, pos, infoBar, editMode);
+                                printFAVScreen(chars, pos, infoBar, editMode, filename);
                                 break;
                             }
                         }
                         else if (keyInfo.Key == ConsoleKey.Backspace)
                         {
                             infoBar = stringCopy(infoBar);
-                            printFAVScreen(chars, pos, infoBar, editMode);
+                            printFAVScreen(chars, pos, infoBar, editMode, filename);
                         }
                         else if (keyInfo.KeyChar == 'q')
                         {
@@ -209,12 +250,15 @@ namespace FalconOS
                         else if (keyInfo.KeyChar == 'p')
                         {
                             infoBar += "p";
+                        } else if (infochecks.isLetter(keyInfo.KeyChar))
+                        {
+                            infoBar += keyInfo.KeyChar;
                         }
                         else
                         {
                             continue;
                         }
-                        printFAVScreen(chars, pos, infoBar, editMode);
+                        printFAVScreen(chars, pos, infoBar, editMode, filename);
 
 
 
@@ -225,7 +269,7 @@ namespace FalconOS
                 {
                     editMode = false;
                     infoBar = String.Empty;
-                    printFAVScreen(chars, pos, infoBar, editMode);
+                    printFAVScreen(chars, pos, infoBar, editMode, filename);
                     continue;
                 }
 
@@ -233,14 +277,14 @@ namespace FalconOS
                 {
                     editMode = true;
                     infoBar = "-- INSERT --";
-                    printFAVScreen(chars, pos, infoBar, editMode);
+                    printFAVScreen(chars, pos, infoBar, editMode, filename);
                     continue;
                 }
 
                 else if (keyInfo.Key == ConsoleKey.Enter && editMode && pos >= 0)
                 {
                     chars[pos++] = '\n';
-                    printFAVScreen(chars, pos, infoBar, editMode);
+                    printFAVScreen(chars, pos, infoBar, editMode, filename);
                     continue;
                 }
                 else if (keyInfo.Key == ConsoleKey.Backspace && editMode && pos >= 0)
@@ -249,14 +293,14 @@ namespace FalconOS
 
                     chars[pos] = '\0';
 
-                    printFAVScreen(chars, pos, infoBar, editMode);
+                    printFAVScreen(chars, pos, infoBar, editMode, filename);
                     continue;
                 }
 
                 if (editMode && pos >= 0)
                 {
                     chars[pos++] = keyInfo.KeyChar;
-                    printFAVScreen(chars, pos, infoBar, editMode);
+                    printFAVScreen(chars, pos, infoBar, editMode, filename);
                 }
 
             } while (true);
@@ -279,16 +323,26 @@ namespace FalconOS
         public static void StartFAV(string file)
         {
             String text = String.Empty;
-            text = fav(File.ReadAllText(file));
+            if (file == null)
+            {
+                File.WriteAllText(data.currentDir + "favText.txt", "");
+                fav(null, "favText.txt", "File not valid, will save as favText.txt");
+                return;
+            }
+            text = fav(File.ReadAllText(file), file, "Opened " + file);
+            Console.BackgroundColor = ConsoleColor.DarkGray;
             Console.Clear();
-
             if (text != null)
             {
                 File.WriteAllText(file, text);
                 Console.WriteLine("Content has been saved to " + file);
             }
-            Console.WriteLine("Press any key to continue...");
+            Console.WriteLine("Press any key to exit..");
             Console.ReadKey(true);
+            Console.ResetColor();
+            Console.Clear();
+            
+            log.drawTitleBar("FalconOS: Shell");
         }
     }
 }

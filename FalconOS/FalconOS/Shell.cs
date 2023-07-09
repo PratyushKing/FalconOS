@@ -57,19 +57,19 @@ namespace FalconOS
                 {
                     Console.WriteLine(process);
                 }
-            } else if (cmd.StartsWith("sysctl console-cursor toggle")) {
+            } else if (cmd.StartsWith("sysctl console-cursor")) {
                 Console.Write("Console-Cursor: ");
-                if (Console.CursorVisible)
+                if (cmd.StartsWith("sysctl console-cursor false"))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("OFF");
-                    Console.CursorVisible = !Console.CursorVisible;
+                    Console.CursorVisible = false;
                     Console.ResetColor();
-                } else if (!Console.CursorVisible)
+                } else if (cmd.StartsWith("sysctl console-cursor true"))
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("ON");
-                    Console.CursorVisible = !Console.CursorVisible;
+                    Console.CursorVisible = true;
                     Console.ResetColor();
                 }
             } else if (cmd.StartsWith("sysctl"))
@@ -147,6 +147,10 @@ namespace FalconOS
             }
             else if (cmd.StartsWith("cd"))
             {
+                if (cmd.Contains("Config") && data.currentDir == "0:\\" && Kernel.cUser.ToLower() != "root")
+                {
+                    log.programPrint("cd", "Permission denied");
+                }
                 if (cmd.StartsWith("cd ..."))
                 {
                     data.currentDir = "0:\\";
@@ -211,9 +215,11 @@ namespace FalconOS
             } else if (cmd.StartsWith("clear"))
             {
                 Console.Clear();
+                log.drawTitleBar("FalconOS: Shell");
             } else if (cmd.StartsWith("exit"))
             {
-                Sys.Power.Shutdown();
+                Console.Clear();
+                sysmgr.login();
             } else if (cmd == "") { }
             else if (cmd.StartsWith("fash "))
             {
@@ -224,7 +230,7 @@ namespace FalconOS
 
                     foreach (string line in lines)
                     {
-                        if (!line.StartsWith("! "))
+                        if (!line.StartsWith("#"))
                         {
                             exec(line);
                         }
@@ -320,12 +326,36 @@ namespace FalconOS
                         FAV.StartFAV(cmd.Replace("fav ", data.currentDir));
                     } else
                     {
-                        log.programPrint("FAV", "Invalid file!");
+                        File.WriteAllText(cmd.Replace("fav ", data.currentDir), null);
+                        FAV.StartFAV(cmd.Replace("fav ", data.currentDir));
                     }
                 } else
                 {
-                    Console.WriteLine("FAV is a copy of VIM (more specifically MIV)");
+                    FAV.StartFAV(null);
                 }
+            } else if (cmd.StartsWith("screenfetch") || cmd.StartsWith("feofetch"))
+            {
+                Console.Write("\n 88888888b          dP                                .88888.  .d88888b  \r\n 88                 88                               d8'   `8b 88.    \"' \r\na88aaaa    .d8888b. 88 .d8888b. .d8888b. 88d888b.    88     88 `Y88888b. \r\n 88        88'  `88 88 88'  `\"\" 88'  `88 88'  `88    88     88       `8b \r\n 88        88.  .88 88 88.  ... 88.  .88 88    88    Y8.   .8P d8'   .8P \r\n dP        `88888P8 dP `88888P' `88888P' dP    dP     `8888P'   Y88888P  \r\n                                                                         \r\n                                                                             \n");
+                Console.WriteLine("FalconOS " + ver + ": Is VM?: " + infochecks.isVM());
+            } else if (cmd.StartsWith("fetch"))
+            {
+                if (cmd.StartsWith("fetch "))
+                {
+                    var fWhat = cmd.Replace("fetch ", "");
+                    if (fWhat == "disks")
+                    {
+                        foreach (var disk in VFSManager.GetDisks())
+                        {
+                            Console.WriteLine(disk.ToString());
+                        }
+                    } else
+                    {
+                        Console.WriteLine("fetch v1.0\nFetches different system stuff");
+                    }
+                }
+            } else if (cmd.StartsWith("logout"))
+            {
+                sysmgr.login(true);
             }
             else
             {
