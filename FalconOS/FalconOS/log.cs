@@ -27,6 +27,11 @@ namespace FalconOS
             return;
         }
 
+        public static void print(string text = "")
+        {
+            Console.Write(text + "\n"); Shell.buffer += text; return;
+        }
+
         public static void drawTitleBar(string title, ConsoleColor back = ConsoleColor.DarkCyan, ConsoleColor fore = ConsoleColor.Black)
         {
             Console.BackgroundColor = back; Console.ForegroundColor = fore;
