@@ -23,7 +23,7 @@ namespace FalconOS
             }
             else if (!(File.ReadAllText("0:\\Config\\user.s").Contains(usr)))
             {
-                Console.WriteLine("Invalid User, Rebooting!");
+                log.sPrint("Invalid User, Rebooting!");
                 Thread.Sleep(2000);
                 Cosmos.System.Power.Reboot();
             }
@@ -39,13 +39,13 @@ namespace FalconOS
                 {
                     if (!(usr == "root"))
                     {
-                        Console.WriteLine("Invalid password, Rebooting!");
+                        log.sPrint("Invalid password, Rebooting!");
                         Thread.Sleep(3000);
                         Cosmos.System.Power.Reboot();
                     }
                 }
             }
-            Console.WriteLine("\nLogging in as " + Kernel.cUser);
+            log.sPrint("\nLogging in as " + Kernel.cUser);
             if (clear) { Console.Clear(); }
             log.drawTitleBar("FalconOS: Shell");
             if (Kernel.cUser == "root")

@@ -43,7 +43,7 @@ namespace FalconOS
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("User not in root-ers file.");
+                    log.sPrint("User not in root-ers file.");
                 }
             }
             return 0;
@@ -57,7 +57,7 @@ namespace FalconOS
                 Cosmos.System.Power.Reboot();
             } else if (cmd == "usrname")
             {
-                Console.WriteLine("ROOT");
+                log.sPrint("ROOT");
             } else if (cmd == "shutdown")
             {
                 log.print("Shutdown", "Shutting down the system.");

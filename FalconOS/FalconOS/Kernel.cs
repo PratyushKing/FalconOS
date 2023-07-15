@@ -23,7 +23,7 @@ namespace FalconOS
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.Write("FalconOS");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("!");
+            log.sPrint("!");
             Console.SetCursorPosition(0, 1);
             log.print("Kernel", "Booting up.");
             Thread.Sleep(1000);
@@ -51,7 +51,7 @@ namespace FalconOS
             }
             catch (Exception)
             {
-                Console.WriteLine("Cannot make configs, System may break.");
+                log.sPrint("Cannot make configs, System may break.");
             }
             Thread.Sleep(200);
             log.print("Kernel", "Booting into console mode.");
@@ -67,7 +67,17 @@ namespace FalconOS
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write(cUser + "@falcon:" + data.currentDir + " # ");
             var input = Console.ReadLine();
-            shell.exec(input, asRoot);
+            if (input.Contains("&&"))
+            {
+                var inp = input.Split("&&");
+                foreach (var cmd in inp)
+                {
+                    shell.exec(cmd, asRoot);
+                }
+            } else
+            {
+                shell.exec(input, asRoot);
+            }
         }
     }
 }

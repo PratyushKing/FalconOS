@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Git Repos\\FalconOS\\FalconOS\\FalconOS\\FalconOS.csproj": {}
+    "D:\\Visual Studio Projects\\FalconOS\\FalconOS\\FalconOS\\FalconOS.csproj": {}
   },
   "projects": {
-    "E:\\Git Repos\\FalconOS\\FalconOS\\FalconOS\\FalconOS.csproj": {
+    "D:\\Visual Studio Projects\\FalconOS\\FalconOS\\FalconOS\\FalconOS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Git Repos\\FalconOS\\FalconOS\\FalconOS\\FalconOS.csproj",
+        "projectUniqueName": "D:\\Visual Studio Projects\\FalconOS\\FalconOS\\FalconOS\\FalconOS.csproj",
         "projectName": "FalconOS",
-        "projectPath": "E:\\Git Repos\\FalconOS\\FalconOS\\FalconOS\\FalconOS.csproj",
+        "projectPath": "D:\\Visual Studio Projects\\FalconOS\\FalconOS\\FalconOS\\FalconOS.csproj",
         "packagesPath": "C:\\Users\\praty\\.nuget\\packages\\",
-        "outputPath": "E:\\Git Repos\\FalconOS\\FalconOS\\FalconOS\\obj\\",
+        "outputPath": "D:\\Visual Studio Projects\\FalconOS\\FalconOS\\FalconOS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\praty\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -79,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
