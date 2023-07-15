@@ -51,19 +51,6 @@ namespace FalconOS
             }
             else if (cmd == "sysctl info")
             {
-<<<<<<< HEAD
-                log.sPrint("Basic System Info:");
-                log.sPrint("Disk Space: " + data.fs.GetTotalFreeSpace("0:\\") + "/" + data.fs.GetTotalSize("0:\\"));
-                log.sPrint("Virtual Machine? [VirtualBox/VMWare/QEMU]: " + Sys.VMTools.IsVirtualBox + "/" + Sys.VMTools.IsVMWare + "/" + Sys.VMTools.IsQEMU);
-                log.sPrint("Disks Count: " + data.fs.Disks.Count.ToString());
-            }
-            else if (cmd.StartsWith("sysctl proclist"))
-            {
-                log.sPrint("Processes(" + data.ProcMgr.processes.Count + "):");
-                foreach (var process in data.ProcMgr.processes)
-                {
-                    log.sPrint(process);
-=======
                 log.print("Basic System Info:");
                 log.print("Disk Space: " + data.fs.GetTotalFreeSpace("0:\\") + "/" + data.fs.GetTotalSize("0:\\"));
                 log.print("Virtual Machine? [VirtualBox/VMWare/QEMU]: " + Sys.VMTools.IsVirtualBox + "/" + Sys.VMTools.IsVMWare + "/" + Sys.VMTools.IsQEMU);
@@ -75,7 +62,6 @@ namespace FalconOS
                 foreach (var process in data.ProcMgr.processes)
                 {
                     log.print(process);
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                 }
             }
             else if (cmd.StartsWith("sysctl console-cursor"))
@@ -84,57 +70,47 @@ namespace FalconOS
                 if (cmd.StartsWith("sysctl console-cursor false"))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-<<<<<<< HEAD
-                    log.sPrint("OFF");
-=======
                     log.print("OFF");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                     Console.CursorVisible = false;
                     Console.ResetColor();
                 }
                 else if (cmd.StartsWith("sysctl console-cursor true"))
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-<<<<<<< HEAD
-                    log.sPrint("ON");
-=======
                     log.print("ON");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                     Console.CursorVisible = true;
                     Console.ResetColor();
                 }
             }
             else if (cmd.StartsWith("sysctl"))
             {
-<<<<<<< HEAD
-                log.sPrint("Invalid Args");
-            }
-            else if (cmd.StartsWith("falnfo"))
-            {
-                log.sPrint("Falnfo 1.0");
-                if (cmd.StartsWith("falnfo -a"))
-                {
-                    log.sPrint("FalconOS v1.0.1\nBase version v1.0.0\nFalVM 0.5");
-                }
-                else if (cmd.StartsWith("falnfo -f"))
-                {
-                    log.sPrint("FalconOS v1.0.1");
-                }
-                else if (cmd.StartsWith("falnfo -b"))
-                {
-                    log.sPrint("Base version v1.0.1");
-                }
-                else if (cmd.StartsWith("falnfo -vm"))
-                {
-                    log.sPrint("FalVM 0.5");
-                }
-                else
-                {
-                    log.sPrint("Falnfo: Unrecognized Command");
-=======
                 log.print("Invalid Args");
             }
             else if (cmd.StartsWith("falnfo"))
+            {
+                log.print("Falnfo 1.0");
+                if (cmd.StartsWith("falnfo -a"))
+                {
+                    log.print("FalconOS v1.0.1\nBase version v1.0.0\nFalVM 0.5");
+                }
+                else if (cmd.StartsWith("falnfo -f"))
+                {
+                    log.print("FalconOS v1.0.1");
+                }
+                else if (cmd.StartsWith("falnfo -b"))
+                {
+                    log.print("Base version v1.0.1");
+                }
+                else if (cmd.StartsWith("falnfo -vm"))
+                {
+                    log.print("FalVM 0.5");
+                }
+                else
+                {
+                    log.print("Falnfo: Unrecognized Command");
+                }
+            }
+            else if (cmd.StartsWith("touch"))
             {
                 log.print("Falnfo 1.0");
                 if (cmd.StartsWith("falnfo -a"))
@@ -167,11 +143,7 @@ namespace FalconOS
                 }
                 catch (Exception)
                 {
-<<<<<<< HEAD
-                    log.sPrint("Can't make a file.");
-=======
                     log.print("Can't make a file.");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                 }
             }
             else if (cmd.StartsWith("rm") && cmd.StartsWith("rm "))
@@ -182,11 +154,7 @@ namespace FalconOS
                 }
                 catch (Exception)
                 {
-<<<<<<< HEAD
-                    log.sPrint("Can't remove the file.");
-=======
                     log.print("Can't remove the file.");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                 }
             }
             else if (cmd.StartsWith("mkdir") && cmd.StartsWith("mkdir "))
@@ -199,20 +167,12 @@ namespace FalconOS
                     }
                     else
                     {
-<<<<<<< HEAD
-                        log.sPrint("ERROR: Can't make directory, (does it already exist?)");
-=======
                         log.print("ERROR: Can't make directory, (does it already exist?)");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                     }
                 }
                 catch (Exception)
                 {
-<<<<<<< HEAD
-                    log.sPrint("ERROR: Can't make directory, (does it already exist?)");
-=======
                     log.print("ERROR: Can't make directory, (does it already exist?)");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                 }
             }
             else if (cmd.StartsWith("rmdir") && cmd.StartsWith("rmdir "))
@@ -223,11 +183,7 @@ namespace FalconOS
                 }
                 catch (Exception)
                 {
-<<<<<<< HEAD
-                    log.sPrint("Can't remove the directory.");
-=======
                     log.print("Can't remove the directory.");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                 }
             }
             else if (cmd.StartsWith("cd"))
@@ -248,20 +204,12 @@ namespace FalconOS
                 }
                 else
                 {
-<<<<<<< HEAD
-                    log.sPrint("Invalid Directory!");
-=======
                     log.print("Invalid Directory!");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                 }
             }
             else if (cmd.StartsWith("uname"))
             {
-<<<<<<< HEAD
-                log.sPrint("uname v1.0 utility");
-=======
                 log.print("uname v1.0 utility");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                 if (cmd.StartsWith("uname "))
                 {
                     if (cmd.StartsWith("uname -a"))
@@ -329,11 +277,7 @@ namespace FalconOS
             else if (cmd == "") { }
             else if (cmd.StartsWith("fash "))
             {
-<<<<<<< HEAD
-                log.sPrint("Starting fash..");
-=======
                 log.print("Starting fash..");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                 if (File.Exists(cmd.Replace("fash ", data.currentDir)) && cmd.Replace("fash ", data.currentDir).EndsWith(".ash"))
                 {
                     string[] lines = File.ReadAllLines(cmd.Replace("fash ", data.currentDir));
@@ -348,11 +292,7 @@ namespace FalconOS
                 }
                 else
                 {
-<<<<<<< HEAD
-                    log.sPrint("Error: Either file doesn't exist [Use: fash <file.ash>] or doesn't end in .ash");
-=======
                     log.print("Error: Either file doesn't exist [Use: fash <file.ash>] or doesn't end in .ash");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                 }
             }
             else if (cmd.StartsWith("echo"))
@@ -363,11 +303,7 @@ namespace FalconOS
                 }
                 if (cmd.StartsWith("echo \"") && cmd.EndsWith("\""))
                 {
-<<<<<<< HEAD
-                    log.sPrint(cmd.Replace("echo \"", "").TrimEnd('\"'));
-=======
                     log.print(cmd.Replace("echo \"", "").TrimEnd('\"'));
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                 }
             }
             else if (cmd.StartsWith("sleep"))
@@ -380,11 +316,7 @@ namespace FalconOS
                     }
                     catch (Exception)
                     {
-<<<<<<< HEAD
-                        log.sPrint("Invalid time [Use: sleep <milliseconds>]");
-=======
                         log.print("Invalid time [Use: sleep <milliseconds>]");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                     }
                 }
             }
@@ -394,19 +326,11 @@ namespace FalconOS
                 {
                     if (File.Exists(cmd.Replace("cat ", data.currentDir)))
                     {
-<<<<<<< HEAD
-                        log.sPrint(File.ReadAllText(cmd.Replace("cat ", data.currentDir)));
-                    }
-                    else
-                    {
-                        log.sPrint("ERROR: Invalid File. [Use: cat <file>]");
-=======
                         log.print(File.ReadAllText(cmd.Replace("cat ", data.currentDir)));
                     }
                     else
                     {
                         log.print("ERROR: Invalid File. [Use: cat <file>]");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                     }
                 }
             }
@@ -415,11 +339,7 @@ namespace FalconOS
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.Write(this.os + " ");
                 Console.ResetColor();
-<<<<<<< HEAD
-                log.sPrint(this.ver);
-=======
                 log.print(this.ver);
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
             }
             else if (cmd.StartsWith("falcp"))
             {
@@ -427,15 +347,9 @@ namespace FalconOS
                 {
                     if (cmd.StartsWith("falcp --help") || cmd.StartsWith("falcp -h"))
                     {
-<<<<<<< HEAD
-                        log.sPrint("FalCompile [falcp] v0.5");
-                        log.sPrint("FalCompile is a FalVM compiler to compile .fal files to .fex [Falcon Executable]");
-                        log.sPrint("Uses:\n   falcp <file> (to get a <file>.fex file that is compiled)\n   falcp --help/-h (to get this prompt)");
-=======
                         log.print("FalCompile [falcp] v0.5");
                         log.print("FalCompile is a FalVM compiler to compile .fal files to .fex [Falcon Executable]");
                         log.print("Uses:\n   falcp <file> (to get a <file>.fex file that is compiled)\n   falcp --help/-h (to get this prompt)");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                     }
                     else if (cmd.EndsWith(".fa"))
                     {
@@ -452,24 +366,14 @@ namespace FalconOS
                 }
                 else
                 {
-<<<<<<< HEAD
-                    log.sPrint("FalCompile [falcp] v0.5");
-                    log.sPrint("FalCompile is a FalVM compiler to compile .fal files to .fex [Falcon Executable]");
-                    log.sPrint("Uses:\n   falcp <file>.fa (to get a <file>.fex file that is compiled)\n   falcp --help/-h (to get this prompt)");
-=======
                     log.print("FalCompile [falcp] v0.5");
                     log.print("FalCompile is a FalVM compiler to compile .fal files to .fex [Falcon Executable]");
                     log.print("Uses:\n   falcp <file>.fa (to get a <file>.fex file that is compiled)\n   falcp --help/-h (to get this prompt)");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                 }
             }
             else if (cmd.StartsWith("pwd"))
             {
-<<<<<<< HEAD
-                log.sPrint(data.currentDir);
-=======
                 log.print(data.currentDir);
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
             }
             else if (cmd.StartsWith("sudo "))
             {
@@ -478,11 +382,7 @@ namespace FalconOS
             }
             else if (cmd.StartsWith("usrname"))
             {
-<<<<<<< HEAD
-                log.sPrint(Kernel.cUser);
-=======
                 log.print(Kernel.cUser);
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
             }
             else if (cmd.StartsWith("fav"))
             {
@@ -506,11 +406,7 @@ namespace FalconOS
             else if (cmd.StartsWith("screenfetch") || cmd.StartsWith("feofetch"))
             {
                 Console.Write("\n 88888888b          dP                                .88888.  .d88888b  \r\n 88                 88                               d8'   `8b 88.    \"' \r\na88aaaa    .d8888b. 88 .d8888b. .d8888b. 88d888b.    88     88 `Y88888b. \r\n 88        88'  `88 88 88'  `\"\" 88'  `88 88'  `88    88     88       `8b \r\n 88        88.  .88 88 88.  ... 88.  .88 88    88    Y8.   .8P d8'   .8P \r\n dP        `88888P8 dP `88888P' `88888P' dP    dP     `8888P'   Y88888P  \r\n                                                                         \r\n                                                                             \n");
-<<<<<<< HEAD
-                log.sPrint("FalconOS " + ver + ": Is VM?: " + infochecks.isVM());
-=======
                 log.print("FalconOS " + ver + ": Is VM?: " + infochecks.isVM());
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
             }
             else if (cmd.StartsWith("fetch"))
             {
@@ -521,55 +417,15 @@ namespace FalconOS
                     {
                         foreach (var disk in VFSManager.GetDisks())
                         {
-<<<<<<< HEAD
-                            log.sPrint(disk.ToString());
-=======
                             log.print(disk.ToString());
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
                         }
                     }
                     else
                     {
-<<<<<<< HEAD
-                        log.sPrint("fetch v1.0\nFetches different system stuff");
-                    }
-                }
-            }
-            else if (cmd.StartsWith("as "))
-            {
-                cmd = cmd.Replace("as ", "");
-                var args = cmd.Split(' ');
-                var output = "";
-                var compile = false;
-                var i = 0;
-                foreach (var arg in args)
-                {
-                    if (arg == "--help")
-                    {
-                        log.sPrint("as v1.0\nSimple assembly-like programming language.");
-                    } else if (arg == "-o")
-                    {
-                        output = args[i + 1];
-                    } else if (arg == "--compile")
-                    {
-                        compile = true;
-                    } else
-                    {
-                        if (!(args[i - 1] == "-o"))
-                        {
-                            log.sPrint("Compiling " + arg);
-                            
-                        }
-                    }
-                    i++;
-                }
-            }
-=======
                         log.print("fetch v1.0\nFetches different system stuff");
                     }
                 }
             }
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
             else if (cmd.StartsWith("logout"))
             {
                 sysmgr.login(true);
@@ -623,11 +479,7 @@ namespace FalconOS
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-<<<<<<< HEAD
-                log.sPrint("Unrecognized Command!");
-=======
                 log.print("Unrecognized Command!");
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
             }
             Console.ResetColor();
             data.lastCMD = cmd;
