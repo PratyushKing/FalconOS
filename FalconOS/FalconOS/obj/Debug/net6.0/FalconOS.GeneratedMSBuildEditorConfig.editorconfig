@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FalconOS
-build_property.ProjectDir = D:\Visual Studio Projects\FalconOS\FalconOS\FalconOS\
+build_property.ProjectDir = E:\Git Repos\FalconOS\FalconOS\FalconOS\

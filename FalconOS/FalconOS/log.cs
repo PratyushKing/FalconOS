@@ -21,15 +21,15 @@ namespace FalconOS
         public static void programPrint(string program, string message)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write(program);
+            log.sPrint(program, "");
             Console.ResetColor();
             log.sPrint(": " + message);
             return;
         }
 
-        public static void sPrint(string text = "")
+        public static void sPrint(string text = "", string newLine = "\n")
         {
-            Console.Write(text + "\n"); Shell.buffer += text; return;
+            Console.Write(text + newLine); Shell.buffer += text; return;
         }
 
         public static void drawTitleBar(string title, ConsoleColor back = ConsoleColor.DarkCyan, ConsoleColor fore = ConsoleColor.Black)

@@ -15,7 +15,7 @@ namespace FalconOS
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.Write("Login to FalconOS!\nUsername: ");
+            log.sPrint("Login to FalconOS!\nUsername: ", "");
             var usr = Console.ReadLine();
             if (usr == "root")
             {
@@ -29,7 +29,7 @@ namespace FalconOS
             }
             if (!(usr == "root"))
             {
-                Console.Write("Password: ");
+                log.sPrint("Password: ", "");
                 var pass = Console.ReadLine();
                 if (File.ReadAllText("0:\\Config\\pwd.s").Contains(pass))
                 {

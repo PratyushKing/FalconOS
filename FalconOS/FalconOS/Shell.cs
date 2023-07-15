@@ -68,7 +68,7 @@ namespace FalconOS
             }
             else if (cmd.StartsWith("sysctl console-cursor"))
             {
-                Console.Write("Console-Cursor: ");
+                log.sPrint("Console-Cursor: ", "");
                 if (cmd.StartsWith("sysctl console-cursor false"))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -86,6 +86,7 @@ namespace FalconOS
             }
             else if (cmd.StartsWith("sysctl"))
             {
+                Console.WriteLine(cmd);
                 log.sPrint("Invalid Args");
             }
             else if (cmd.StartsWith("falnfo"))
@@ -252,14 +253,14 @@ namespace FalconOS
                 Console.ForegroundColor = ConsoleColor.Green;
                 foreach (var dirs in Directory.GetDirectories(data.currentDir))
                 {
-                    Console.Write("\"" + dirs + "\" ");
+                    log.sPrint("\"" + dirs + "\" ", "");
                 }
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 foreach (var files in Directory.GetFiles(data.currentDir))
                 {
-                    Console.Write("\"" + files + "\" ");
+                    log.sPrint("\"" + files + "\" ", "");
                 }
-                Console.Write("\n");
+                log.sPrint("\n", "");
             }
             else if (cmd.StartsWith("fedit "))
             {
@@ -310,7 +311,7 @@ namespace FalconOS
                 while (close)
                 {
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write(Kernel.cUser + "@falcon:" + data.currentDir + " # ");
+                    log.sPrint(Kernel.cUser + "@falcon:" + data.currentDir + " # ", "");
                     var input = Console.ReadLine();
                     if (input.Contains("&&"))
                     {
@@ -376,7 +377,7 @@ namespace FalconOS
             else if (cmd.StartsWith("ver"))
             {
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.Write(this.os + " ");
+                log.sPrint(this.os + " ", "");
                 Console.ResetColor();
                 log.sPrint(this.ver);
             }
@@ -444,7 +445,7 @@ namespace FalconOS
             }
             else if (cmd.StartsWith("screenfetch") || cmd.StartsWith("feofetch"))
             {
-                Console.Write("\n 88888888b          dP                                .88888.  .d88888b  \r\n 88                 88                               d8'   `8b 88.    \"' \r\na88aaaa    .d8888b. 88 .d8888b. .d8888b. 88d888b.    88     88 `Y88888b. \r\n 88        88'  `88 88 88'  `\"\" 88'  `88 88'  `88    88     88       `8b \r\n 88        88.  .88 88 88.  ... 88.  .88 88    88    Y8.   .8P d8'   .8P \r\n dP        `88888P8 dP `88888P' `88888P' dP    dP     `8888P'   Y88888P  \r\n                                                                         \r\n                                                                             \n");
+                log.sPrint("\n 88888888b          dP                                .88888.  .d88888b  \r\n 88                 88                               d8'   `8b 88.    \"' \r\na88aaaa    .d8888b. 88 .d8888b. .d8888b. 88d888b.    88     88 `Y88888b. \r\n 88        88'  `88 88 88'  `\"\" 88'  `88 88'  `88    88     88       `8b \r\n 88        88.  .88 88 88.  ... 88.  .88 88    88    Y8.   .8P d8'   .8P \r\n dP        `88888P8 dP `88888P' `88888P' dP    dP     `8888P'   Y88888P  \r\n                                                                         \r\n                                                                             \n", "");
                 log.sPrint("FalconOS " + ver + ": Is VM?: " + infochecks.isVM());
             }
             else if (cmd.StartsWith("fetch"))
@@ -496,6 +497,37 @@ namespace FalconOS
                     }
                 }
             }
+            else if (cmd.StartsWith("as-fe "))
+            {
+                if (cmd.Replace("as-fe ", "") == "--help")
+                {
+                    log.sPrint("as-fe v1.0\nBasic assembly-ish language but compiled.");
+                }
+                else
+                {
+                    if (File.Exists(cmd.Replace("as-fe ", data.currentDir)) && cmd.Replace("as-fe ", data.currentDir).EndsWith(".asm"))
+                    {
+                        var output = cmd.Replace("as-fe ", data.currentDir).Replace(".asm", ".fe");
+                        var text = assemble.compile(File.ReadAllText(cmd.Replace("as-fe ", data.currentDir)), output);
+                        if (text != "ERROR!")
+                        {
+                            File.WriteAllText(output, text);
+                        }
+                    }
+                    else
+                    {
+                        log.sPrint("Invalid Extension");
+                    }
+                }
+            }
+            else if (cmd.StartsWith("as-fe"))
+            {
+                log.sPrint("as-fe: ", "");
+                Console.ForegroundColor = ConsoleColor.Red;
+                log.sPrint("fatal error: ", "");
+                Console.ForegroundColor = ConsoleColor.White;
+                log.sPrint("no input files\ncompilation terminated.");
+            }
             else if (cmd.StartsWith("as "))
             {
                     if (cmd.Replace("as ", "") == "--help")
@@ -507,7 +539,7 @@ namespace FalconOS
                         if (File.Exists(cmd.Replace("as ", data.currentDir)) && cmd.Replace("as ", data.currentDir).EndsWith(".asm"))
                         {
                             var output = cmd.Replace("as ", "").Replace(".asm", ".fe");
-                            assemble.handleCode(File.ReadAllText(cmd.Replace("as ", "")));
+                            assemble.handleCode(File.ReadAllText(cmd.Replace("as ", data.currentDir)));
                         }
                         else
                         {
@@ -516,34 +548,18 @@ namespace FalconOS
                     }
             }else if (cmd.StartsWith("as"))
             {
-                log.print("as v1.0\nBasic assembly-ish language.\nUsage: as <file>");
-            } else if (cmd.StartsWith("as-fe "))
-            {
-                if (cmd.Replace("as-fe ", "") == "--help")
-                {
-                    log.print("as-fe v1.0\nBasic assembly-ish language but compiled.");
-                }
-                else
-                {
-                    if (File.Exists(cmd.Replace("as-fe ", data.currentDir)) && cmd.Replace("as-fe ", data.currentDir).EndsWith(".asm"))
-                    {
-                        var output = cmd.Replace("as-fe ", data.currentDir).Replace(".asm", ".fe");
-                        var text = assemble.compile(File.ReadAllText(cmd.Replace("as-fe ", "")), output);
-                        File.WriteAllText(output, text);
-                    }
-                    else
-                    {
-                        log.print("Invalid Extension");
-                    }
-                }
-            } else if (cmd.StartsWith("as-fe"))
-            {
-                Console.WriteLine("as-fe v1.0\nBasic assembly-ish compiled language.\nUsage: as-fe <file>");
+                log.sPrint("as: ", "");
+                Console.ForegroundColor = ConsoleColor.Red;
+                log.sPrint("fatal error: ", "");
+                Console.ForegroundColor = ConsoleColor.White;
+                log.sPrint("no input files\ncompilation terminated.");
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                log.sPrint("Unrecognized Command!");
+                if (!String.IsNullOrWhiteSpace(cmd) || !String.IsNullOrEmpty(cmd))
+                {
+                    log.sPrint("-fash: " + cmd + ": command not found");
+                }
             }
             Console.ResetColor();
             data.lastCMD = cmd;

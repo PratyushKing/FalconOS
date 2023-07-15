@@ -343,6 +343,7 @@ namespace FalconOS
             Console.Clear();
             
             log.drawTitleBar("FalconOS: Shell");
+            Console.SetCursorPosition(0, 3);
         }
     }
 }
