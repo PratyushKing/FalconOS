@@ -1,22 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-<<<<<<< HEAD
-=======
 using System.IO;
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FalconOS
 {
-<<<<<<< HEAD
-    internal class assemble
-    {
-        public static void run(string line)
-        {
-
-=======
     internal static class assemble
     {
         public static string arg1 = "0";
@@ -194,7 +184,6 @@ namespace FalconOS
                 case "arg5": return arg5;
                 default: return "NullArg";
             }
->>>>>>> 15fe22673d59a0d51d432693317421e44efc1937
         }
     }
 }

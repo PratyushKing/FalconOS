@@ -27,7 +27,7 @@ namespace FalconOS
             return;
         }
 
-        public static void print(string text = "")
+        public static void sPrint(string text = "")
         {
             Console.Write(text + "\n"); Shell.buffer += text; return;
         }
