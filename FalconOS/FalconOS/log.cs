@@ -14,7 +14,7 @@ namespace FalconOS
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("[ " + topic + " ] ");
             Console.ResetColor();
-            Console.WriteLine(message);
+            log.sPrint(message);
             return;
         }
 
@@ -23,15 +23,20 @@ namespace FalconOS
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write(program);
             Console.ResetColor();
-            Console.WriteLine(": " + message);
+            log.sPrint(": " + message);
             return;
         }
 
+        public static void sPrint(string text = "\n")
+        {
+            log.sPrint(text);
+            Shell.buffer += text + "\n";
+        }
         public static void drawTitleBar(string title, ConsoleColor back = ConsoleColor.DarkCyan, ConsoleColor fore = ConsoleColor.Black)
         {
             Console.BackgroundColor = back; Console.ForegroundColor = fore;
             Console.SetCursorPosition(0, 0);
-            Console.WriteLine(title + new string(' ', Console.WindowWidth - title.Length));
+            log.sPrint(title + new string(' ', Console.WindowWidth - title.Length));
             Console.ResetColor();
         }
 

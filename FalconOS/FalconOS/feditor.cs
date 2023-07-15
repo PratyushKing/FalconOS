@@ -35,7 +35,7 @@ namespace FalconOS
             }
             catch (Exception e)
             {
-                Console.WriteLine(" ~ ERROR ~\n" + e.Message);
+                log.sPrint(" ~ ERROR ~\n" + e.Message);
             }
             return null;
         }
@@ -47,7 +47,7 @@ namespace FalconOS
             string PATH = "";
             Console.Clear();
 
-            if (argv[1] == "--help") { Console.WriteLine("Feditor is a part of the basic FalconOS utilities used to edit files."); }
+            if (argv[1] == "--help") { log.sPrint("Feditor is a part of the basic FalconOS utilities used to edit files."); }
             else if (argv[1] == "--ide") { IDE = true; }
             else
             {
@@ -174,7 +174,7 @@ namespace FalconOS
                         Console.ForegroundColor = EnterFg;
                         Console.Clear();
                         Console.SetCursorPosition(20, 13);
-                        Console.WriteLine("[New file name]");
+                        log.sPrint("[New file name]");
                         Console.SetCursorPosition(20, 14);
                         string newflnam = FeditorTerminal();
                         if (newflnam != null)
@@ -193,7 +193,7 @@ namespace FalconOS
                         Console.ForegroundColor = EnterFg;
                         Console.Clear();
                         Console.SetCursorPosition(20, 13);
-                        Console.WriteLine("[Save as...]");
+                        log.sPrint("[Save as...]");
                         Console.SetCursorPosition(20, 14);
                         string savas = FeditorTerminal();
                         if (savas != null)
@@ -274,7 +274,7 @@ namespace FalconOS
                         Console.ForegroundColor = EnterFg;
                         Console.Clear();
                         Console.SetCursorPosition(20, 13);
-                        Console.WriteLine("[New file name]");
+                        log.sPrint("[New file name]");
                         Console.SetCursorPosition(20, 14);
                         string newflnam = FeditorTerminal();
                         if (newflnam != null)
@@ -290,7 +290,7 @@ namespace FalconOS
                         Console.ForegroundColor = EnterFg;
                         Console.Clear();
                         Console.SetCursorPosition(20, 13);
-                        Console.WriteLine("[Save as...]");
+                        log.sPrint("[Save as...]");
                         Console.SetCursorPosition(20, 14);
                         string savas = FeditorTerminal();
                         if (savas != null)
@@ -359,7 +359,7 @@ namespace FalconOS
                         Console.BackgroundColor = EditorBg;
                         Console.ForegroundColor = EditorFg;
                         Console.Clear();
-                        Console.WriteLine(
+                        log.sPrint(
                             "    Feditor\n" +
                             "    Version" + ver + "\n"
                             );
@@ -371,7 +371,7 @@ namespace FalconOS
                         Console.ForegroundColor = EnterFg;
                         Console.Clear();
                         Console.SetCursorPosition(20, 14);
-                        Console.WriteLine("[New path...]");
+                        log.sPrint("[New path...]");
                         string np = FeditorTerminal();
                         if (np != null)
                         {
@@ -681,7 +681,7 @@ namespace FalconOS
             for (int i = 0; i < 80; i++) Console.Write(" ");
             Console.SetCursorPosition(0, 0);
             Console.Write($"FalconOS: {ver}: " + @PATH);
-            if (old != tosav + arrow) Console.WriteLine("*");
+            if (old != tosav + arrow) log.sPrint("*");
             Console.Write("\n");
             Console.SetCursorPosition(0, 1);
             for (int i = 0; i < 80; i++) Console.Write(" ");
@@ -723,7 +723,7 @@ namespace FalconOS
                     {
                         DrawBar(@PATH, tosav, arrow, old);
                         Console.SetCursorPosition(25, 8);
-                        Console.WriteLine("CANNOT FIND WORD TO REPLACE!");
+                        log.sPrint("CANNOT FIND WORD TO REPLACE!");
                         Console.ReadKey();
                     }
                 }
@@ -741,7 +741,7 @@ namespace FalconOS
                 Console.Clear();
                 bool shouldSave;
                 Console.SetCursorPosition(20, 13);
-                Console.WriteLine("[Do you want to save changes? Y/N ]");
+                log.sPrint("[Do you want to save changes? Y/N ]");
                 Console.SetCursorPosition(20, 14);
                 string answer = Console.ReadKey().KeyChar.ToString();
                 if (answer.ToLower() == "y") shouldSave = true;
@@ -841,7 +841,7 @@ namespace FalconOS
                 Console.ForegroundColor = ConsoleColor.White;
             }
             Console.SetCursorPosition(0, 0);
-            Console.WriteLine("[File to open]");
+            log.sPrint("[File to open]");
             Console.SetCursorPosition(0, 1);
             string open = FeditorTerminal();
             return open;

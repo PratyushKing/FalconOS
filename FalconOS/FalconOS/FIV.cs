@@ -16,33 +16,33 @@ namespace FalconOS
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("~");
-            Console.WriteLine("~");
-            Console.WriteLine("~");
-            Console.WriteLine("~");
-            Console.WriteLine("~");
-            Console.WriteLine("~");
-            Console.WriteLine("~");
-            Console.WriteLine("~                                 FAV: "); Console.ForegroundColor = ConsoleColor.White; Console.WriteLine(" FAlcon Vi");
+            log.sPrint("~");
+            log.sPrint("~");
+            log.sPrint("~");
+            log.sPrint("~");
+            log.sPrint("~");
+            log.sPrint("~");
+            log.sPrint("~");
+            log.sPrint("~                                 FAV: "); Console.ForegroundColor = ConsoleColor.White; log.sPrint(" FAlcon Vi");
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("~");
-            Console.WriteLine("~                                  version 0.2");
-            Console.WriteLine("~                               by "); Console.ForegroundColor = ConsoleColor.Yellow; Console.WriteLine(" Code Devel0per");
+            log.sPrint("~");
+            log.sPrint("~                                  version 0.2");
+            log.sPrint("~                               by "); Console.ForegroundColor = ConsoleColor.Yellow; log.sPrint(" Code Devel0per");
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("~                               Modified from MIV");
-            Console.WriteLine("~                      FAV is a very obvious clone of MIV.");
-            Console.WriteLine("~");
-            Console.WriteLine("~                     type :help<Enter>          for information");
-            Console.WriteLine("~                     type :q<Enter>             to exit");
-            Console.WriteLine("~                     type :wq<Enter>            save to file and exit");
-            Console.WriteLine("~                     press i                    to write");
-            Console.WriteLine("~");
-            Console.WriteLine("~");
-            Console.WriteLine("~");
-            Console.WriteLine("~");
-            Console.WriteLine("~");
-            Console.WriteLine("~");
-            Console.WriteLine("~");
+            log.sPrint("~                               Modified from MIV");
+            log.sPrint("~                      FAV is a very obvious clone of MIV.");
+            log.sPrint("~");
+            log.sPrint("~                     type :help<Enter>          for information");
+            log.sPrint("~                     type :q<Enter>             to exit");
+            log.sPrint("~                     type :wq<Enter>            save to file and exit");
+            log.sPrint("~                     press i                    to write");
+            log.sPrint("~");
+            log.sPrint("~");
+            log.sPrint("~");
+            log.sPrint("~");
+            log.sPrint("~");
+            log.sPrint("~");
+            log.sPrint("~");
             Console.ForegroundColor = ConsoleColor.White;
             log.drawBar("FalconOS: FAV: Editing " + fileN, ConsoleColor.DarkCyan, ConsoleColor.Black, false);
         }
@@ -70,7 +70,7 @@ namespace FalconOS
             {
                 if (chars[i] == '\n')
                 {
-                    Console.WriteLine("");
+                    log.sPrint("");
                     countNewLine++;
                     countChars = 0;
                 }
@@ -89,17 +89,17 @@ namespace FalconOS
 
             for (int i = 0; i < 22 - countNewLine; i++)
             {
-                Console.WriteLine("");
+                log.sPrint("");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("~");
                 Console.ForegroundColor = ConsoleColor.White;
             }
 
-            Console.WriteLine();
+            log.sPrint();
             log.drawBar("FalconOS: FAV: Editing " + fileNa, ConsoleColor.DarkCyan, ConsoleColor.Black, false);
 
             //PRINT INSTRUCTION
-            Console.WriteLine();
+            log.sPrint();
             for (int i = 0; i < 73; i++)
             {
                 if (i < infoBar.Length)
@@ -335,9 +335,9 @@ namespace FalconOS
             if (text != null)
             {
                 File.WriteAllText(file, text);
-                Console.WriteLine("Content has been saved to " + file);
+                log.sPrint("Content has been saved to " + file);
             }
-            Console.WriteLine("Press any key to exit..");
+            log.sPrint("Press any key to exit..");
             Console.ReadKey(true);
             Console.ResetColor();
             Console.Clear();
