@@ -79,6 +79,65 @@ namespace FalconOS
             }
         }
 
+        public static string compile(string code, string output)
+        {
+            var lines = code.Split('\n');
+            var exec = "";
+            foreach (var line in lines)
+            {
+                if (line.StartsWith("push "))
+                {
+                    var pushargs = line.Replace("push ", "").Split(' ');
+                    //push(pushargs[0], pushargs[1]);
+                    exec += "00 " + pushargs[0].Replace("arg", "") + " " + line.Replace("00 " + pushargs[0].Replace("arg", ""), "") + "\n";
+                }
+                else if (line.StartsWith("pop "))
+                {
+                    //pop(line.Replace("pop ", ""));
+                    exec += "01 " + line.Replace("pop arg", "") + "\n";
+                }
+                else if (line.StartsWith("int "))
+                {
+                    switch (line.Replace("int ", ""))
+                    {
+                        case "0":
+                            //doAction(interrupt.WriteCommandLine);
+                            exec += "02 001\n";
+                            break;
+                        case "1":
+                            //doAction(interrupt.ReadCommandLine);
+                            exec += "02 002\n";
+                            break;
+                        case "2":
+                            //doAction(interrupt.WriteVar);
+                            exec += "02 003\n";
+                            break;
+                        case "3":
+                            //doAction(interrupt.FileWrite);
+                            exec += "02 004\n";
+                            break;
+                        case "4":
+                            //doAction(interrupt.FileRead);
+                            exec += "02 005\n";
+                            break;
+                        case "5":
+                            //doAction(interrupt.DirectoryCreate);
+                            exec += "02 006\n";
+                            break;
+                        case "6":
+                            //doAction(interrupt.DirectoryDelete);
+                            exec += "02 007\n";
+                            break;
+                        case "7":
+                            //doAction(interrupt.RunShell);
+                            exec += "02 008\n";
+                            break;
+                    }
+                }
+            }
+            return exec;
+        }
+
         public static void reset()
         {
             arg1 = "0"; arg2 = "0"; arg3 = "0"; arg4 = "0"; arg5 = "0";

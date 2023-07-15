@@ -410,7 +410,7 @@ namespace FalconOS
 
                 if (cmd.EndsWith(".fe"))
                 {
-                    //execute
+                    executor.executeFE(cmd.Replace("./", ""));
                 }
                 else if (cmd.EndsWith(".ash"))
                 {
@@ -440,7 +440,7 @@ namespace FalconOS
                     }
                     else
                     {
-                        if (File.Exists(cmd.Replace("as ", "")) && cmd.Replace("as ", "").EndsWith(".asm"))
+                        if (File.Exists(cmd.Replace("as ", data.currentDir)) && cmd.Replace("as ", data.currentDir).EndsWith(".asm"))
                         {
                             var output = cmd.Replace("as ", "").Replace(".asm", ".fe");
                             assemble.handleCode(File.ReadAllText(cmd.Replace("as ", "")));
@@ -450,6 +450,31 @@ namespace FalconOS
                             log.print("Invalid Extension");
                         }
                     }
+            }else if (cmd.StartsWith("as"))
+            {
+                log.print("as v1.0\nBasic assembly-ish language.\nUsage: as <file>");
+            } else if (cmd.StartsWith("as-fe "))
+            {
+                if (cmd.Replace("as-fe ", "") == "--help")
+                {
+                    log.print("as-fe v1.0\nBasic assembly-ish language but compiled.");
+                }
+                else
+                {
+                    if (File.Exists(cmd.Replace("as-fe ", data.currentDir)) && cmd.Replace("as-fe ", data.currentDir).EndsWith(".asm"))
+                    {
+                        var output = cmd.Replace("as-fe ", data.currentDir).Replace(".asm", ".fe");
+                        var text = assemble.compile(File.ReadAllText(cmd.Replace("as-fe ", "")), output);
+                        File.WriteAllText(output, text);
+                    }
+                    else
+                    {
+                        log.print("Invalid Extension");
+                    }
+                }
+            } else if (cmd.StartsWith("as-fe"))
+            {
+                Console.WriteLine("as-fe v1.0\nBasic assembly-ish compiled language.\nUsage: as-fe <file>");
             }
             else
             {
