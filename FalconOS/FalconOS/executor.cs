@@ -72,7 +72,12 @@ namespace FalconOS
                         switch (line.Replace("02 ", ""))
                         {
                             case "000":
-                                log.sPrint(arg1, "");
+                                var newL = "";
+                                if (arg2 == "1")
+                                {
+                                    newL = "\n";
+                                }
+                                log.sPrint(arg1, newL);
                                 break;
                             case "001":
                                 arg1 = Console.ReadLine();
@@ -122,6 +127,7 @@ namespace FalconOS
                     }
                     lineNum++;
                 }
+                Console.WriteLine();
             } else
             {
                 log.sPrint("File does not exist.");

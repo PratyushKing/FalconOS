@@ -14,7 +14,7 @@ namespace FalconOS
         public static Shell shell = new Shell(data.osname, data.ver);
         public static string cUser;
         public static bool asRoot = false;
-        public static string lastCommand = "";
+        public static string lastcmd = " ";
 
         protected override void BeforeRun()
         {
@@ -75,10 +75,11 @@ namespace FalconOS
                 key = Console.ReadKey();
                 if (key.Key == ConsoleKey.UpArrow)
                 {
-                    Console.SetCursorPosition(0, Console.CursorTop);
-                    Console.Write(cUser + "@falcon:" + data.currentDir + " # " + lastCommand);
-                    input = lastCommand;
-                } else if (key.Key == ConsoleKey.Backspace)
+                        Console.SetCursorPosition(0, Console.CursorTop);
+                        Console.Write(cUser + "@falcon:" + data.currentDir + " # " + lastcmd);
+                        input = lastcmd;
+                }
+                else if (key.Key == ConsoleKey.Backspace)
                 {
                     Console.SetCursorPosition(0, Console.CursorTop);
                     if (input.Length > 0)
@@ -88,21 +89,26 @@ namespace FalconOS
                     Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input + " ");
                     Console.SetCursorPosition(0, Console.CursorTop);
                     Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
-                } else if (key.Key == ConsoleKey.Spacebar)
+                }
+                else if (key.Key == ConsoleKey.Spacebar)
                 {
                     input += " ";
-                } else if (key.Key == ConsoleKey.LeftArrow)
+                }
+                else if (key.Key == ConsoleKey.LeftArrow)
                 {
-                    if (Console.CursorLeft > (cUser+"@falcon:"+data.currentDir+" # ").Length) {
+                    if (Console.CursorLeft > (cUser + "@falcon:" + data.currentDir + " # ").Length)
+                    {
                         Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
                     }
-                } else if (key.Key == ConsoleKey.RightArrow)
+                }
+                else if (key.Key == ConsoleKey.RightArrow)
                 {
                     if (Console.CursorLeft < (cUser + "@falcon:" + data.currentDir + " # " + input).Length)
                     {
                         Console.SetCursorPosition(Console.CursorLeft + 1, Console.CursorTop);
                     }
-                } else if (key.Key == ConsoleKey.Tab)
+                }
+                else if (key.Key == ConsoleKey.Tab)
                 {
                     if (input.StartsWith("cle"))
                     {
@@ -111,13 +117,23 @@ namespace FalconOS
                         Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
                     }
                 }
+                else if (key.Modifiers == ConsoleModifiers.Control)
+                {
+                    if (key.Key == ConsoleKey.C)
+                    {
+                        Console.SetCursorPosition(0, Console.CursorTop);
+                        Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input + "^C\n");
+                        input = "";
+                        Console.Write(cUser + "@falcon:" + data.currentDir + " # ");
+                    }
+                }
                 else
                 {
                     input += key.KeyChar;
                 }
             }
             Console.WriteLine();
-            if (input.Length >  0)
+            if (input.Length > 0)
             {
                 input = input.Remove(input.Length - 1, 1);
             }
@@ -128,11 +144,12 @@ namespace FalconOS
                 {
                     shell.exec(cmd, asRoot);
                 }
-            } else
+            }
+            else
             {
                 shell.exec(input, asRoot);
             }
-            lastCommand = input;
+            lastcmd = input;
         }
     }
 }

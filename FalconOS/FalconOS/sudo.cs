@@ -30,8 +30,30 @@ namespace FalconOS
                     var passwords = File.ReadAllText("0:\\Config\\pwd.s");
                     if (rooters.Contains(currentUser + "\n"))
                     {
-                        Console.Write("Enter password for " + currentUser + ": ");
-                        var pass = Console.ReadLine(); 
+                        var pass = "";
+                        var key = new ConsoleKeyInfo();
+                        while (!(key.Key == ConsoleKey.Enter))
+                        {
+                            if (key.Key == ConsoleKey.Backspace)
+                            {
+                                Console.SetCursorPosition(0, Console.CursorTop);
+                                if (pass.Length > 0)
+                                {
+                                    pass = pass.Remove(pass.Length - 2, 1);
+                                }
+                                Console.Write("Password: " + new string('*', pass.Length - 1) + " ");
+                                Console.SetCursorPosition(0, Console.CursorTop);
+                                Console.Write("Password: " + new string('*', pass.Length - 1));
+                                continue;
+                            }
+                            key = Console.ReadKey(true);
+                            pass += key.KeyChar;
+                            Console.Write("*");
+                        }
+                        if (pass.Length > 0)
+                        {
+                            pass = pass.Remove(pass.Length - 1, 1);
+                        }
                         foreach (var password in passwords.Split('\n'))
                         {
                             if (pass == password)

@@ -418,7 +418,13 @@ namespace FalconOS
             else if (cmd.StartsWith("sudo "))
             {
                 sudo su = new sudo(Kernel.cUser);
+                var currentX = Console.CursorLeft; var currentY = Console.CursorTop;
+                log.drawTitleBar("FalconOS: Shell: Running root.", ConsoleColor.DarkRed, ConsoleColor.White);
+                Console.SetCursorPosition(currentX, currentY);
                 su.execAsRoot(cmd.Replace("sudo ", ""));
+                log.drawTitleBar("FalconOS: Shell");
+                currentX = Console.CursorLeft; currentY = Console.CursorTop;
+                Console.SetCursorPosition(currentX, currentY);
             }
             else if (cmd.StartsWith("usrname"))
             {
@@ -475,7 +481,7 @@ namespace FalconOS
 
                 if (cmd.EndsWith(".fe"))
                 {
-                    executor.executeFE(cmd.Replace("./", ""));
+                    executor.executeFE(cmd.Replace("./", data.currentDir));
                 }
                 else if (cmd.EndsWith(".ash"))
                 {
@@ -546,13 +552,18 @@ namespace FalconOS
                             log.sPrint("Invalid Extension");
                         }
                     }
-            }else if (cmd.StartsWith("as"))
+                Console.WriteLine();
+            } else if (cmd.StartsWith("as"))
             {
                 log.sPrint("as: ", "");
                 Console.ForegroundColor = ConsoleColor.Red;
                 log.sPrint("fatal error: ", "");
                 Console.ForegroundColor = ConsoleColor.White;
                 log.sPrint("no input files\ncompilation terminated.");
+            } else if (cmd.StartsWith("calc "))
+            {
+                calc calculate = new calc();
+                log.sPrint(calculate.Evaluate(cmd.Replace("calc ", "")).ToString());
             }
             else
             {
