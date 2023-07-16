@@ -43,7 +43,7 @@ namespace FalconOS
                             Console.SetCursorPosition(0, Console.CursorTop);
                             if (pass.Length > 0)
                             {
-                                pass = pass.Remove(pass.Length, 1);
+                                pass = pass.Remove(pass.Length - 1, 1);
                             }
                         }
                         catch (Exception ex)
