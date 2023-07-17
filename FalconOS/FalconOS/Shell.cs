@@ -17,6 +17,7 @@ using Cosmos.Core;
 using System.ComponentModel.Design;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
 
 namespace FalconOS
 {
@@ -113,31 +114,7 @@ namespace FalconOS
                     log.sPrint("Falnfo: Unrecognized Command");
                 }
             }
-            else if (cmd.StartsWith("touch"))
-            {
-                log.sPrint("Falnfo 1.0");
-                if (cmd.StartsWith("falnfo -a"))
-                {
-                    log.sPrint("FalconOS v1.0.1\nBase version v1.0.0\nFalVM 0.5");
-                }
-                else if (cmd.StartsWith("falnfo -f"))
-                {
-                    log.sPrint("FalconOS v1.0.1");
-                }
-                else if (cmd.StartsWith("falnfo -b"))
-                {
-                    log.sPrint("Base version v1.0.1");
-                }
-                else if (cmd.StartsWith("falnfo -vm"))
-                {
-                    log.sPrint("FalVM 0.5");
-                }
-                else
-                {
-                    log.sPrint("Falnfo: Unrecognized Command");
-                }
-            }
-            else if (cmd.StartsWith("touch"))
+            else if (cmd.StartsWith("touch "))
             {
                 try
                 {
@@ -394,9 +371,15 @@ namespace FalconOS
                     else if (cmd.EndsWith(".fa"))
                     {
                         string[] program;
-                        if (File.Exists(cmd.Replace("falcp ", "")))
+                        if (File.Exists(cmd.Replace("falcp ", data.currentDir)))
                         {
                             program = File.ReadAllLines(cmd.Replace("falcp ", data.currentDir));
+                            var binary = "";
+                            foreach (var line in program)
+                            {
+                                binary += falcmp.compile(line);
+                            }
+                            File.WriteAllText(cmd.Replace("falcp ", data.currentDir).Replace(".fa", ".fe"), binary);
                         }
                         else
                         {
@@ -564,6 +547,43 @@ namespace FalconOS
             {
                 calc calculate = new calc();
                 log.sPrint(calculate.Evaluate(cmd.Replace("calc ", "")).ToString());
+            } else if (cmd.StartsWith("falsay"))
+            {
+                if (cmd == "falsay")
+                {
+                    log.sPrint("falsay is the debian equivalent of cowsay. (we got falcons instead)");
+                } else if (cmd.StartsWith("falsay "))
+                {
+                    var falconsScript = cmd.Replace("falsay ", "");
+                    if ((Console.WindowWidth - ("< " + falconsScript + " >").Length) > 0)
+                    {
+                        Console.Write("  ");
+                        for (var i = 0; i < falconsScript.Length; i++)
+                        {
+                            Console.Write("_");
+                        }
+                        Console.WriteLine();
+                        Console.WriteLine("< " + falconsScript + " >");
+                        Console.Write("  ");
+                        for (var i = 0; i < falconsScript.Length; i++)
+                        {
+                            Console.Write("-", "");
+                        }
+
+
+                        Console.WriteLine("\n    \\\n     \\\n      \\\n       \\\n             /@@*                                       \r\n                      &@@@@@                       #@@@              \r\n                  %@@@@@@@@@@@@@@/               @@@@@@@             \r\n                  @@/ &@@@@@@@@@@@@%           @@@@@@@@@             \r\n                @@@@@@@@@@@@@@@@@@@@@       (@@@@@@@@@@              \r\n              #@@@@@@@@@@@@@@@@@@@@@@@    @@@@@@@@@@@&               \r\n               ,      %@@@@@@@@@@@@@@@  @@@@@@@@@@@&    .            \r\n                     ,@@@@@@@@@@@@@@ /@@@@@@@@@@@   *@@@@(           \r\n                   (@@@@@@@@@@@@@( @@@@@@@@@@%  (@@@@@@@@/           \r\n                 .@@@@@@@@@@@@@  @@@@@@@@%  #@@@@@@@@@@@*            \r\n                 @@@@@@@@@@@@ *@@@@@@%  %@@@@@@@@@@@@@               \r\n                   @@@@@@@# &@@@@&  @@@@@@@@@@@@@@*                  \r\n                   @@@@@. @@@%  @@@@@@@@@@@%                         \r\n                    @@ .@%  @@@@@@%,     /@@@@@@@@*                  \r\n                     /  @@/    ,%@@@@@@@@@@@@@@@@                    \r\n                      ,(#%%%&&&@@@@@@@@@@@(,             ");
+                    }
+                    else
+                    {
+                        Console.Write("Falcon was tired. Too big text!");
+                    }
+                } else
+                {
+                    log.sPrint("Usage: falsay <text>");
+                }
+            } else if (cmd.StartsWith("printlogo"))
+            {
+                Console.WriteLine("                                                                               \r\n                                                                                                    \r\n                                         //((((###                                                  \r\n                                              /////(((((#                                           \r\n                                       ./**,,,,..////////////                                       \r\n                                    (/**,,,,....,. ///****,**,*                                     \r\n                                  /** //*******,,,,,,    .,,..(((((                                 \r\n                                   (////***,,,,,,,........... ***////(                              \r\n                                 (/********,.     ....,***,,,,*******/(                             \r\n                                /**/.. ....            /******,    ..,*                             \r\n                               */  ...,........                                                     \r\n                              ,   ,...*,,........ .                                                 \r\n                                  ,,..*,,,,,  ...... . .                                            \r\n                                  ,,   **,,,   ,,,.  ,,.,.                                          \r\n                                  .    /***     ,,,,                                                \r\n                                         /*         ,                                               \r\n                                                                              ");
             }
             else
             {

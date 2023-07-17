@@ -72,6 +72,10 @@ namespace FalconOS
             while (!(key.Key == ConsoleKey.Enter))
             {
                 Console.SetCursorPosition((cUser + "@falcon:" + data.currentDir + " # " + input).Length, Console.CursorTop);
+                if (Console.CursorLeft >= Console.WindowWidth - 1)
+                {
+                    Console.SetCursorPosition(0, Console.CursorTop + 1);
+                }
                 key = Console.ReadKey();
                 if (key.Key == ConsoleKey.UpArrow)
                 {
