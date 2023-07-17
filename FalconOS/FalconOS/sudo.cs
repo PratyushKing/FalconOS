@@ -41,9 +41,9 @@ namespace FalconOS
                                 {
                                     pass = pass.Remove(pass.Length - 2, 1);
                                 }
-                                Console.Write("Password: " + new string('*', pass.Length - 1) + " ");
+                                Console.Write("[sudo] Password for " + Kernel.cUser + ": " + new string('*', pass.Length - 1) + " ");
                                 Console.SetCursorPosition(0, Console.CursorTop);
-                                Console.Write("Password: " + new string('*', pass.Length - 1));
+                                Console.Write("[sudo] Password for " + Kernel.cUser + ": " + new string('*', pass.Length - 1));
                                 continue;
                             }
                             key = Console.ReadKey(true);

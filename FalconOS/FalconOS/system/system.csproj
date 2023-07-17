@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="IF EXIST &quot;$(SolutionDir)Falpy\bin\Debug\netcoreapp3.1\$(TargetFileName)&quot; DEL /F &quot;$(SolutionDir)Falpy\bin\Debug\netcoreapp3.1\$(TargetFileName)&quot;&#xD;&#xA;copy $(TargetPath) $(SolutionDir)Falpy\bin\Debug\netcoreapp3.1\$(TargetFileName)" />
+  </Target>
+
+</Project>

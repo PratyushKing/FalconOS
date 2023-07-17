@@ -18,6 +18,7 @@ using System.ComponentModel.Design;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
+using FalconOS;
 
 namespace FalconOS
 {
@@ -583,7 +584,71 @@ namespace FalconOS
                 }
             } else if (cmd.StartsWith("printlogo"))
             {
-                Console.WriteLine("                                                                               \r\n                                                                                                    \r\n                                         //((((###                                                  \r\n                                              /////(((((#                                           \r\n                                       ./**,,,,..////////////                                       \r\n                                    (/**,,,,....,. ///****,**,*                                     \r\n                                  /** //*******,,,,,,    .,,..(((((                                 \r\n                                   (////***,,,,,,,........... ***////(                              \r\n                                 (/********,.     ....,***,,,,*******/(                             \r\n                                /**/.. ....            /******,    ..,*                             \r\n                               */  ...,........                                                     \r\n                              ,   ,...*,,........ .                                                 \r\n                                  ,,..*,,,,,  ...... . .                                            \r\n                                  ,,   **,,,   ,,,.  ,,.,.                                          \r\n                                  .    /***     ,,,,                                                \r\n                                         /*         ,                                               \r\n                                                                              ");
+                log.sPrint("                                                                               \r\n                                                                                                    \r\n                                         //((((###                                                  \r\n                                              /////(((((#                                           \r\n                                       ./**,,,,..////////////                                       \r\n                                    (/**,,,,....,. ///****,**,*                                     \r\n                                  /** //*******,,,,,,    .,,..(((((                                 \r\n                                   (////***,,,,,,,........... ***////(                              \r\n                                 (/********,.     ....,***,,,,*******/(                             \r\n                                /**/.. ....            /******,    ..,*                             \r\n                               */  ...,........                                                     \r\n                              ,   ,...*,,........ .                                                 \r\n                                  ,,..*,,,,,  ...... . .                                            \r\n                                  ,,   **,,,   ,,,.  ,,.,.                                          \r\n                                  .    /***     ,,,,                                                \r\n                                         /*         ,                                               \r\n                                                                              ");
+            } else if (cmd.StartsWith("bmgr"))
+            {
+                if (cmd.StartsWith("bmgr "))
+                {
+                    if (cmd.StartsWith("bmgr clear"))
+                    {
+                        if (!root)
+                        {
+                            if (Kernel.cUser == "root")
+                            {
+                                buffer = "";
+                            }
+                            else
+                            {
+                                log.sPrint("You must use sudo with this command!");
+                            }
+                        } else
+                        {
+                            buffer = "";
+                        }
+                    } else if (cmd.StartsWith("bmgr cas"))
+                    {
+                        if (cmd.StartsWith("bmgr cas "))
+                        {
+                            if (!root)
+                            {
+                                if (Kernel.cUser == "root")
+                                {
+                                    try
+                                    {
+                                        File.WriteAllText(cmd.Replace("bmgr cas ", data.currentDir), buffer);
+                                        buffer = "";
+                                    }
+                                    catch (Exception)
+                                    {
+                                        log.programPrint("bmgr", "Error occurred (maybe file was invalid)");
+                                    }
+                                }
+                                else
+                                {
+                                    log.sPrint("You must use sudo with this command!");
+                                }
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    File.WriteAllText(cmd.Replace("bmgr cas ", data.currentDir), buffer);
+                                    buffer = "";
+                                }
+                                catch (Exception)
+                                {
+                                    log.programPrint("bmgr", "Error occurred (maybe file was invalid)");
+                                }
+                            }
+                        } else
+                        {
+                            log.programPrint("bmgr", "no file given for cas, usage: bmgr cas <file>");
+                        }
+                    }
+                } else
+                {
+                    log.programPrint("bmgr", "A command line, shell \"buffer\" utility.\nArgs:\n   clear: clears buffer\n   cas <file>: clears buffer and set its contents to a file.");
+                }
             }
             else
             {
