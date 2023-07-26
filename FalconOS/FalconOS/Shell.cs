@@ -70,22 +70,8 @@ namespace FalconOS
             }
             else if (cmd.StartsWith("sysctl console-cursor"))
             {
-                log.sPrint("Console-Cursor: ", "");
-                if (cmd.StartsWith("sysctl console-cursor false"))
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    log.sPrint("OFF");
-                    Console.CursorVisible = false;
-                    Console.ResetColor();
-                }
-                else if (cmd.StartsWith("sysctl console-cursor true"))
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    log.sPrint("ON");
                     Console.CursorVisible = true;
-                    Console.ResetColor();
                 }
-            }
             else if (cmd.StartsWith("sysctl"))
             {
                 Console.WriteLine(cmd);
