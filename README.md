@@ -3,21 +3,7 @@ Highly advanced OS, focuses on pure command line. (but better)
 ![Demo](FalconOS/gitstuff/DemoImage.png)
 
 ## Logo:
- `----------`
- :+ooooooooo+.
--o+oooooooooo+-
-..`/+++++++++++/...
-   .++++++++++++++++++++++++++/
-    ++++++++++++++++++++++++++++++
-    -++++++++++++++++++++++++++++
-     ++++++++++++++++++++++++++++:.
-     -++++++++++++++++++++++++/.
-      +++++++++++++++++++++/-`
-      -++++++++++++++++++//-`
-        .:+++++++++++++//////-
-           .:++++++++//////////-
-             `-++++++---:::://///.
-           `.:///+++.               
+![ASCII_LOGO](FalconOS/gitstuff/Logo.png)
 
 ## Features:
 - Very Stable filesystem
