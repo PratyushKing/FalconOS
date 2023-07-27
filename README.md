@@ -3,7 +3,7 @@ Highly advanced OS, focuses on pure command line. (but better)
 ![Demo](FalconOS/gitstuff/DemoImage.png)
 <br>
   <img src="https://img.shields.io/github/languages/code-size/CodeDevel0per/FalconOS" />
-  <img src="https://img.shields.io/github/downloads/CodeDevel0per/FalconOS" />
+  <img src="https://img.shields.io/github/downloads/CodeDevel0per/FalconOS/total" />
 
 ## Logo:
 ![ASCII_LOGO](FalconOS/gitstuff/Logo.png)
