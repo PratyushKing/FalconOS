@@ -179,9 +179,9 @@ namespace FalconOS
                             exec += "03 " + to + " 5\n";
                             break;
                         default:
-                            Console.ForegroundColor = ConsoleColor.DarkRed;
-                            Console.Write("ERROR! ");
                             Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("ERROR! ");
+                            Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine("Invalid add to mentioned.");
                             return "ERROR!";
                     }
