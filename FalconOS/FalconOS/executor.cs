@@ -165,7 +165,7 @@ namespace FalconOS
         public void add(string num1, string num2)
         {
             var first = fetchnum(num1); var second = fetchnum(num2);
-            arg5 = (Convert.ToInt64(first + second)).ToString();
+            arg5 = (Convert.ToInt64(first) + Convert.ToInt64(second)).ToString();
         }
     }
 }
