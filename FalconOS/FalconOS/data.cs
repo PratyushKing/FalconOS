@@ -20,6 +20,7 @@ namespace FalconOS
         public static string ver = "v1.0.1";
 
         public static string lastCMD = "";
+        public static string[] protectedPaths = { "0:\\Config" };
 
         public static processMgr ProcMgr;
     }

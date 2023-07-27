@@ -461,7 +461,7 @@ namespace FalconOS
             else if (cmd.StartsWith("./"))
             {
 
-                if (cmd.EndsWith(".fe"))
+                if (cmd.EndsWith(".fe") || !(cmd.EndsWith(".ash")))
                 {
                     executor runner = new();
                     if (cmd.Split(' ').Length > 1)
