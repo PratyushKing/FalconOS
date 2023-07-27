@@ -105,15 +105,12 @@ namespace FalconOS
                             exec += "02 002\n";
                             break;
                         case "3":
-                            //doAction(interrupt.FileWrite);
                             exec += "02 003\n";
                             break;
                         case "4":
-                            //doAction(interrupt.FileRead);
                             exec += "02 004\n";
                             break;
                         case "5":
-                            //doAction(interrupt.DirectoryCreate);
                             exec += "02 005\n";
                             break;
                         case "6":
