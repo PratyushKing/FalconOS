@@ -83,7 +83,7 @@ namespace FalconOS
                                 arg1 = Console.ReadLine();
                                 break;
                             case "002":
-                                log.sPrint(fetch(arg1));
+                                log.sPrint(fetchnum(arg1));
                                 break;
                             case "003":
                                 File.WriteAllText(data.currentDir + arg1, arg2);
