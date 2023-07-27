@@ -124,6 +124,9 @@ namespace FalconOS
                                 Console.WriteLine("Kernel Panic at line " + lineNum);
                                 return;
                         }
+                    } else if (line.StartsWith("03"))
+                    {
+                        add(line.Split(' ')[1], line.Split(' ')[2]);
                     }
                     lineNum++;
                 }
@@ -144,6 +147,25 @@ namespace FalconOS
                 case "arg5": return arg5;
                 default: return "NullArg";
             }
+        }
+
+        public string fetchnum(string arg)
+        {
+            switch (arg)
+            {
+                case "1": return arg1;
+                case "2": return arg2;
+                case "3": return arg3;
+                case "4": return arg4;
+                case "5": return arg5;
+                default: return "NullArg";
+            }
+        }
+
+        public void add(string num1, string num2)
+        {
+            var first = fetchnum(num1); var second = fetchnum(num2);
+            arg5 = (Convert.ToInt64(first + second)).ToString();
         }
     }
 }

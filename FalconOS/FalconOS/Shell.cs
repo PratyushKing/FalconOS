@@ -463,7 +463,20 @@ namespace FalconOS
 
                 if (cmd.EndsWith(".fe"))
                 {
-                    executor.executeFE(cmd.Replace("./", data.currentDir));
+                    executor runner = new();
+                    if (cmd.Split(' ').Length > 1)
+                    {
+                        if (cmd.Split(' ').Length == 2)
+                        {
+                            runner.arg1 = cmd.Split(' ')[1];
+                        }
+                        if (cmd.Split(' ').Length == 3)
+                        {
+                            runner.arg1 = cmd.Split(' ')[1];
+                            runner.arg2 = cmd.Split(' ')[2];
+                        }
+                    }
+                    runner.executeFE(cmd.Split(' ')[0].Replace("./", data.currentDir));
                 }
                 else if (cmd.EndsWith(".ash"))
                 {
@@ -485,18 +498,18 @@ namespace FalconOS
                     }
                 }
             }
-            else if (cmd.StartsWith("as-fe "))
+            else if (cmd.StartsWith("asm "))
             {
-                if (cmd.Replace("as-fe ", "") == "--help")
+                if (cmd.Replace("asm ", "") == "--help")
                 {
-                    log.sPrint("as-fe v1.0\nBasic assembly-ish language but compiled.");
+                    log.sPrint("asm v1.0\nBasic assembly language.");
                 }
                 else
                 {
-                    if (File.Exists(cmd.Replace("as-fe ", data.currentDir)) && cmd.Replace("as-fe ", data.currentDir).EndsWith(".asm"))
+                    if (File.Exists(cmd.Replace("asm ", data.currentDir)) && cmd.Replace("asm ", data.currentDir).EndsWith(".asm"))
                     {
-                        var output = cmd.Replace("as-fe ", data.currentDir).Replace(".asm", ".fe");
-                        var text = assemble.compile(File.ReadAllText(cmd.Replace("as-fe ", data.currentDir)), output);
+                        var output = cmd.Replace("asm ", data.currentDir).Replace(".asm", ".fe");
+                        var text = assemble.compile(File.ReadAllText(cmd.Replace("asm ", data.currentDir)), output);
                         if (text != "ERROR!")
                         {
                             File.WriteAllText(output, text);
@@ -508,37 +521,9 @@ namespace FalconOS
                     }
                 }
             }
-            else if (cmd.StartsWith("as-fe"))
+            else if (cmd.StartsWith("asm"))
             {
-                log.sPrint("as-fe: ", "");
-                Console.ForegroundColor = ConsoleColor.Red;
-                log.sPrint("fatal error: ", "");
-                Console.ForegroundColor = ConsoleColor.White;
-                log.sPrint("no input files\ncompilation terminated.");
-            }
-            else if (cmd.StartsWith("as "))
-            {
-                if (cmd.Replace("as ", "") == "--help")
-                {
-                    log.sPrint("as v1.0\nBasic assembly-ish language.");
-                }
-                else
-                {
-                    if (File.Exists(cmd.Replace("as ", data.currentDir)) && cmd.Replace("as ", data.currentDir).EndsWith(".asm"))
-                    {
-                        var output = cmd.Replace("as ", "").Replace(".asm", ".fe");
-                        assemble.handleCode(File.ReadAllText(cmd.Replace("as ", data.currentDir)));
-                    }
-                    else
-                    {
-                        log.sPrint("Invalid Extension");
-                    }
-                }
-                Console.WriteLine();
-            }
-            else if (cmd.StartsWith("as"))
-            {
-                log.sPrint("as: ", "");
+                log.sPrint("asm: ", "");
                 Console.ForegroundColor = ConsoleColor.Red;
                 log.sPrint("fatal error: ", "");
                 Console.ForegroundColor = ConsoleColor.White;
@@ -669,7 +654,7 @@ namespace FalconOS
             }
             else
             {
-                if (!String.IsNullOrWhiteSpace(cmd) || !String.IsNullOrEmpty(cmd))
+                if (!String.IsNullOrWhiteSpace(cmd) || !String.IsNullOrEmpty(cmd) || File.Exists(cmd.Split(' ')[0].Replace(".fe", "")))
                 {
                     log.sPrint("-fash: " + cmd + ": command not found");
                 }
