@@ -474,9 +474,9 @@ namespace FalconOS
                     var fWhat = cmd.Replace("fetch ", "");
                     if (fWhat == "disks")
                     {
-                        foreach (var disk in VFSManager.GetDisks())
+                        foreach (var disk in VFSManager.GetLogicalDrives())
                         {
-                            log.sPrint(disk.ToString());
+                            log.sPrint(disk);
                         }
                     }
                     else
@@ -674,6 +674,16 @@ namespace FalconOS
                 {
                     log.programPrint("bmgr", "A command line, shell \"buffer\" utility.\nArgs:\n   clear: clears buffer\n   cas <file>: clears buffer and set its contents to a file.");
                 }
+            } else if (cmd.StartsWith("changedrive "))
+            {
+                cmd = cmd.Replace("changedrive ", "");
+                foreach (var disk in VFSManager.GetLogicalDrives())
+                {
+                    if (cmd == disk)
+                    {
+                        data.currentDir = cmd + "\\";
+                    }
+                }
             }
             else if (cmd.StartsWith("fcg "))
             {
@@ -682,6 +692,9 @@ namespace FalconOS
                     fcg newFcg = new fcg(File.ReadAllText(cmd.Replace("fcg ", data.currentDir)));
                     newFcg.Run();
                 }
+            } else if (cmd.StartsWith("export: currentdir "))
+            {
+                data.currentDir = cmd.Replace("export: currentdir ", "");
             }
             else
             {
