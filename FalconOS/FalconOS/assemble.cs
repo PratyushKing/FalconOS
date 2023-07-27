@@ -96,15 +96,12 @@ namespace FalconOS
                     switch (line.Replace("int ", ""))
                     {
                         case "0":
-                            //doAction(interrupt.WriteCommandLine);
                             exec += "02 000\n";
                             break;
                         case "1":
-                            //doAction(interrupt.ReadCommandLine);
                             exec += "02 001\n";
                             break;
                         case "2":
-                            //doAction(interrupt.WriteVar);
                             exec += "02 002\n";
                             break;
                         case "3":
