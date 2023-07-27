@@ -115,7 +115,10 @@ namespace FalconOS
             {
                 try
                 {
-                    File.Create(cmd.Replace("touch ", data.currentDir));
+                    if (!(data.protectedPaths.Contains(cmd.Replace("touch ", data.currentDir)) && Kernel.cUser.ToLower() != "root"))
+                    {
+                        File.Create(cmd.Replace("touch ", data.currentDir));
+                    }
                 }
                 catch (Exception)
                 {
@@ -126,7 +129,10 @@ namespace FalconOS
             {
                 try
                 {
-                    File.Delete(cmd.Replace("rm ", data.currentDir));
+                    if (!(data.protectedPaths.Contains(cmd.Replace("rm ", data.currentDir)) && Kernel.cUser.ToLower() != "root"))
+                    {
+                        File.Delete(cmd.Replace("rm ", data.currentDir));
+                    }
                 }
                 catch (Exception)
                 {
@@ -139,7 +145,10 @@ namespace FalconOS
                 {
                     if (!Directory.Exists(cmd.Replace("mkdir ", data.currentDir)))
                     {
-                        Directory.CreateDirectory(cmd.Replace("mkdir ", data.currentDir));
+                        if (!(data.protectedPaths.Contains(cmd.Replace("mkdir ", data.currentDir)) && Kernel.cUser.ToLower() != "root"))
+                        {
+                            Directory.CreateDirectory(cmd.Replace("mkdir ", data.currentDir));
+                        }
                     }
                     else
                     {
@@ -155,7 +164,10 @@ namespace FalconOS
             {
                 try
                 {
-                    Directory.Delete(cmd.Replace("rmdir ", data.currentDir), true);
+                    if (!(data.protectedPaths.Contains(cmd.Replace("rmdir ", data.currentDir)) && Kernel.cUser.ToLower() != "root"))
+                    {
+                        Directory.Delete(cmd.Replace("rmdir ", data.currentDir), true);
+                    }
                 }
                 catch (Exception)
                 {
@@ -164,9 +176,10 @@ namespace FalconOS
             }
             else if (cmd.StartsWith("cd"))
             {
-                if (cmd.Contains("Config") && data.currentDir == "0:\\" && Kernel.cUser.ToLower() != "root")
+                if (!(data.protectedPaths.Contains(cmd.Replace("cd ", data.currentDir)) && Kernel.cUser.ToLower() != "root"))
                 {
                     log.programPrint("cd", "Permission denied");
+                    return buffer;
                 }
                 if (cmd.StartsWith("cd ..."))
                 {
@@ -227,12 +240,30 @@ namespace FalconOS
                 Console.ForegroundColor = ConsoleColor.Green;
                 foreach (var dirs in Directory.GetDirectories(data.currentDir))
                 {
-                    log.sPrint("\"" + dirs + "\" ", "");
+                    if (data.protectedPaths.Contains(dirs))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
+                    if (dirs.Contains(" "))
+                    {
+                        log.sPrint("\"" + dirs + "\" ", "");
+                    } else
+                    {
+                        log.sPrint(dirs + " ", "");
+                    }
+                    Console.ForegroundColor = ConsoleColor.Green;
                 }
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 foreach (var files in Directory.GetFiles(data.currentDir))
                 {
-                    log.sPrint("\"" + files + "\" ", "");
+                    if (files.Contains(" "))
+                    {
+                        log.sPrint("\"" + files + "\" ", "");
+                    }
+                    else
+                    {
+                        log.sPrint(files + " ", "");
+                    }
                 }
                 log.sPrint("\n", "");
             }
