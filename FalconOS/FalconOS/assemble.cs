@@ -155,9 +155,9 @@ namespace FalconOS
                             to = "5";
                             break;
                         default:
-                            Console.ForegroundColor = ConsoleColor.DarkRed;
-                            Console.Write("ERROR! ");
                             Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("ERROR! ");
+                            Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine("Invalid add arg mentioned.");
                             return "ERROR!";
                     }
