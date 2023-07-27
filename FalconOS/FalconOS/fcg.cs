@@ -62,8 +62,7 @@ namespace FalconOS
                 }
                 else if (line.StartsWith("goto "))
                 {
-                    //nextPage = line.Replace("goto ", data.currentDir);
-                    nextPage = line.Replace("goto ", "");
+                    nextPage = line.Replace("goto ", data.currentDir);
                 }
             }
 
@@ -86,7 +85,7 @@ namespace FalconOS
                 }
                 Console.CursorTop = Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2);
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2) + 1;
-                Console.ForegroundColor = color;
+                Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine(" " + title + " \n");
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
                 Console.WriteLine("  " + description);
