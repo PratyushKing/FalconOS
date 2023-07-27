@@ -72,10 +72,6 @@ namespace FalconOS
                             break;
                     }
                 }
-                /*else if (line.StartsWith("list"))
-                {
-                    Console.WriteLine(arg1 + Environment.NewLine + arg2 + Environment.NewLine + arg3 + Environment.NewLine + arg4 + Environment.NewLine + arg5);
-                }*/
             }
         }
 
@@ -88,30 +84,11 @@ namespace FalconOS
                 if (line.StartsWith("push "))
                 {
                     var pushargs = line.Replace("push ", "").Split(' ');
-                    //push(pushargs[0], pushargs[1]);
-                    /*
-                    if (!(pushargs[0].Replace("arg", "") == "1") || !(pushargs[0].Replace("arg", "") == "2") || !(pushargs[0].Replace("arg", "") == "3") || !(pushargs[0].Replace("arg", "") == "4") || !(pushargs[0].Replace("arg", "") == "5"))
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.Write("ERROR! ");
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Invalid register mentioned.");
-                        return "ERROR!";
-                    }*/
                     exec += "00 " + pushargs[0].Replace("arg", "") + line.Replace("push " + pushargs[0], "") + "\n";
                 }
                 else if (line.StartsWith("pop "))
                 {
                     var pushargs = line.Replace("pop ", "").Split(' ');
-                    //pop(line.Replace("pop ", ""));
-                    /*if (!(pushargs[0].Replace("arg", "") == "0") || !(pushargs[0].Replace("arg", "") == "1") || !(pushargs[0].Replace("arg", "") == "2") || !(pushargs[0].Replace("arg", "") == "3") || !(pushargs[0].Replace("arg", "") == "4") || !(pushargs[0].Replace("arg", "") == "5"))
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.Write("ERROR! ");
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Invalid register mentioned.");
-                        return "ERROR!";
-                    }*/
                     exec += "01 " + line.Replace("pop arg", "") + "\n";
                 }
                 else if (line.StartsWith("int "))
