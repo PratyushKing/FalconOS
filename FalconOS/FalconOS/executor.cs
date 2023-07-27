@@ -9,13 +9,13 @@ namespace FalconOS
 {
     internal class executor
     {
-        public static string arg1 = "0";
-        public static string arg2 = "0";
-        public static string arg3 = "0";
-        public static string arg4 = "0";
-        public static string arg5 = "0";
+        public string arg1 = "0";
+        public string arg2 = "0";
+        public string arg3 = "0";
+        public string arg4 = "0";
+        public string arg5 = "0";
 
-        public static void executeFE(string file)
+        public void executeFE(string file)
         {
             if (File.Exists(file))
             {
@@ -133,7 +133,7 @@ namespace FalconOS
                 log.sPrint("File does not exist.");
             }
         }
-        public static string fetch(string arg)
+        public string fetch(string arg)
         {
             switch (arg)
             {
