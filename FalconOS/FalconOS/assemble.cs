@@ -128,9 +128,9 @@ namespace FalconOS
                             exec += "02 007\n";
                             break;
                         default:
-                            Console.ForegroundColor = ConsoleColor.DarkRed;
-                            Console.Write("ERROR! ");
                             Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("ERROR! ");
+                            Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine("Invalid interrupt mentioned.");
                             return "ERROR!";
                     }
