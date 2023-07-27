@@ -28,52 +28,6 @@ namespace FalconOS
             Unrecognized
         }
 
-        public static void handleCode(string code)
-        {
-            var lines = code.Split('\n');
-            foreach (var line in lines)
-            {
-                if (line.StartsWith("push "))
-                {
-                    var pushargs = line.Replace("push ", "").Split(' ');
-                    push(pushargs[0], pushargs[1]);
-                }
-                else if (line.StartsWith("pop "))
-                {
-                    pop(line.Replace("pop ", ""));
-                }
-                else if (line.StartsWith("int "))
-                {
-                    switch (line.Replace("int ", ""))
-                    {
-                        case "0":
-                            doAction(interrupt.WriteCommandLine);
-                            break;
-                        case "1":
-                            doAction(interrupt.ReadCommandLine);
-                            break;
-                        case "2":
-                            doAction(interrupt.WriteVar);
-                            break;
-                        case "3":
-                            doAction(interrupt.FileWrite);
-                            break;
-                        case "4":
-                            doAction(interrupt.FileRead);
-                            break;
-                        case "5":
-                            doAction(interrupt.DirectoryCreate);
-                            break;
-                        case "6":
-                            doAction(interrupt.DirectoryDelete);
-                            break;
-                        case "7":
-                            doAction(interrupt.RunShell);
-                            break;
-                    }
-                }
-            }
-        }
 
         public static string compile(string code, string output)
         {
