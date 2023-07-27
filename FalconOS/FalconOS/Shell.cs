@@ -19,6 +19,7 @@ using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 using FalconOS;
+using System.Drawing;
 
 namespace FalconOS
 {
@@ -40,6 +41,13 @@ namespace FalconOS
             {
                 log.print("Yindow Manager", "Starting window manager");
                 Thread.Sleep(1500);
+                Kernel.gui = true;
+            } else if (cmd == "sysctl gui=true")
+            {
+                Kernel.gui = true;
+            } else if (cmd == "sysctl gui=false")
+            {
+                Kernel.gui = false;
             }
             else if (cmd == "sysctl reboot")
             {
@@ -70,8 +78,8 @@ namespace FalconOS
             }
             else if (cmd.StartsWith("sysctl console-cursor"))
             {
-                    Console.CursorVisible = true;
-                }
+                Console.CursorVisible = true;
+            }
             else if (cmd.StartsWith("sysctl"))
             {
                 Console.WriteLine(cmd);
@@ -421,7 +429,7 @@ namespace FalconOS
             }
             else if (cmd.StartsWith("screenfetch") || cmd.StartsWith("feofetch"))
             {
-                log.sPrint("\n 88888888b          dP                                .88888.  .d88888b  \r\n 88                 88                               d8'   `8b 88.    \"' \r\na88aaaa    .d8888b. 88 .d8888b. .d8888b. 88d888b.    88     88 `Y88888b. \r\n 88        88'  `88 88 88'  `\"\" 88'  `88 88'  `88    88     88       `8b \r\n 88        88.  .88 88 88.  ... 88.  .88 88    88    Y8.   .8P d8'   .8P \r\n dP        `88888P8 dP `88888P' `88888P' dP    dP     `8888P'   Y88888P  \r\n                                                                         \r\n                                                                             \n", "");
+                log.sPrint("                                             \r\n               */(%%&&&&&&&&%#(*                \r\n             *(&&&&&&&&&&&&&&&%#/**             \r\n            *%&&&&&&&&&&&&&&&&&&&&&&(*          \r\n        */#&&&&&&&&&&&&&&&&&&&&&&&&&%/*         \r\n    * *#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#*      \r\n     *%&&%%##%&&&&&&&&&&&&&&&&&&&&&&&&&#%%%/ *  \r\n     *&#*/(##%&&&&&&&&&&&&&&&&&&&&&&&&&&%*      \r\n     *(*       *%&&&&&&&&&&&&&&&&&&&&&&&&&%/    \r\n                /&&&&&&&&&&&&&&&&&&&&&&( * *  * \r\n                /&&&&&&&&&&&&&&&&&&%**/#*    *  \r\n                /&&&&&&&&&&&&&&&&(#%*           \r\n                *&&&&&&&&&&&&&&&&#              \r\n                 #&&&(/&&&&&&&%(%&/  *          \r\n                 *%&(  /&#**#&/   *             \r\n                   /    **   **                ");
                 log.sPrint("FalconOS " + ver + ": Is VM?: " + infochecks.isVM());
             }
             else if (cmd.StartsWith("fetch"))
@@ -558,7 +566,7 @@ namespace FalconOS
                         }
 
 
-                        Console.WriteLine("\n    \\\n     \\\n      \\\n       \\\n             /@@*                                       \r\n                      &@@@@@                       #@@@              \r\n                  %@@@@@@@@@@@@@@/               @@@@@@@             \r\n                  @@/ &@@@@@@@@@@@@%           @@@@@@@@@             \r\n                @@@@@@@@@@@@@@@@@@@@@       (@@@@@@@@@@              \r\n              #@@@@@@@@@@@@@@@@@@@@@@@    @@@@@@@@@@@&               \r\n               ,      %@@@@@@@@@@@@@@@  @@@@@@@@@@@&    .            \r\n                     ,@@@@@@@@@@@@@@ /@@@@@@@@@@@   *@@@@(           \r\n                   (@@@@@@@@@@@@@( @@@@@@@@@@%  (@@@@@@@@/           \r\n                 .@@@@@@@@@@@@@  @@@@@@@@%  #@@@@@@@@@@@*            \r\n                 @@@@@@@@@@@@ *@@@@@@%  %@@@@@@@@@@@@@               \r\n                   @@@@@@@# &@@@@&  @@@@@@@@@@@@@@*                  \r\n                   @@@@@. @@@%  @@@@@@@@@@@%                         \r\n                    @@ .@%  @@@@@@%,     /@@@@@@@@*                  \r\n                     /  @@/    ,%@@@@@@@@@@@@@@@@                    \r\n                      ,(#%%%&&&@@@@@@@@@@@(,             ");
+                        Console.WriteLine("\n    \\\n     \\\n      \\\n       \\\n                                             \r\n               */(%%&&&&&&&&%#(*                \r\n             *(&&&&&&&&&&&&&&&%#/**             \r\n            *%&&&&&&&&&&&&&&&&&&&&&&(*          \r\n        */#&&&&&&&&&&&&&&&&&&&&&&&&&%/*         \r\n    * *#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#*      \r\n     *%&&%%##%&&&&&&&&&&&&&&&&&&&&&&&&&#%%%/ *  \r\n     *&#*/(##%&&&&&&&&&&&&&&&&&&&&&&&&&&%*      \r\n     *(*       *%&&&&&&&&&&&&&&&&&&&&&&&&&%/    \r\n                /&&&&&&&&&&&&&&&&&&&&&&( * *  * \r\n                /&&&&&&&&&&&&&&&&&&%**/#*    *  \r\n                /&&&&&&&&&&&&&&&&(#%*           \r\n                *&&&&&&&&&&&&&&&&#              \r\n                 #&&&(/&&&&&&&%(%&/  *          \r\n                 *%&(  /&#**#&/   *             \r\n                   /    **   **                ");
                     }
                     else
                     {
@@ -570,7 +578,7 @@ namespace FalconOS
                 }
             } else if (cmd.StartsWith("printlogo"))
             {
-                log.sPrint("                                                                               \r\n                                                                                                    \r\n                                         //((((###                                                  \r\n                                              /////(((((#                                           \r\n                                       ./**,,,,..////////////                                       \r\n                                    (/**,,,,....,. ///****,**,*                                     \r\n                                  /** //*******,,,,,,    .,,..(((((                                 \r\n                                   (////***,,,,,,,........... ***////(                              \r\n                                 (/********,.     ....,***,,,,*******/(                             \r\n                                /**/.. ....            /******,    ..,*                             \r\n                               */  ...,........                                                     \r\n                              ,   ,...*,,........ .                                                 \r\n                                  ,,..*,,,,,  ...... . .                                            \r\n                                  ,,   **,,,   ,,,.  ,,.,.                                          \r\n                                  .    /***     ,,,,                                                \r\n                                         /*         ,                                               \r\n                                                                              ");
+                log.sPrint("                                             \r\n               */(%%&&&&&&&&%#(*                \r\n             *(&&&&&&&&&&&&&&&%#/**             \r\n            *%&&&&&&&&&&&&&&&&&&&&&&(*          \r\n        */#&&&&&&&&&&&&&&&&&&&&&&&&&%/*         \r\n    * *#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#*      \r\n     *%&&%%##%&&&&&&&&&&&&&&&&&&&&&&&&&#%%%/ *  \r\n     *&#*/(##%&&&&&&&&&&&&&&&&&&&&&&&&&&%*      \r\n     *(*       *%&&&&&&&&&&&&&&&&&&&&&&&&&%/    \r\n                /&&&&&&&&&&&&&&&&&&&&&&( * *  * \r\n                /&&&&&&&&&&&&&&&&&&%**/#*    *  \r\n                /&&&&&&&&&&&&&&&&(#%*           \r\n                *&&&&&&&&&&&&&&&&#              \r\n                 #&&&(/&&&&&&&%(%&/  *          \r\n                 *%&(  /&#**#&/   *             \r\n                   /    **   **                ");
             } else if (cmd.StartsWith("bmgr"))
             {
                 if (cmd.StartsWith("bmgr "))
@@ -634,6 +642,13 @@ namespace FalconOS
                 } else
                 {
                     log.programPrint("bmgr", "A command line, shell \"buffer\" utility.\nArgs:\n   clear: clears buffer\n   cas <file>: clears buffer and set its contents to a file.");
+                }
+            } else if (cmd.StartsWith("fcg "))
+            {
+                if (File.Exists(cmd.Replace("fcg ", data.currentDir)))
+                {
+                    fcg newFcg = new fcg(File.ReadAllText(cmd.Replace("fcg ", data.currentDir)));
+                    newFcg.Run();
                 }
             }
             else
