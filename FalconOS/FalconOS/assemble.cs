@@ -114,11 +114,9 @@ namespace FalconOS
                             exec += "02 005\n";
                             break;
                         case "6":
-                            //doAction(interrupt.DirectoryDelete);
                             exec += "02 006\n";
                             break;
                         case "7":
-                            //doAction(interrupt.RunShell);
                             exec += "02 007\n";
                             break;
                         default:
