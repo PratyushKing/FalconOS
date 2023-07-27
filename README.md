@@ -1,6 +1,14 @@
 # FalconOS
+<div align="center">
 Highly advanced OS, focuses on pure command line. (but better)
-![Demo](FalconOS/gitstuff/DemoImage.png)
+<img src="FalconOS/gitstuff/DemoImage.png" />
+<br>
+  <img src="https://img.shields.io/github/languages/code-size/CodeDevel0per/FalconOS" />
+  <img src="https://img.shields.io/github/downloads/CodeDevel0per/FalconOS/total" />
+  <a href="https://github.com/CosmosOS/Cosmos/blob/master/LICENSE.txt">
+    <img src="https://img.shields.io/github/license/CodeDevel0per/FalconOS" />
+  </a>
+</div>
 
 ## Logo:
 ![ASCII_LOGO](FalconOS/gitstuff/Logo.png)
