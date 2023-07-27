@@ -131,6 +131,57 @@ namespace FalconOS
                             Console.WriteLine("Invalid add to mentioned.");
                             return "ERROR!";
                     }
+                } else if (line.StartsWith("sub "))
+                {
+                    var to = "1";
+                    switch (line.Split(' ')[1])
+                    {
+                        case "arg1":
+                            to = "1";
+                            break;
+                        case "arg2":
+                            to = "2";
+                            break;
+                        case "arg3":
+                            to = "3";
+                            break;
+                        case "arg4":
+                            to = "4";
+                            break;
+                        case "arg5":
+                            to = "5";
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("ERROR! ");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine("Invalid subtract arg mentioned.");
+                            return "ERROR!";
+                    }
+                    switch (line.Split(' ')[2])
+                    {
+                        case "arg1":
+                            exec += "04 " + to + " 1\n";
+                            break;
+                        case "arg2":
+                            exec += "04 " + to + " 2\n";
+                            break;
+                        case "arg3":
+                            exec += "04 " + to + " 3\n";
+                            break;
+                        case "arg4":
+                            exec += "04 " + to + " 4\n";
+                            break;
+                        case "arg5":
+                            exec += "04 " + to + " 5\n";
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("ERROR! ");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine("Invalid subtract to mentioned.");
+                            return "ERROR!";
+                    }
                 }
             }
             return exec;

@@ -127,6 +127,9 @@ namespace FalconOS
                     } else if (line.StartsWith("03"))
                     {
                         add(line.Split(' ')[1], line.Split(' ')[2]);
+                    } else if (line.StartsWith("04"))
+                    {
+                        sub(line.Split(' ')[1], line.Split(' ')[2]);
                     }
                     lineNum++;
                 }
@@ -166,6 +169,11 @@ namespace FalconOS
         {
             var first = fetchnum(num1); var second = fetchnum(num2);
             arg5 = (Convert.ToInt64(first) + Convert.ToInt64(second)).ToString();
+        }
+        public void sub(string num1, string num2)
+        {
+            var first = fetchnum(num1); var second = fetchnum(num2);
+            arg5 = (Convert.ToInt64(first) - Convert.ToInt64(second)).ToString();
         }
     }
 }
