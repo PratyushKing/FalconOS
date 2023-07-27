@@ -42,10 +42,12 @@ namespace FalconOS
                 log.print("Yindow Manager", "Starting window manager");
                 Thread.Sleep(1500);
                 Kernel.gui = true;
-            } else if (cmd == "sysctl gui=true")
+            }
+            else if (cmd == "sysctl gui=true")
             {
                 Kernel.gui = true;
-            } else if (cmd == "sysctl gui=false")
+            }
+            else if (cmd == "sysctl gui=false")
             {
                 Kernel.gui = false;
             }
@@ -249,7 +251,8 @@ namespace FalconOS
                 {
                     Console.Clear();
                     sysmgr.login();
-                } else
+                }
+                else
                 {
                     log.print("Fash", "Exiting kid instance");
                     return "exited";
@@ -275,7 +278,8 @@ namespace FalconOS
                 {
                     log.sPrint("Error: Either file doesn't exist [Use: fash <file.ash>] or doesn't end in .ash");
                 }
-            } else if (cmd.StartsWith("fash"))
+            }
+            else if (cmd.StartsWith("fash"))
             {
                 Shell Kidshell = new Shell(data.osname, data.ver);
                 log.print("Fash", "Entering new instance.");
@@ -514,40 +518,44 @@ namespace FalconOS
             }
             else if (cmd.StartsWith("as "))
             {
-                    if (cmd.Replace("as ", "") == "--help")
+                if (cmd.Replace("as ", "") == "--help")
+                {
+                    log.sPrint("as v1.0\nBasic assembly-ish language.");
+                }
+                else
+                {
+                    if (File.Exists(cmd.Replace("as ", data.currentDir)) && cmd.Replace("as ", data.currentDir).EndsWith(".asm"))
                     {
-                        log.sPrint("as v1.0\nBasic assembly-ish language.");
+                        var output = cmd.Replace("as ", "").Replace(".asm", ".fe");
+                        assemble.handleCode(File.ReadAllText(cmd.Replace("as ", data.currentDir)));
                     }
                     else
                     {
-                        if (File.Exists(cmd.Replace("as ", data.currentDir)) && cmd.Replace("as ", data.currentDir).EndsWith(".asm"))
-                        {
-                            var output = cmd.Replace("as ", "").Replace(".asm", ".fe");
-                            assemble.handleCode(File.ReadAllText(cmd.Replace("as ", data.currentDir)));
-                        }
-                        else
-                        {
-                            log.sPrint("Invalid Extension");
-                        }
+                        log.sPrint("Invalid Extension");
                     }
+                }
                 Console.WriteLine();
-            } else if (cmd.StartsWith("as"))
+            }
+            else if (cmd.StartsWith("as"))
             {
                 log.sPrint("as: ", "");
                 Console.ForegroundColor = ConsoleColor.Red;
                 log.sPrint("fatal error: ", "");
                 Console.ForegroundColor = ConsoleColor.White;
                 log.sPrint("no input files\ncompilation terminated.");
-            } else if (cmd.StartsWith("calc "))
+            }
+            else if (cmd.StartsWith("calc "))
             {
                 calc calculate = new calc();
                 log.sPrint(calculate.Evaluate(cmd.Replace("calc ", "")).ToString());
-            } else if (cmd.StartsWith("falsay"))
+            }
+            else if (cmd.StartsWith("falsay"))
             {
                 if (cmd == "falsay")
                 {
                     log.sPrint("falsay is the debian equivalent of cowsay. (we got falcons instead)");
-                } else if (cmd.StartsWith("falsay "))
+                }
+                else if (cmd.StartsWith("falsay "))
                 {
                     var falconsScript = cmd.Replace("falsay ", "");
                     if ((Console.WindowWidth - ("< " + falconsScript + " >").Length) > 0)
@@ -572,14 +580,17 @@ namespace FalconOS
                     {
                         Console.Write("Falcon was tired. Too big text!");
                     }
-                } else
+                }
+                else
                 {
                     log.sPrint("Usage: falsay <text>");
                 }
-            } else if (cmd.StartsWith("printlogo"))
+            }
+            else if (cmd.StartsWith("printlogo"))
             {
                 log.sPrint("                                             \r\n               */(%%&&&&&&&&%#(*                \r\n             *(&&&&&&&&&&&&&&&%#/**             \r\n            *%&&&&&&&&&&&&&&&&&&&&&&(*          \r\n        */#&&&&&&&&&&&&&&&&&&&&&&&&&%/*         \r\n    * *#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#*      \r\n     *%&&%%##%&&&&&&&&&&&&&&&&&&&&&&&&&#%%%/ *  \r\n     *&#*/(##%&&&&&&&&&&&&&&&&&&&&&&&&&&%*      \r\n     *(*       *%&&&&&&&&&&&&&&&&&&&&&&&&&%/    \r\n                /&&&&&&&&&&&&&&&&&&&&&&( * *  * \r\n                /&&&&&&&&&&&&&&&&&&%**/#*    *  \r\n                /&&&&&&&&&&&&&&&&(#%*           \r\n                *&&&&&&&&&&&&&&&&#              \r\n                 #&&&(/&&&&&&&%(%&/  *          \r\n                 *%&(  /&#**#&/   *             \r\n                   /    **   **                ");
-            } else if (cmd.StartsWith("bmgr"))
+            }
+            else if (cmd.StartsWith("bmgr"))
             {
                 if (cmd.StartsWith("bmgr "))
                 {
@@ -595,11 +606,13 @@ namespace FalconOS
                             {
                                 log.sPrint("You must use sudo with this command!");
                             }
-                        } else
+                        }
+                        else
                         {
                             buffer = "";
                         }
-                    } else if (cmd.StartsWith("bmgr cas"))
+                    }
+                    else if (cmd.StartsWith("bmgr cas"))
                     {
                         if (cmd.StartsWith("bmgr cas "))
                         {
@@ -634,16 +647,19 @@ namespace FalconOS
                                     log.programPrint("bmgr", "Error occurred (maybe file was invalid)");
                                 }
                             }
-                        } else
+                        }
+                        else
                         {
                             log.programPrint("bmgr", "no file given for cas, usage: bmgr cas <file>");
                         }
                     }
-                } else
+                }
+                else
                 {
                     log.programPrint("bmgr", "A command line, shell \"buffer\" utility.\nArgs:\n   clear: clears buffer\n   cas <file>: clears buffer and set its contents to a file.");
                 }
-            } else if (cmd.StartsWith("fcg "))
+            }
+            else if (cmd.StartsWith("fcg "))
             {
                 if (File.Exists(cmd.Replace("fcg ", data.currentDir)))
                 {
