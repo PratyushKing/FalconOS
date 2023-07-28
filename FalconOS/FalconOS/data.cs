@@ -16,7 +16,7 @@ namespace FalconOS
         public static string lastDir = @"0:";
 
         public static string osname = "FalconOS";
-        public static string vername = "BETA";
+        public static string vername = "STABLE";
         public static string ver = "v1.0.1";
 
         public static string lastCMD = "";
