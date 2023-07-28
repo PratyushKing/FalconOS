@@ -84,7 +84,6 @@ namespace FalconOS
                 {
                     Console.CursorTop++;
                     Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
-                    Console.CursorVisible = false;
                     Console.Write(new string(' ', Console.WindowWidth / 2));
                 }
                 Console.CursorTop = Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2);
@@ -191,7 +190,6 @@ namespace FalconOS
                 {
                     Console.CursorTop++;
                     Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
-                    Console.CursorVisible = false;
                     Console.Write(new string(' ', Console.WindowWidth / 2));
                 }
                 Console.CursorTop = Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2);
@@ -218,7 +216,7 @@ namespace FalconOS
                             input = input.Remove(input.Length - 1, 1);
                         }
                     }
-                    else if ((Char.IsLetterOrDigit(key.KeyChar) || key.Key == ConsoleKey.Spacebar) && input.Length < ((Console.WindowWidth / 2) - 3) - 1)
+                    else if ((Char.IsLetterOrDigit(key.KeyChar) || Char.IsSymbol(key.KeyChar) || Char.IsPunctuation(key.KeyChar) || key.Key == ConsoleKey.Spacebar) && input.Length < ((Console.WindowWidth / 2) - 3) - 1)
                     {
                         input += key.KeyChar;
                     }
