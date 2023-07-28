@@ -81,6 +81,7 @@ namespace FalconOS
             log.sPrint("\nLogging in as " + Kernel.cUser);
             if (clear) { Console.Clear(); }
             log.drawTitleBar("FalconOS: Shell");
+            Console.CursorTop += 2;
             if (Kernel.cUser == "root")
             {
                 Kernel.asRoot = true;

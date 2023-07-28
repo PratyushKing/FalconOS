@@ -23,7 +23,8 @@ namespace FalconOS
             var description = "Text";
             var color = ConsoleColor.Blue;
             string nextPage = null;
-            bool dialog = true;
+            bool dialog = false;
+            bool text = false;
 
             var file = config.Split('\n');
             foreach (var line in file)
@@ -45,7 +46,7 @@ namespace FalconOS
                     var pickedcolor = line.Replace("color: ", "");
                     if (pickedcolor == "blue")
                     {
-                        color = ConsoleColor.Blue;
+                        color = ConsoleColor.Cyan;
                     }
                     else if (pickedcolor == "green")
                     {
@@ -63,6 +64,9 @@ namespace FalconOS
                 else if (line.StartsWith("goto "))
                 {
                     nextPage = line.Replace("goto ", data.currentDir);
+                } else if (line.StartsWith("!text"))
+                {
+                    text = true;
                 }
             }
 
@@ -155,6 +159,9 @@ namespace FalconOS
                     {
                         select = "cancel";
                         goto redrawbtns;
+                    } else
+                    {
+                        goto redraw;
                     }
                 }
                 else if (key.Key == ConsoleKey.RightArrow)
@@ -163,11 +170,71 @@ namespace FalconOS
                     {
                         select = "ok";
                         goto redrawbtns;
+                    } else
+                    {
+                        goto redraw;
                     }
                 }
                 else
                 {
                     goto keyReading;
+                }
+                Console.Clear();
+            } else if (text)
+            {
+                Console.BackgroundColor = color;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.Clear();
+                Console.SetCursorPosition(Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2), Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2));
+                Console.BackgroundColor = ConsoleColor.White;
+                for (var i = 0; i < 14; i++)
+                {
+                    Console.CursorTop++;
+                    Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
+                    Console.CursorVisible = false;
+                    Console.Write(new string(' ', Console.WindowWidth / 2));
+                }
+                Console.CursorTop = Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2);
+                Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2) + 1;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine(" " + title + " \n");
+                Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
+                Console.WriteLine("  " + description);
+                Console.SetCursorPosition((Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + 2, Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2) + 13);
+                Console.BackgroundColor = color;
+                Console.Write(new string('_', (Console.WindowWidth / 2) - 3));
+                Console.SetCursorPosition((Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + 2, Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2) + 13);
+                var key = Console.ReadKey();
+                var input = "";
+                while (!(key.Key == ConsoleKey.Enter))
+                {
+                    if (key.Key == ConsoleKey.Backspace && input.Length > 0 && Console.CursorLeft > (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + 2)
+                    {
+                        Console.CursorLeft--;
+                        Console.Write("_");
+                        Console.CursorLeft--;
+                        if (input.Length > 0)
+                        {
+                            input = input.Remove(input.Length - 1, 1);
+                        }
+                    }
+                    else if ((Char.IsLetterOrDigit(key.KeyChar) || key.Key == ConsoleKey.Spacebar) && input.Length < ((Console.WindowWidth / 2) - 3) - 1)
+                    {
+                        input += key.KeyChar;
+                    }
+                    key = Console.ReadKey();
+                }
+                if (nextPage == null)
+                {
+                    Console.ResetColor();
+                    Console.Clear();
+                    Console.WriteLine(input);
+                    return;
+                }
+                else if (File.Exists(nextPage))
+                {
+                    this.config = File.ReadAllText(nextPage);
+                    Run();
                 }
                 Console.Clear();
             }
