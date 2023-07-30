@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Xml.Schema;
 
 namespace FalconOS
 {
@@ -25,7 +26,7 @@ namespace FalconOS
             bool firstTime = true;
             var title = "Title";
             var description = "Text";
-            var color = ConsoleColor.Blue;
+            var color = ConsoleColor.Cyan;
             string nextPage = null;
             bool dialog = false;
             bool text = false;
@@ -93,7 +94,23 @@ namespace FalconOS
                 Console.CursorTop = Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2);
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2) + 1;
                 Console.ForegroundColor = fore;
-                Console.WriteLine(" " + title + " \n");
+                if (title.Length > 63)
+                {
+                    var newTitle = "";
+                    for (var i = 0; i < title.Length; i++)
+                    {
+                        if ((i / 63) == 0)
+                        {
+                            newTitle += "\n";
+                        }
+                        newTitle += title[i];
+                    }
+                    Console.WriteLine(" " + title + " \n");
+                }
+                else
+                {
+                    Console.WriteLine(" " + title + " \n");
+                }
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
                 Console.WriteLine("  " + description);
                 if (select == "ok")

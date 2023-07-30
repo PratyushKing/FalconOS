@@ -58,7 +58,7 @@ namespace FalconOS
                     Thread.Sleep(1000);
 
                     //Setup
-                    fcg Setup = new fcg(":System Setup [User]\ntext: Enter your username for this FalconOS system!\ncolor:blue\n!text");
+                    fcg Setup = new fcg(":System Setup [User]\ntext: Enter your username for this FalconOS system!\ncolor: blue\n!text");
                     Setup.Run();
                     if (File.Exists(data.currentDir + "output.txt"))
                     {
@@ -69,14 +69,14 @@ namespace FalconOS
                         }
                         File.WriteAllText("0:\\Config\\root.ers", text);
                         File.WriteAllText("0:\\Config\\user.s", text);
-                        fcg Password = new fcg(":System Setup [Password]\ntext: Enter your password for this system!\ncolor:blue\n!text");
+                        fcg Password = new fcg(":System Setup [Password]\ntext: Enter your password for this system!\ncolor: blue\n!text");
                         Password.passwd = true;
                         Password.Run();
                         text = File.ReadAllText(data.currentDir + "output.txt");
                         if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
                         {
                             text = "passwd";
-                            fcg failed = new fcg(":Setup Warning\ntext: Your setup failed, didn't output password! Using default password 'passwd'\n!dialog");
+                            fcg failed = new fcg(":Setup Warning\ntext: Your setup failed, didn't output password! Using default password 'passwd'\ncolor: green\n!dialog");
                             failed.Run();
                         }
                         File.WriteAllText("0:\\Config\\pwd.s", text);
