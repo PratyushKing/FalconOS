@@ -4,7 +4,7 @@ Highly advanced OS, focuses on pure command line. (but better)
 <br>
   <img src="https://img.shields.io/github/languages/code-size/CodeDevel0per/FalconOS" />
   <img src="https://img.shields.io/github/downloads/CodeDevel0per/FalconOS/total" />
-  <a href="https://github.com/CodeDevel0per/FalconOS/blob/master/LICENSE">
+  <a href="https://github.com/CodeDevel0per/FalconOS/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/CodeDevel0per/FalconOS" />
   </a>
   <img src="https://img.shields.io/badge/single project-yes-magenta">
