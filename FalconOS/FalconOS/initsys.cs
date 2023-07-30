@@ -56,6 +56,8 @@ namespace FalconOS
                     log.print("Kernel", "Setting system up!");
                     log.print("SetupMgr", "Starting fcg");
                     Thread.Sleep(1000);
+
+                    //Setup
                     fcg Setup = new fcg(":System Setup [User]\ntext: Enter your username for this FalconOS system!\ncolor:blue\n!text");
                     Setup.Run();
                     if (File.Exists(data.currentDir + "output.txt"))

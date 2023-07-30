@@ -115,10 +115,7 @@ namespace FalconOS
             {
                 try
                 {
-                    if (!(data.protectedPaths.Contains(cmd.Replace("touch ", data.currentDir)) && Kernel.cUser.ToLower() != "root"))
-                    {
                         File.Create(cmd.Replace("touch ", data.currentDir));
-                    }
                 }
                 catch (Exception)
                 {
@@ -129,10 +126,7 @@ namespace FalconOS
             {
                 try
                 {
-                    if (!(data.protectedPaths.Contains(cmd.Replace("rm ", data.currentDir)) && Kernel.cUser.ToLower() == "root"))
-                    {
                         File.Delete(cmd.Replace("rm ", data.currentDir));
-                    }
                 }
                 catch (Exception)
                 {
@@ -145,10 +139,7 @@ namespace FalconOS
                 {
                     if (!Directory.Exists(cmd.Replace("mkdir ", data.currentDir)))
                     {
-                        if (!(data.protectedPaths.Contains(cmd.Replace("mkdir ", data.currentDir)) && Kernel.cUser.ToLower() == "root"))
-                        {
                             Directory.CreateDirectory(cmd.Replace("mkdir ", data.currentDir));
-                        }
                     }
                     else
                     {
@@ -164,10 +155,7 @@ namespace FalconOS
             {
                 try
                 {
-                    if (!(data.protectedPaths.Contains(cmd.Replace("rmdir ", data.currentDir)) && Kernel.cUser.ToLower() == "root"))
-                    {
                         Directory.Delete(cmd.Replace("rmdir ", data.currentDir), true);
-                    }
                 }
                 catch (Exception)
                 {
@@ -176,14 +164,14 @@ namespace FalconOS
             }
             else if (cmd.StartsWith("cd"))
             {
-                if (!(data.protectedPaths.Contains(cmd.Replace("cd ", data.currentDir)) && Kernel.cUser.ToLower() == "root"))
-                {
-                    log.programPrint("cd", "Permission denied");
-                    return buffer;
-                }
                 if (cmd.StartsWith("cd ..."))
                 {
                     data.currentDir = "0:\\";
+                    return buffer;
+                }
+                if (data.protectedPaths.Contains(cmd.Replace("cd ", data.currentDir)) && ((Kernel.cUser.ToLower() != "root") || !root))
+                {
+                    log.programPrint("cd", "Permission denied");
                     return buffer;
                 }
                 if (Directory.Exists(cmd.Replace("cd ", data.currentDir + "\\")))
@@ -240,7 +228,7 @@ namespace FalconOS
                 Console.ForegroundColor = ConsoleColor.Green;
                 foreach (var dirs in Directory.GetDirectories(data.currentDir))
                 {
-                    if (data.protectedPaths.Contains(dirs))
+                    if (data.protectedPaths.Contains(data.currentDir + dirs))
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                     }
