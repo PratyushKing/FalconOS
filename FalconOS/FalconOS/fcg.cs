@@ -226,11 +226,12 @@ namespace FalconOS
                 {
                     Console.ResetColor();
                     Console.Clear();
-                    Console.WriteLine(input);
+                    File.WriteAllText(data.currentDir + "output.txt", input);
                     return;
                 }
                 else if (File.Exists(nextPage))
                 {
+                    File.WriteAllText(data.currentDir + "output.txt", input);
                     this.config = File.ReadAllText(nextPage);
                     Run();
                 }
