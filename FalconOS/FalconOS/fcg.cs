@@ -10,6 +10,7 @@ namespace FalconOS
     public class fcg
     {
         private string config = "";
+        public bool passwd = false;
         public fcg(string file)
         {
             this.config = file;
@@ -202,7 +203,7 @@ namespace FalconOS
                 Console.BackgroundColor = color;
                 Console.Write(new string('_', (Console.WindowWidth / 2) - 3));
                 Console.SetCursorPosition((Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + 2, Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2) + 13);
-                var key = Console.ReadKey();
+                var key = Console.ReadKey(true);
                 var input = "";
                 while (!(key.Key == ConsoleKey.Enter))
                 {
@@ -218,6 +219,14 @@ namespace FalconOS
                     }
                     else if ((Char.IsLetterOrDigit(key.KeyChar) || Char.IsSymbol(key.KeyChar) || Char.IsPunctuation(key.KeyChar) || key.Key == ConsoleKey.Spacebar) && input.Length < ((Console.WindowWidth / 2) - 3) - 1)
                     {
+                        if (!passwd)
+                        {
+                            Console.Write(key.KeyChar);
+                            
+                        } else
+                        {
+                            Console.Write('*');
+                        }
                         input += key.KeyChar;
                     }
                     key = Console.ReadKey();
