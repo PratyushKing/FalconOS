@@ -99,7 +99,7 @@ namespace FalconOS
                     var newTitle = "";
                     for (var i = 0; i < title.Length; i++)
                     {
-                        if ((i / 63) == 0)
+                        if ((i / 63) == 1)
                         {
                             newTitle += "\n";
                         }
@@ -249,7 +249,7 @@ namespace FalconOS
                         }
                         input += key.KeyChar;
                     }
-                    key = Console.ReadKey();
+                    key = Console.ReadKey(true);
                 }
                 if (nextPage == null)
                 {
