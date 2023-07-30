@@ -129,14 +129,14 @@ namespace FalconOS
             {
                 try
                 {
-                    if (!(data.protectedPaths.Contains(cmd.Replace("rm ", data.currentDir)) && Kernel.cUser.ToLower() != "root"))
+                    if (!(data.protectedPaths.Contains(cmd.Replace("rm ", data.currentDir)) && Kernel.cUser.ToLower() == "root"))
                     {
                         File.Delete(cmd.Replace("rm ", data.currentDir));
                     }
                 }
                 catch (Exception)
                 {
-                    log.sPrint("Can't remove the file.");
+                    log.print("rm", "Can't remove the file. Permission denied");
                 }
             }
             else if (cmd.StartsWith("mkdir") && cmd.StartsWith("mkdir "))
@@ -145,7 +145,7 @@ namespace FalconOS
                 {
                     if (!Directory.Exists(cmd.Replace("mkdir ", data.currentDir)))
                     {
-                        if (!(data.protectedPaths.Contains(cmd.Replace("mkdir ", data.currentDir)) && Kernel.cUser.ToLower() != "root"))
+                        if (!(data.protectedPaths.Contains(cmd.Replace("mkdir ", data.currentDir)) && Kernel.cUser.ToLower() == "root"))
                         {
                             Directory.CreateDirectory(cmd.Replace("mkdir ", data.currentDir));
                         }
@@ -164,7 +164,7 @@ namespace FalconOS
             {
                 try
                 {
-                    if (!(data.protectedPaths.Contains(cmd.Replace("rmdir ", data.currentDir)) && Kernel.cUser.ToLower() != "root"))
+                    if (!(data.protectedPaths.Contains(cmd.Replace("rmdir ", data.currentDir)) && Kernel.cUser.ToLower() == "root"))
                     {
                         Directory.Delete(cmd.Replace("rmdir ", data.currentDir), true);
                     }
@@ -176,7 +176,7 @@ namespace FalconOS
             }
             else if (cmd.StartsWith("cd"))
             {
-                if (!(data.protectedPaths.Contains(cmd.Replace("cd ", data.currentDir)) && Kernel.cUser.ToLower() != "root"))
+                if (!(data.protectedPaths.Contains(cmd.Replace("cd ", data.currentDir)) && Kernel.cUser.ToLower() == "root"))
                 {
                     log.programPrint("cd", "Permission denied");
                     return buffer;
