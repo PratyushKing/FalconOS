@@ -20,7 +20,8 @@
         <VMWareEdition>Player</VMWareEdition>
         <BinFormat>Elf</BinFormat>
         <DebugEnabled>False</DebugEnabled>
-        <OptimizationLevel>0</OptimizationLevel>
+        <OptimizationLevel>2</OptimizationLevel>
+        <CompressionType>Gzip</CompressionType>
     </PropertyGroup>
 
     <ItemGroup>

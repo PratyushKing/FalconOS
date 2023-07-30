@@ -25,7 +25,7 @@ namespace FalconOS
         rerun:
             bool firstTime = true;
             var title = "Title";
-            var description = "Text";
+            var description = "";
             var color = ConsoleColor.Cyan;
             string nextPage = null;
             bool dialog = false;
@@ -40,7 +40,7 @@ namespace FalconOS
                 }
                 else if (line.StartsWith("text: "))
                 {
-                    description = line.Replace("text: ", "");
+                    description += line.Replace("text: ", "");
                 }
                 else if (line.StartsWith("!dialog"))
                 {
@@ -94,25 +94,42 @@ namespace FalconOS
                 Console.CursorTop = Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2);
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2) + 1;
                 Console.ForegroundColor = fore;
-                if (title.Length > 63)
+                if (title.Length > 36)
                 {
                     var newTitle = "";
                     for (var i = 0; i < title.Length; i++)
                     {
-                        if ((i / 63) == 1)
+                        if (i == 36)
                         {
                             newTitle += "\n";
                         }
                         newTitle += title[i];
                     }
-                    Console.WriteLine(" " + title + " \n");
+                    Console.WriteLine(" " + newTitle + " \n");
                 }
                 else
                 {
                     Console.WriteLine(" " + title + " \n");
                 }
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
-                Console.WriteLine("  " + description);
+                if (description.Length > 32)
+                {
+                    var newDescription = "";
+                    for (var i = 0; i < description.Length; i++)
+                    {
+                        if ((i % 32) == 1)
+                        {
+                            newDescription += "\n";
+                        }
+                        newDescription += description[i];
+                    }
+                    Console.WriteLine("  " + newDescription);
+                }
+                else
+                {
+                    Console.WriteLine("  " + description);
+                }
+                
                 if (select == "ok")
                 {
                     Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <Cancel>  <OK>    ").Length;
@@ -218,7 +235,23 @@ namespace FalconOS
                 Console.ForegroundColor = fore;
                 Console.WriteLine(" " + title + " \n");
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
-                Console.WriteLine("  " + description);
+                if (description.Length > 32)
+                {
+                    var newDescription = "";
+                    for (var i = 0; i < description.Length; i++)
+                    {
+                        if ((i % 32) == 1)
+                        {
+                            newDescription += "\n";
+                        }
+                        newDescription += description[i];
+                    }
+                    Console.WriteLine("  " + newDescription);
+                }
+                else
+                {
+                    Console.WriteLine("  " + description);
+                }
                 Console.SetCursorPosition((Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + 2, Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2) + 13);
                 Console.BackgroundColor = color;
                 Console.Write(new string('_', (Console.WindowWidth / 2) - 3));
