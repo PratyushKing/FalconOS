@@ -237,16 +237,16 @@ namespace FalconOS
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
                 if (description.Length > 32)
                 {
-                    var newDescription = "";
+                    Console.Write("  ");
                     for (var i = 0; i < description.Length; i++)
                     {
-                        if ((i % 32) == 1)
+                        if ((i / 32) == 1)
                         {
-                            newDescription += "\n";
+                            Console.Write("\n");
+                            Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
                         }
-                        newDescription += description[i];
+                        Console.Write(description[i]);
                     }
-                    Console.WriteLine("  " + newDescription);
                 }
                 else
                 {
