@@ -21,6 +21,7 @@ namespace FalconOS
         {
             if (this.currentUser == "root")
             {
+                //rooter
                 runAsRoot(txt);
             } else
             {
