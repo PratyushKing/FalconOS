@@ -36,12 +36,11 @@ namespace FalconOS
                 var key = new ConsoleKeyInfo();
                 while (!(key.Key == ConsoleKey.Enter))
                 {
-                    if (key.Key == ConsoleKey.Backspace && pass.Length > 0 && Console.CursorLeft > 10)
+                    if (key.Key == ConsoleKey.Backspace)
                     {
-                        pass = pass.Remove(pass.Length - 1, 1);
-                        Console.CursorLeft--;
-                        Console.Write(' ');
-                        Console.CursorLeft--;
+                        pass = "";
+                        Console.SetCursorPosition(0, Console.CursorTop);
+                        Console.Write("Password: ");
                         continue;
                     }
                     key = Console.ReadKey(true);
