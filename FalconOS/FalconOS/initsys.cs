@@ -80,12 +80,13 @@ namespace FalconOS
                             failed.Run();
                         }
                         File.WriteAllText("0:\\Config\\pwd.s", texta);
-                        fcg askRoot = new fcg(":System Setup [Root User?]\ntext: Would you like to be root user?\ncolor: blue\n!yesno");
+                        fcg askRoot = new fcg(":System Setup [Root?]\ntext: Would you like to be root user?\ncolor: blue\n!yesno");
                         askRoot.Run();
                         if (askRoot.output)
                         {
                             File.WriteAllText("0:\\Config\\root.ers", text);
                         }
+
                         File.Delete("0:\\output.txt");
                     } else
                     {
