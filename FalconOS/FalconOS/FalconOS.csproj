@@ -22,6 +22,8 @@
         <DebugEnabled>False</DebugEnabled>
         <OptimizationLevel>2</OptimizationLevel>
         <CompressionType>Gzip</CompressionType>
+        <AllowComments>True</AllowComments>
+        <Timeout>0</Timeout>
     </PropertyGroup>
 
     <ItemGroup>

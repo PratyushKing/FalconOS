@@ -325,6 +325,7 @@ namespace FalconOS
                     Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
                     Console.Write(new string(' ', Console.WindowWidth / 2));
                 }
+
                 Console.CursorTop = Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2);
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2) + 1;
                 Console.ForegroundColor = fore;
