@@ -183,6 +183,110 @@ namespace FalconOS
                             return "ERROR!";
                     }
                 }
+                else if (line.StartsWith("mul "))
+                {
+                    var to = "1";
+                    switch (line.Split(' ')[1])
+                    {
+                        case "arg1":
+                            to = "1";
+                            break;
+                        case "arg2":
+                            to = "2";
+                            break;
+                        case "arg3":
+                            to = "3";
+                            break;
+                        case "arg4":
+                            to = "4";
+                            break;
+                        case "arg5":
+                            to = "5";
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("ERROR! ");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine("Invalid multiplication arg mentioned.");
+                            return "ERROR!";
+                    }
+                    switch (line.Split(' ')[2])
+                    {
+                        case "arg1":
+                            exec += "05 " + to + " 1\n";
+                            break;
+                        case "arg2":
+                            exec += "05 " + to + " 2\n";
+                            break;
+                        case "arg3":
+                            exec += "05 " + to + " 3\n";
+                            break;
+                        case "arg4":
+                            exec += "05 " + to + " 4\n";
+                            break;
+                        case "arg5":
+                            exec += "05 " + to + " 5\n";
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("ERROR! ");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine("Invalid multiplication to mentioned.");
+                            return "ERROR!";
+                    }
+                }
+                else if (line.StartsWith("div "))
+                {
+                    var to = "1";
+                    switch (line.Split(' ')[1])
+                    {
+                        case "arg1":
+                            to = "1";
+                            break;
+                        case "arg2":
+                            to = "2";
+                            break;
+                        case "arg3":
+                            to = "3";
+                            break;
+                        case "arg4":
+                            to = "4";
+                            break;
+                        case "arg5":
+                            to = "5";
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("ERROR! ");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine("Invalid divide arg mentioned.");
+                            return "ERROR!";
+                    }
+                    switch (line.Split(' ')[2])
+                    {
+                        case "arg1":
+                            exec += "06 " + to + " 1\n";
+                            break;
+                        case "arg2":
+                            exec += "06 " + to + " 2\n";
+                            break;
+                        case "arg3":
+                            exec += "06 " + to + " 3\n";
+                            break;
+                        case "arg4":
+                            exec += "06 " + to + " 4\n";
+                            break;
+                        case "arg5":
+                            exec += "06 " + to + " 5\n";
+                            break;
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("ERROR! ");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine("Invalid divide to mentioned.");
+                            return "ERROR!";
+                    }
+                }
             }
             return exec;
         }
