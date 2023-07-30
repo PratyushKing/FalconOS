@@ -2,12 +2,13 @@
 using Cosmos.System.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using Cosmos;
 using System.IO;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading;
 using Sys = Cosmos.System;
+using System.Drawing;
 
 namespace FalconOS
 {
@@ -210,7 +211,7 @@ namespace FalconOS
 
                 canvas.Clear(Color.Blue);
 
-                canvas.DrawFilledEllipse(new Pen(Color.White), new Sys.Graphics.Point((int)Sys.MouseManager.X, (int)Sys.MouseManager.Y), 3, 3);
+                canvas.DrawFilledEllipse(Color.White, (int)Sys.MouseManager.X, (int)Sys.MouseManager.Y, 3, 3);
                 canvas.Display();
             }
         }
