@@ -92,7 +92,27 @@ namespace FalconOS
                             Console.SetCursorPosition(0, Console.CursorTop);
                             Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
                         } else if (input.StartsWith("falc"))
-                    }
+                        {
+                            input = "falc";
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
+                        } else if (input.StartsWith("ex"))
+                        {
+                            input = "exit";
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
+                        } else if (input.StartsWith("sysc"))
+                        {
+                            input = "sysctl ";
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
+                        } else if (input.StartsWith("sysctl sh"))
+                        {
+                            input = "sysctl shutdown";
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
+                        }
+;                   }
                     else if (key.Modifiers == ConsoleModifiers.Control)
                     {
                         if (key.Key == ConsoleKey.C)
