@@ -48,6 +48,10 @@ namespace FalconOS
                 {
                     dialog = true;
                 }
+                else if (line.StartsWith("!yesno"))
+                {
+                    yesno = true;
+                }
                 else if (line.StartsWith("color:"))
                 {
                     var pickedcolor = line.Replace("color: ", "");
