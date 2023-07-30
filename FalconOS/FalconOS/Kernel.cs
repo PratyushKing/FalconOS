@@ -136,6 +136,16 @@ namespace FalconOS
                             input = "sleep";
                             Console.SetCursorPosition(0, Console.CursorTop);
                             Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
+                        } else if (input.StartsWith("ec"))
+                        {
+                            input = "echo \"";
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
+                        } else if (input.StartsWith("cle"))
+                        {
+                            input = "clear";
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
                         }
 ;                   }
                     else if (key.Modifiers == ConsoleModifiers.Control)
