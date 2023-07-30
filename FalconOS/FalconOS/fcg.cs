@@ -11,6 +11,9 @@ namespace FalconOS
     {
         private string config = "";
         public bool passwd = false;
+        private ConsoleColor fore = ConsoleColor.Black;
+        private ConsoleColor back = ConsoleColor.White;
+
         public fcg(string file)
         {
             this.config = file;
@@ -77,10 +80,10 @@ namespace FalconOS
             {
             redraw:
                 Console.BackgroundColor = color;
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = fore;
                 Console.Clear();
                 Console.SetCursorPosition(Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2), Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2));
-                Console.BackgroundColor = ConsoleColor.White;
+                Console.BackgroundColor = back;
                 for (var i = 0; i < 14; i++)
                 {
                     Console.CursorTop++;
@@ -89,7 +92,7 @@ namespace FalconOS
                 }
                 Console.CursorTop = Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2);
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2) + 1;
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = fore;
                 Console.WriteLine(" " + title + " \n");
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
                 Console.WriteLine("  " + description);
@@ -97,8 +100,8 @@ namespace FalconOS
                 {
                     Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <Cancel>  <OK>    ").Length;
                     Console.CursorTop += 10;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = fore;
+                    Console.BackgroundColor = back;
                     Console.Write(" <Cancel> ");
                     Console.BackgroundColor = ConsoleColor.Cyan;
                     Console.WriteLine(" <OK> ");
@@ -107,10 +110,10 @@ namespace FalconOS
                 {
                     Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <Cancel>  <OK>    ").Length;
                     Console.CursorTop += 10;
-                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = fore;
                     Console.BackgroundColor = ConsoleColor.Cyan;
                     Console.Write(" <Cancel> ");
-                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = back;
                     Console.WriteLine(" <OK> ");
                 }
             redrawbtns:
@@ -118,8 +121,8 @@ namespace FalconOS
                 {
                     Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <Cancel>  <OK>    ").Length;
                     Console.CursorTop -= 1;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = fore;
+                    Console.BackgroundColor = back;
                     Console.Write(" <Cancel> ");
                     Console.BackgroundColor = ConsoleColor.Cyan;
                     Console.WriteLine(" <OK> ");
@@ -128,10 +131,10 @@ namespace FalconOS
                 {
                     Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <Cancel>  <OK>    ").Length;
                     Console.CursorTop -= 1;
-                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = fore;
                     Console.BackgroundColor = ConsoleColor.Cyan;
                     Console.Write(" <Cancel> ");
-                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = back;
                     Console.WriteLine(" <OK> ");
                 }
             keyReading:
@@ -183,10 +186,10 @@ namespace FalconOS
             } else if (text)
             {
                 Console.BackgroundColor = color;
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = fore;
                 Console.Clear();
                 Console.SetCursorPosition(Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2), Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2));
-                Console.BackgroundColor = ConsoleColor.White;
+                Console.BackgroundColor = back;
                 for (var i = 0; i < 14; i++)
                 {
                     Console.CursorTop++;
@@ -195,7 +198,7 @@ namespace FalconOS
                 }
                 Console.CursorTop = Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2);
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2) + 1;
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = fore;
                 Console.WriteLine(" " + title + " \n");
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
                 Console.WriteLine("  " + description);

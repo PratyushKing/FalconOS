@@ -19,6 +19,8 @@ namespace FalconOS
         public static string vername = "STABLE";
         public static string ver = "v1.0.1";
 
+        public static bool darkMode = false;
+
         public static string lastCMD = "";
         public static string[] protectedPaths = { "0:\\Config" };
 
