@@ -93,7 +93,7 @@ namespace FalconOS
                             Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
                         } else if (input.StartsWith("falc"))
                         {
-                            input = "falc";
+                            input = "falcp";
                             Console.SetCursorPosition(0, Console.CursorTop);
                             Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
                         } else if (input.StartsWith("ex"))
@@ -129,6 +129,11 @@ namespace FalconOS
                         } else if (input.StartsWith("lo"))
                         {
                             input = "logout";
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
+                        } else if (input.StartsWith("sle"))
+                        {
+                            input = "sleep";
                             Console.SetCursorPosition(0, Console.CursorTop);
                             Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
                         }
