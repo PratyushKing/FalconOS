@@ -40,14 +40,15 @@ namespace FalconOS
                 {
                     if (key.Key == ConsoleKey.Backspace)
                     {
-                        pass = "";
+                        if (pass.Length > 0)
+                        {
+                            pass = pass.Remove(pass.Length - 1, 1);
+                        }
                         Console.SetCursorPosition(0, Console.CursorTop);
                         Console.Write("Password: ");
-                        continue;
                     }
                     key = Console.ReadKey(true);
                     pass += key.KeyChar;
-                    Console.Write("*");
                 }
                 if (pass.Length > 0)
                 {

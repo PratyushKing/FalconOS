@@ -412,9 +412,15 @@ namespace FalconOS
                     if (select == "ok")
                     {
                         this.output = true;
+                        Console.ResetColor();
+                        Console.Clear();
+                        return;
                     } else
                     {
                         this.output = false;
+                        Console.ResetColor();
+                        Console.Clear();
+                        return;
                     }
                 }
                 else if (key.Key == ConsoleKey.LeftArrow)
