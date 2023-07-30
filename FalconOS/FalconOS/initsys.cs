@@ -72,14 +72,20 @@ namespace FalconOS
                         fcg Password = new fcg(":System Setup [Password]\ntext: Enter your password for this system!\ncolor: blue\n!text");
                         Password.passwd = true;
                         Password.Run();
-                        text = File.ReadAllText(data.currentDir + "output.txt");
-                        if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+                        var texta = File.ReadAllText(data.currentDir + "output.txt");
+                        if (string.IsNullOrEmpty(texta) || string.IsNullOrWhiteSpace(texta))
                         {
-                            text = "passwd";
+                            texta = "passwd";
                             fcg failed = new fcg(":Setup Warning\ntext: Your setup failed, didn't output password! Using default password 'passwd'\ncolor: green\n!dialog");
                             failed.Run();
                         }
                         File.WriteAllText("0:\\Config\\pwd.s", text);
+                        fcg askRoot = new fcg(":System Setup [Root User?]\ntext: Do you want to be a root-er?\ncolor: blue\n!yesno");
+                        askRoot.Run();
+                        if (askRoot.output)
+                        {
+                            File.WriteAllText("0:\\Config\\root.ers", text);
+                        }
                     } else
                     {
                         fcg failed = new fcg(":Setup Failed\ntext: Your setup failed, didn't output the username!\ncolor:red\n!dialog");
