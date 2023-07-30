@@ -126,7 +126,12 @@ namespace FalconOS
                             input = "fetch disks";
                             Console.SetCursorPosition(0, Console.CursorTop);
                             Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
-                        } else if 
+                        } else if (input.StartsWith("lo"))
+                        {
+                            input = "logout";
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
+                        }
 ;                   }
                     else if (key.Modifiers == ConsoleModifiers.Control)
                     {
