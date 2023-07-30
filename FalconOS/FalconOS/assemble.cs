@@ -226,47 +226,6 @@ namespace FalconOS
                 default: return;
             }
         }
-
-        public static interrupt doAction(interrupt input)
-        {
-            if (input == interrupt.WriteCommandLine)
-            {
-                Console.Write(arg1);
-                if (arg2 == "1") { Console.Write("\n"); }
-            }
-            else if (input == interrupt.ReadCommandLine)
-            {
-                var fetchOutput = Console.ReadLine();
-                arg1 = fetchOutput;
-            }
-            else if (input == interrupt.WriteVar)
-            {
-                Console.WriteLine(fetch(arg1));
-            }
-            else if (input == interrupt.FileWrite)
-            {
-                File.WriteAllText(data.currentDir + arg1, arg2);
-            }
-            else if (input == interrupt.FileRead)
-            {
-                arg2 = File.ReadAllText(arg1);
-            }
-            else if (input == interrupt.DirectoryCreate)
-            {
-                Directory.CreateDirectory(data.currentDir + arg1);
-            }
-            else if (input == interrupt.DirectoryDelete)
-            {
-                Directory.Delete(data.currentDir + arg1);
-            }
-            else if (input == interrupt.RunShell)
-            {
-                Shell shell = new Shell("FalconOS ASSEMBLY", data.ver);
-                shell.exec(fetch(arg1));
-            }
-            return interrupt.Unrecognized;
-        }
-
         public static void writeTo(string arg, string what)
         {
             switch (arg)
