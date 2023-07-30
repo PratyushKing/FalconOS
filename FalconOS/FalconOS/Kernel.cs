@@ -91,7 +91,7 @@ namespace FalconOS
                             input = "clear";
                             Console.SetCursorPosition(0, Console.CursorTop);
                             Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
-                        }
+                        } else if (input.StartsWith(""))
                     }
                     else if (key.Modifiers == ConsoleModifiers.Control)
                     {
