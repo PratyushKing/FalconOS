@@ -161,7 +161,15 @@ namespace FalconOS
                             input = "feofetch";
                             Console.SetCursorPosition(0, Console.CursorTop);
                             Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
-                        } else if (i)
+                        } else if (input.StartsWith("fals"))
+                        {
+                            input = "falsay ";
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
+                        } else
+                        {
+                            Console.Beep();
+                        }
 ;                   }
                     else if (key.Modifiers == ConsoleModifiers.Control)
                     {

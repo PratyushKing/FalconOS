@@ -12,6 +12,7 @@ namespace FalconOS
     {
         private string config = "";
         public bool passwd = false;
+        public bool output = false;
         private ConsoleColor fore = ConsoleColor.Black;
         private ConsoleColor back = ConsoleColor.White;
 
@@ -30,6 +31,7 @@ namespace FalconOS
             string nextPage = null;
             bool dialog = false;
             bool text = false;
+            bool yesno = false;
 
             var file = config.Split('\n');
             foreach (var line in file)
@@ -303,6 +305,141 @@ namespace FalconOS
                     File.WriteAllText(data.currentDir + "output.txt", input);
                     this.config = File.ReadAllText(nextPage);
                     Run();
+                }
+                Console.Clear();
+            } else if (yesno)
+            {
+            redraw:
+                Console.BackgroundColor = color;
+                Console.ForegroundColor = fore;
+                Console.Clear();
+                Console.SetCursorPosition(Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2), Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2));
+                Console.BackgroundColor = back;
+                for (var i = 0; i < 14; i++)
+                {
+                    Console.CursorTop++;
+                    Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
+                    Console.Write(new string(' ', Console.WindowWidth / 2));
+                }
+                Console.CursorTop = Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2);
+                Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2) + 1;
+                Console.ForegroundColor = fore;
+                if (title.Length > 36)
+                {
+                    var newTitle = "";
+                    for (var i = 0; i < title.Length; i++)
+                    {
+                        if (i == 36)
+                        {
+                            newTitle += "\n";
+                        }
+                        newTitle += title[i];
+                    }
+                    Console.WriteLine(" " + newTitle + " \n");
+                }
+                else
+                {
+                    Console.WriteLine(" " + title + " \n");
+                }
+                Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
+                if (description.Length > 32)
+                {
+                    var newDescription = "";
+                    for (var i = 0; i < description.Length; i++)
+                    {
+                        if ((i % 32) == 1)
+                        {
+                            newDescription += "\n";
+                        }
+                        newDescription += description[i];
+                    }
+                    Console.WriteLine("  " + newDescription);
+                }
+                else
+                {
+                    Console.WriteLine("  " + description);
+                }
+
+                if (select == "ok")
+                {
+                    Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <No>  <Yes>    ").Length;
+                    Console.CursorTop += 10;
+                    Console.ForegroundColor = fore;
+                    Console.BackgroundColor = back;
+                    Console.Write(" <No> ");
+                    Console.BackgroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine(" <Yes> ");
+                }
+                else if (select == "cancel")
+                {
+                    Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <No>  <Yes>    ").Length;
+                    Console.CursorTop += 10;
+                    Console.ForegroundColor = fore;
+                    Console.BackgroundColor = ConsoleColor.Cyan;
+                    Console.Write(" <No> ");
+                    Console.BackgroundColor = back;
+                    Console.WriteLine(" <Yes> ");
+                }
+            redrawbtns:
+                if (select == "ok")
+                {
+                    Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <No>  <Yes>    ").Length;
+                    Console.CursorTop -= 1;
+                    Console.ForegroundColor = fore;
+                    Console.BackgroundColor = back;
+                    Console.Write(" <No> ");
+                    Console.BackgroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine(" <Yes> ");
+                }
+                else if (select == "cancel")
+                {
+                    Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <No>  <Yes>    ").Length;
+                    Console.CursorTop -= 1;
+                    Console.ForegroundColor = fore;
+                    Console.BackgroundColor = ConsoleColor.Cyan;
+                    Console.Write(" <No> ");
+                    Console.BackgroundColor = back;
+                    Console.WriteLine(" <Yes> ");
+                }
+            keyReading:
+                var key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.Enter)
+                {
+                    if (select == "ok")
+                    {
+                        this.output = true;
+                    } else
+                    {
+                        this.output = false;
+                    }
+                }
+                else if (key.Key == ConsoleKey.LeftArrow)
+                {
+                    if (select == "ok")
+                    {
+                        select = "cancel";
+                        goto redrawbtns;
+                    }
+                    else
+                    {
+                        goto redraw;
+                    }
+                }
+                else if (key.Key == ConsoleKey.RightArrow)
+                {
+                    if (select == "cancel")
+                    {
+                        select = "ok";
+                        goto redrawbtns;
+                    }
+                    else
+                    {
+                        goto redraw;
+                    }
+                }
+                else
+                {
+                    goto keyReading;
                 }
                 Console.Clear();
             }
