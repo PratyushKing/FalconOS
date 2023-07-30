@@ -111,6 +111,11 @@ namespace FalconOS
                             input = "sysctl shutdown";
                             Console.SetCursorPosition(0, Console.CursorTop);
                             Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
+                        } else if (input.StartsWith("sysctl re"))
+                        {
+                            input = "syctl reboot";
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
                         }
 ;                   }
                     else if (key.Modifiers == ConsoleModifiers.Control)
