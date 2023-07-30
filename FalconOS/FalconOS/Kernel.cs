@@ -14,6 +14,7 @@ namespace FalconOS
     public class Kernel : Sys.Kernel
     {
         public static Shell shell = new Shell(data.osname, data.ver);
+
         public static string cUser;
         public static bool asRoot = false;
         public static string lastcmd = " ";
