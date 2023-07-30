@@ -44,8 +44,6 @@ namespace FalconOS
                         {
                             pass = pass.Remove(pass.Length - 1, 1);
                         }
-                        Console.SetCursorPosition(0, Console.CursorTop);
-                        Console.Write("Password: ");
                     }
                     key = Console.ReadKey(true);
                     pass += key.KeyChar;
