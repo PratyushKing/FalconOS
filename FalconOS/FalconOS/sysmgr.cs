@@ -34,6 +34,8 @@ namespace FalconOS
                 log.sPrint("Password: ", "");
                 var pass = "";
                 var key = new ConsoleKeyInfo();
+                
+                
                 while (!(key.Key == ConsoleKey.Enter))
                 {
                     if (key.Key == ConsoleKey.Backspace)
