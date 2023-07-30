@@ -245,7 +245,7 @@ namespace FalconOS
                         if ((i % 32) == 1 && first && second)
                         {
                             Console.Write("\n");
-                            Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + 2;
+                            Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + 1 + 1;
                         }
                         Console.Write(description[i]);
                         if (first)
