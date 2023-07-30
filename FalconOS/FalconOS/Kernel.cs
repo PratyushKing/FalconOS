@@ -116,7 +116,17 @@ namespace FalconOS
                             input = "syctl reboot";
                             Console.SetCursorPosition(0, Console.CursorTop);
                             Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
-                        }
+                        } else if (input.StartsWith("fet"))
+                        {
+                            input = "fetch ";
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
+                        } else if (input.StartsWith("fetch di"))
+                        {
+                            input = "fetch disks";
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(cUser + "@falcon:" + data.currentDir + " # " + input);
+                        } else if 
 ;                   }
                     else if (key.Modifiers == ConsoleModifiers.Control)
                     {
