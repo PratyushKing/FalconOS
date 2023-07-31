@@ -195,7 +195,7 @@ namespace FalconOS
                     }
                     else if (cmd.StartsWith("uname -s"))
                     {
-                        log.programPrint("uname", "Falcon Stable");
+                        log.programPrint("uname", data.osname + " " + data.vername);
                     }
                     else if (cmd.StartsWith("uname -n"))
                     {
@@ -203,7 +203,7 @@ namespace FalconOS
                     }
                     else if (cmd.StartsWith("uname -r"))
                     {
-                        log.programPrint("uname", "1.0.1-normal");
+                        log.programPrint("uname", data.ver + "-" + data.vername.ToLower());
                     }
                     else if (cmd.StartsWith("uname -v"))
                     {
@@ -215,7 +215,7 @@ namespace FalconOS
                     }
                     else if (cmd.StartsWith("uname -o"))
                     {
-                        log.programPrint("uname", "Falcon");
+                        log.programPrint("uname", "FalconOS");
                     }
                     else
                     {
