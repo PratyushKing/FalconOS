@@ -515,6 +515,22 @@ namespace FalconOS
                     {
                         log.sPrint("Error: File doesn't exist or syntax error.");
                     }
+                } else
+                {
+                    executor runner = new();
+                    if (cmd.Split(' ').Length > 1)
+                    {
+                        if (cmd.Split(' ').Length == 2)
+                        {
+                            runner.arg1 = cmd.Split(' ')[1];
+                        }
+                        if (cmd.Split(' ').Length == 3)
+                        {
+                            runner.arg1 = cmd.Split(' ')[1];
+                            runner.arg2 = cmd.Split(' ')[2];
+                        }
+                    }
+                    runner.executeFE(cmd.Split(' ')[0].Replace("./", data.currentDir) + ".fe");
                 }
             }
             else if (cmd.StartsWith("asm "))

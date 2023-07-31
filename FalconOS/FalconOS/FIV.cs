@@ -330,15 +330,6 @@ namespace FalconOS
                 return;
             }
             text = fav(File.ReadAllText(file), file, "Opened " + file);
-            Console.BackgroundColor = ConsoleColor.DarkGray;
-            Console.Clear();
-            if (text != null)
-            {
-                File.WriteAllText(file, text);
-                log.sPrint("Content has been saved to " + file);
-            }
-            log.sPrint("Press any key to exit..");
-            Console.ReadKey(true);
             Console.ResetColor();
             Console.Clear();
             
