@@ -14,9 +14,9 @@
     <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)cosmos.build\0.1.0-localbuild20230730092017\build\Cosmos.Build.props" Condition="Exists('$(NuGetPackageRoot)cosmos.build\0.1.0-localbuild20230730092017\build\Cosmos.Build.props')" />
+    <Import Project="$(NuGetPackageRoot)cosmos.build\0.1.0-localbuild20230731081902\build\Cosmos.Build.props" Condition="Exists('$(NuGetPackageRoot)cosmos.build\0.1.0-localbuild20230731081902\build\Cosmos.Build.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgCosmos_Build Condition=" '$(PkgCosmos_Build)' == '' ">C:\Users\praty\.nuget\packages\cosmos.build\0.1.0-localbuild20230730092017</PkgCosmos_Build>
+    <PkgCosmos_Build Condition=" '$(PkgCosmos_Build)' == '' ">C:\Users\praty\.nuget\packages\cosmos.build\0.1.0-localbuild20230731081902</PkgCosmos_Build>
   </PropertyGroup>
 </Project>
