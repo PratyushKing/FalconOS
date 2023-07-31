@@ -194,7 +194,7 @@ namespace FalconOS
                 }
                 if (input.Contains("&&"))
                 {
-                    var inp = input.Split("&&");
+                    var inp = input.Split("&&", StringSplitOptions.TrimEntries);
                     foreach (var cmd in inp)
                     {
                         shell.exec(cmd, asRoot);
