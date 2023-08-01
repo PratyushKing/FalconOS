@@ -1,4 +1,5 @@
-﻿using Cosmos.System.FileSystem;
+﻿using Cosmos.HAL;
+using Cosmos.System.FileSystem;
 using IL2CPU.API.Attribs;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace FalconOS
         public static string vername = "Stick";
         public static string ver = "v1.0.1";
 
-        public static bool darkMode = false;
+        public static NetworkDevice net = NetworkDevice.GetDeviceByName("eth0");
 
         public static string lastCMD = "";
         public static string[] protectedPaths = { "0:\\Config" };

@@ -683,7 +683,7 @@ namespace FalconOS
                 cmd = cmd.Replace("changedrive ", "");
                 foreach (var disk in VFSManager.GetLogicalDrives())
                 {
-                    if (cmd == disk)
+                    if (disk.Contains(cmd))
                     {
                         data.currentDir = cmd + "\\";
                     }
