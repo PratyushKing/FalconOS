@@ -19,7 +19,7 @@ namespace FalconOS
         public static string cUser;
         public static bool asRoot = false;
         public static string lastcmd = " ";
-        public static bool gui = false;
+        public static bool gui = true;
         public static Canvas canvas;
 
         protected override void BeforeRun()
@@ -209,9 +209,10 @@ namespace FalconOS
             {
                 canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(640,480, ColorDepth.ColorDepth32));
 
-                canvas.Clear(Color.Blue);
-
-                canvas.DrawFilledEllipse(Color.White, (int)Sys.MouseManager.X, (int)Sys.MouseManager.Y, 3, 3);
+                canvas.Clear(Color.BlueViolet);
+                Sys.MouseManager.ScreenWidth = 640;
+                Sys.MouseManager.ScreenHeight = 480;
+                canvas.DrawImageAlpha(new Bitmap(data.cursor), (int)Sys.MouseManager.X, (int)Sys.MouseManager.Y);
                 canvas.Display();
             }
         }

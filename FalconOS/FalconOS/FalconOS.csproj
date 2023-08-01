@@ -24,7 +24,16 @@
         <CompressionType>Gzip</CompressionType>
         <AllowComments>True</AllowComments>
         <Timeout>0</Timeout>
+        <RemoveBootDebugOutput>True</RemoveBootDebugOutput>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\cursor.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Resources\cursor.bmp" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
@@ -42,13 +51,9 @@
 
     <ItemGroup>
       <EmbeddedResource Update="Properties\Resources.resx">
-        <Generator>PublicResXFileCodeGenerator</Generator>
+        <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       </EmbeddedResource>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Resources\" />
     </ItemGroup>
 
 </Project>
