@@ -63,7 +63,6 @@ namespace FalconOS
         {
             int countNewLine = 0;
             int countChars = 0;
-            delay(10000000);
             Console.Clear();
 
             for (int i = 0; i < pos; i++)
@@ -316,10 +315,6 @@ namespace FalconOS
             return false;
         }
 
-        public static void delay(int time)
-        {
-            for (int i = 0; i < time; i++) ;
-        }
         public static void StartFAV(string file)
         {
             String text = String.Empty;

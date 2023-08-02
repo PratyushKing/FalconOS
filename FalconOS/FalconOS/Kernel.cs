@@ -209,7 +209,7 @@ namespace FalconOS
             {
                 canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(640,480, ColorDepth.ColorDepth32));
 
-                canvas.Clear(Color.BlueViolet);
+                canvas.Clear(Color.CadetBlue);
                 Sys.MouseManager.ScreenWidth = 640;
                 Sys.MouseManager.ScreenHeight = 480;
                 canvas.DrawImageAlpha(new Bitmap(data.cursor), (int)Sys.MouseManager.X, (int)Sys.MouseManager.Y);
