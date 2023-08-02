@@ -235,7 +235,8 @@ namespace FalconOS
                     if (dirs.Contains(" "))
                     {
                         log.sPrint("\"" + dirs + "\" ", "");
-                    } else
+                    }
+                    else
                     {
                         log.sPrint(dirs + " ", "");
                     }
