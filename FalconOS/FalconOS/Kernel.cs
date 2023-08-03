@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using Sys = Cosmos.System;
 using System.Drawing;
+using Cosmos.HAL;
 
 namespace FalconOS
 {
@@ -20,7 +21,7 @@ namespace FalconOS
         public static bool asRoot = false;
         public static string lastcmd = " ";
         public static bool gui = true;
-        public static Canvas canvas;
+        public static yindowmgr yinmgr;
 
         protected override void BeforeRun()
         {
@@ -32,6 +33,7 @@ namespace FalconOS
             Console.ForegroundColor = ConsoleColor.White;
             log.sPrint("!");
             initsys init = new initsys();
+            yinmgr = new();
         }
 
         protected override void Run()
@@ -207,13 +209,26 @@ namespace FalconOS
                 lastcmd = input;
             } else
             {
-                canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(640,480, ColorDepth.ColorDepth32));
+                Cosmos.Core.Memory.Heap.Collect();
+                data.canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(640,480, ColorDepth.ColorDepth32));
 
-                canvas.Clear(Color.CadetBlue);
+                data.canvas.Clear(data.accentColor);
                 Sys.MouseManager.ScreenWidth = 640;
                 Sys.MouseManager.ScreenHeight = 480;
-                canvas.DrawImageAlpha(new Bitmap(data.cursor), (int)Sys.MouseManager.X, (int)Sys.MouseManager.Y);
-                canvas.Display();
+
+                yinmgr.Init();
+                yinmgr.drawWindow("Test", true, true, 20, 30, 200, 300);
+                yinmgr.drawWindow("Test 2", true, true, 230, 30, 200, 300);
+
+                if (Sys.MouseManager.MouseState == Sys.MouseState.Left)
+                {
+                    data.pressed = true;
+                } else { data.pressed = false; }
+
+                yinmgr.updateWindow();
+
+                data.canvas.DrawImageAlpha(new Bitmap(data.cursor), (int)Sys.MouseManager.X, (int)Sys.MouseManager.Y);
+                data.canvas.Display();
             }
         }
     }

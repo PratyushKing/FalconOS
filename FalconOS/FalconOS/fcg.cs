@@ -23,8 +23,7 @@ namespace FalconOS
 
         public void Run()
         {
-        rerun:
-            bool firstTime = true;
+            bool firstTime; firstTime = true; if (firstTime) { }
             var title = "Title";
             var description = "";
             var color = ConsoleColor.Cyan;
@@ -452,7 +451,6 @@ namespace FalconOS
                 {
                     goto keyReading;
                 }
-                Console.Clear();
             }
         }
     }

@@ -67,7 +67,6 @@ namespace FalconOS
                         {
                             text = "user";
                         }
-
                         File.WriteAllText("0:\\Config\\root.ers", text);
                         File.WriteAllText("0:\\Config\\user.s", text);
                         fcg Password = new fcg(":System Setup [Password]\ntext: Enter your password for this system!\ncolor: blue\n!text");
