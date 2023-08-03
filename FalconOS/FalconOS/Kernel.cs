@@ -34,6 +34,9 @@ namespace FalconOS
             log.sPrint("!");
             initsys init = new initsys();
             yinmgr = new();
+            yinmgr.Init();
+            yinmgr.drawWindow("Test", true, true, 20, 30, 200, 300);
+            yinmgr.drawWindow("Test 2", true, true, 230, 30, 200, 300);
         }
 
         protected override void Run()
@@ -215,10 +218,6 @@ namespace FalconOS
                 data.canvas.Clear(data.accentColor);
                 Sys.MouseManager.ScreenWidth = 640;
                 Sys.MouseManager.ScreenHeight = 480;
-
-                yinmgr.Init();
-                yinmgr.drawWindow("Test", true, true, 20, 30, 200, 300);
-                yinmgr.drawWindow("Test 2", true, true, 230, 30, 200, 300);
 
                 if (Sys.MouseManager.MouseState == Sys.MouseState.Left)
                 {

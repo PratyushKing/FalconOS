@@ -1,14 +1,7 @@
 ﻿using Cosmos.System.Graphics.Fonts;
-using Cosmos.System.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using Sys = Cosmos.System;
 using System.Drawing;
+using Sys = Cosmos.System;
 
 namespace FalconOS
 {
@@ -54,7 +47,8 @@ namespace FalconOS
 
         public void drawWindow(string title, bool hasTopBar, bool hasControls, int x, int y, int width, int height)
         {
-            foreach (var app in apps) {
+            foreach (var app in apps)
+            {
                 if (app.getT() == title)
                 {
                     return;
@@ -67,23 +61,22 @@ namespace FalconOS
         public void updateWindow()
         {
             var tempColor = data.deepAccentColor;
-            var index = 0;
-            foreach (var win in apps)
+            for (var i = 0; i < apps.Count; i++)
             {
-                if (data.pressed && Sys.MouseManager.X >= win.x && Sys.MouseManager.X <= win.x + win.w && Sys.MouseManager.Y >= win.y && Sys.MouseManager.Y <= win.y + 15)
+                if (data.pressed && Sys.MouseManager.X >= apps[i].x && Sys.MouseManager.X <= apps[i].x + apps[i].w && Sys.MouseManager.Y >= apps[i].y && Sys.MouseManager.Y <= apps[i].y + 15)
                 {
                     tempColor = Color.DarkGoldenrod;
-                    win.changeXY((int)Sys.MouseManager.X, (int)Sys.MouseManager.Y);
+                    apps[i].changeXY((int)Sys.MouseManager.X, (int)Sys.MouseManager.Y);
                     moving = true;
                 }
-                data.canvas.DrawFilledRectangle(Color.White, win.x, win.y, win.w, win.h);
-                if (win.hTP)
+                data.canvas.DrawFilledRectangle(Color.White, apps[i].x, apps[i].y, apps[i].w, apps[i].h);
+                if (apps[i].hTP)
                 {
-                    data.canvas.DrawFilledRectangle(tempColor, win.x, win.y, win.w, 15);
-                    data.canvas.DrawString(win.t, PCScreenFont.Default, Color.White, win.x + 2, win.y + 1);
+                    data.canvas.DrawFilledRectangle(tempColor, apps[i].x, apps[i].y, apps[i].w, 15);
+                    data.canvas.DrawString(apps[i].t, PCScreenFont.Default, Color.White, apps[i].x + 2, apps[i].y + 1);
                 }
                 tempColor = data.deepAccentColor;
-                index++;
+                i++;
             }
             //focussedApp = apps[0];
         }
