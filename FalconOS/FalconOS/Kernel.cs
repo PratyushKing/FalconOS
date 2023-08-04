@@ -20,7 +20,7 @@ namespace FalconOS
         public static string cUser;
         public static bool asRoot = false;
         public static string lastcmd = " ";
-        public static bool gui = true;
+        public static bool gui = false;
         public static yindowmgr yinmgr;
 
         protected override void BeforeRun()

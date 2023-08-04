@@ -115,7 +115,7 @@ namespace FalconOS
             {
                 try
                 {
-                        File.Create(cmd.Replace("touch ", data.currentDir));
+                    File.Create(cmd.Replace("touch ", data.currentDir));
                 }
                 catch (Exception)
                 {
@@ -126,7 +126,7 @@ namespace FalconOS
             {
                 try
                 {
-                        File.Delete(cmd.Replace("rm ", data.currentDir));
+                    File.Delete(cmd.Replace("rm ", data.currentDir));
                 }
                 catch (Exception)
                 {
@@ -139,7 +139,7 @@ namespace FalconOS
                 {
                     if (!Directory.Exists(cmd.Replace("mkdir ", data.currentDir)))
                     {
-                            Directory.CreateDirectory(cmd.Replace("mkdir ", data.currentDir));
+                        Directory.CreateDirectory(cmd.Replace("mkdir ", data.currentDir));
                     }
                     else
                     {
@@ -155,7 +155,7 @@ namespace FalconOS
             {
                 try
                 {
-                        Directory.Delete(cmd.Replace("rmdir ", data.currentDir), true);
+                    Directory.Delete(cmd.Replace("rmdir ", data.currentDir), true);
                 }
                 catch (Exception)
                 {
@@ -700,6 +700,12 @@ namespace FalconOS
             } else if (cmd.StartsWith("export: currentdir "))
             {
                 data.currentDir = cmd.Replace("export: currentdir ", "");
+            } else if (cmd.StartsWith("man"))
+            {
+                if (cmd == "man" || cmd == "man --help" || cmd == "man -h" || cmd == "man help")
+                {
+                    Console.WriteLine("man v1.0.1\nFor FalconOS, powered by fcg\nusage: man <command>");
+                }
             }
             else
             {
