@@ -1,11 +1,12 @@
 ﻿using Cosmos.System.Graphics.Fonts;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using Sys = Cosmos.System;
 
 namespace FalconOS
 {
-    public struct App
+    public class App
     {
         public int x = 0;
         public int y = 0;
@@ -32,6 +33,34 @@ namespace FalconOS
 
         public void changeXY(int cx, int cy) { this.x = cx; this.y = cy; this.modified = true; }
         public string getT() { return this.t; }
+
+        public void updateWin(bool focussed)
+        {
+            var tempColor = data.deepAccentColor;
+            if (!focussed)
+            {
+                tempColor = Color.DarkGray;
+            }
+            if (data.pressed && Sys.MouseManager.X >= x && Sys.MouseManager.X <= x + w && Sys.MouseManager.Y >= y && Sys.MouseManager.Y <= y + 15)
+            {
+                tempColor = Color.DarkGoldenrod;
+                changeXY((int)Sys.MouseManager.X, (int)Sys.MouseManager.Y);
+            }
+            data.canvas.DrawFilledRectangle(Color.White, x, y, w, h);
+            data.canvas.DrawRectangle(tempColor, x - 1, y - 1, w + 1, h + 1);
+            data.canvas.DrawRectangle(tempColor, x - 2, y - 2, w + 2, h + 2);
+            if (hTP)
+            {
+                data.canvas.DrawFilledRectangle(tempColor, x, y, w, 15);
+                data.canvas.DrawString(t, PCScreenFont.Default, Color.White, x + 2, y + 1);
+                if (hC)
+                {
+                    data.canvas.DrawFilledRectangle(Color.IndianRed, (x + w) - 20, y, 20, 15);
+                    data.canvas.DrawChar('X', PCScreenFont.Default, Color.White, x + w - 15, y + 1);
+                }
+            }
+            tempColor = data.deepAccentColor;
+        }
     }
 
     public class yindowmgr
@@ -60,25 +89,17 @@ namespace FalconOS
 
         public void updateWindow()
         {
-            var tempColor = data.deepAccentColor;
+            focussedApp = apps[apps.Count - 1].getT();
             for (var i = 0; i < apps.Count; i++)
             {
-                if (data.pressed && Sys.MouseManager.X >= apps[i].x && Sys.MouseManager.X <= apps[i].x + apps[i].w && Sys.MouseManager.Y >= apps[i].y && Sys.MouseManager.Y <= apps[i].y + 15)
+                if (focussedApp == apps[i].getT())
                 {
-                    tempColor = Color.DarkGoldenrod;
-                    apps[i].changeXY((int)Sys.MouseManager.X, (int)Sys.MouseManager.Y);
-                    moving = true;
-                }
-                data.canvas.DrawFilledRectangle(Color.White, apps[i].x, apps[i].y, apps[i].w, apps[i].h);
-                if (apps[i].hTP)
+                    apps[i].updateWin(true);
+                } else
                 {
-                    data.canvas.DrawFilledRectangle(tempColor, apps[i].x, apps[i].y, apps[i].w, 15);
-                    data.canvas.DrawString(apps[i].t, PCScreenFont.Default, Color.White, apps[i].x + 2, apps[i].y + 1);
+                    apps[i].updateWin(false);
                 }
-                tempColor = data.deepAccentColor;
-                i++;
             }
-            //focussedApp = apps[0];
         }
 
     }

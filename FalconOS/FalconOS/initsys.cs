@@ -26,20 +26,20 @@ namespace FalconOS
             try
             {
                 if (!Directory.Exists("0:\\Config\\")) { Directory.CreateDirectory("0:\\Config\\"); }
-                if (!File.Exists("0:\\Config\\root.ers"))
+                if (!File.Exists("0:\\Config\\root.conf"))
                 {
-                    File.Create("0:\\Config\\root.ers");
-                    File.WriteAllText("0:\\Config\\root.ers", "user");
+                    File.Create("0:\\Config\\root.conf");
+                    File.WriteAllText("0:\\Config\\root.conf", "user");
                 }
-                if (!File.Exists("0:\\Config\\pwd.s"))
+                if (!File.Exists("0:\\Config\\pwd.conf"))
                 {
-                    File.Create("0:\\Config\\pwd.s");
-                    File.WriteAllText("0:\\Config\\pwd.s", "passwd");
+                    File.Create("0:\\Config\\pwd.conf");
+                    File.WriteAllText("0:\\Config\\pwd.conf", "passwd");
                 }
-                if (!File.Exists("0:\\Config\\user.s"))
+                if (!File.Exists("0:\\Config\\user.conf"))
                 {
-                    File.Create("0:\\Config\\user.s");
-                    File.WriteAllText("0:\\Config\\user.s", "user");
+                    File.Create("0:\\Config\\user.conf");
+                    File.WriteAllText("0:\\Config\\user.conf", "user");
                 }
             }
             catch (Exception)
@@ -67,8 +67,8 @@ namespace FalconOS
                         {
                             text = "user";
                         }
-                        File.WriteAllText("0:\\Config\\root.ers", text);
-                        File.WriteAllText("0:\\Config\\user.s", text);
+                        File.WriteAllText("0:\\Config\\root.conf", text);
+                        File.WriteAllText("0:\\Config\\user.conf", text);
                         fcg Password = new fcg(":System Setup [Password]\ntext: Enter your password for this system!\ncolor: blue\n!text");
                         Password.passwd = true;
                         Password.Run();
@@ -79,12 +79,12 @@ namespace FalconOS
                             fcg failed = new fcg(":Setup Warning\ntext: Your setup failed, didn't output password! Using default password 'passwd'\ncolor: green\n!dialog");
                             failed.Run();
                         }
-                        File.WriteAllText("0:\\Config\\pwd.s", texta);
+                        File.WriteAllText("0:\\Config\\pwd.conf", texta);
                         fcg askRoot = new fcg(":System Setup [Root?]\ntext: Would you like to be root user?\ncolor: blue\n!yesno");
                         askRoot.Run();
                         if (askRoot.output)
                         {
-                            File.WriteAllText("0:\\Config\\root.ers", text);
+                            File.WriteAllText("0:\\Config\\root.conf", text);
                         }
 
                         File.Delete("0:\\output.txt");
