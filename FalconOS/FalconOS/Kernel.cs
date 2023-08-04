@@ -217,6 +217,7 @@ namespace FalconOS
                 Sys.MouseManager.ScreenHeight = 480;
 
                 yinmgr.Init();
+                yinmgr.focussedApp = yinmgr.apps[yinmgr.apps.Count - 1].getT();
                 yinmgr.drawWindow("Test", false, false, 20, 30, 200, 300);
                 yinmgr.drawWindow("Test 2", true, true, 270, 40, 200, 300);
                 //helpwin hWin = new();
