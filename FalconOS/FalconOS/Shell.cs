@@ -740,7 +740,7 @@ namespace FalconOS
                     }
                     runner.executeFE(data.currentDir + cmd.Split(' ')[0] + ".fa");
                 }
-                if (!String.IsNullOrWhiteSpace(cmd) || !String.IsNullOrEmpty(cmd)|| !File.Exists(cmd.Split(' ')[0] + ".fa"))
+                if (!String.IsNullOrWhiteSpace(cmd) || !String.IsNullOrEmpty(cmd)| !File.Exists(cmd.Split(' ')[0] + ".fa"))
                 {
                     log.sPrint("-fash: " + cmd + ": command not found");
                 }
