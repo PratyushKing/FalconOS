@@ -263,7 +263,8 @@ namespace FalconOS
                 Console.Write("Press F1 for toggling dark mode");
                 Console.BackgroundColor = back;
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
-                Console.CursorTop = Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2);
+                Console.CursorTop = Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2) + 2;
+                Console.ForegroundColor = fore;
                 if (description.Length > 32)
                 {
                     var first = false;

@@ -714,6 +714,9 @@ namespace FalconOS
                     man manPg = new man(File.ReadAllText(cmd.Replace("man ", data.currentDir)));
                     manPg.Run();
                 }
+            } else if (cmd.StartsWith("mem ref"))
+            {
+                Cosmos.Core.Memory.Heap.Collect();
             }
             else
             {
