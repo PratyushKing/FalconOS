@@ -229,7 +229,6 @@ namespace FalconOS
 
                 //hWin.update();
                 yinmgr.updateWindow();
-                
                 data.canvas.DrawImageAlpha(new Bitmap(data.cursor), (int)Sys.MouseManager.X, (int)Sys.MouseManager.Y);
                 data.canvas.Display();
             }
