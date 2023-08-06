@@ -33,7 +33,6 @@ namespace FalconOS
             Console.ForegroundColor = ConsoleColor.White;
             log.sPrint("!");
             initsys init = new initsys();
-            yinmgr = new();
         }
 
         protected override void Run()
@@ -216,6 +215,7 @@ namespace FalconOS
                 Sys.MouseManager.ScreenWidth = 640;
                 Sys.MouseManager.ScreenHeight = 480;
 
+                yinmgr = new();
                 yinmgr.Init();
                 yinmgr.focussedApp = yinmgr.apps[yinmgr.apps.Count - 1].getT();
                 yinmgr.drawWindow("Test", false, false, 20, 30, 200, 300);

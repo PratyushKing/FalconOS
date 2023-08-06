@@ -17,35 +17,33 @@ namespace FalconOS
             Console.SetCursorPosition(0, 1);
             log.print("Kernel", "Booting up.");
             log.print("Kernel", "Setting filesystem up!");
-            VFSManager.RegisterVFS(data.fs);
-            data.fs.Initialize(true);
+            try
+            {
+                VFSManager.RegisterVFS(data.fs);
+            }
+            catch (Exception)
+            {
+                log.print("Kernel", "Filesystem initialization failed!");
+                Console.ReadKey();
+                Cosmos.System.Power.Shutdown();
+            }
             if (!Directory.Exists("0:\\Config"))
             {
                 setup = true;
             }
-            try
-            {
                 if (!Directory.Exists("0:\\Config\\")) { Directory.CreateDirectory("0:\\Config\\"); }
                 if (!File.Exists("0:\\Config\\root.conf"))
                 {
-                    File.Create("0:\\Config\\root.conf");
                     File.WriteAllText("0:\\Config\\root.conf", "user");
                 }
-                if (!File.Exists("0:\\Config\\pwd.conf"))
+                if (!File.Exists("0:\\Config\\passwd.conf"))
                 {
-                    File.Create("0:\\Config\\pwd.conf");
-                    File.WriteAllText("0:\\Config\\pwd.conf", "passwd");
+                    File.WriteAllText("0:\\Config\\passwd.conf", "passwd");
                 }
                 if (!File.Exists("0:\\Config\\user.conf"))
                 {
-                    File.Create("0:\\Config\\user.conf");
                     File.WriteAllText("0:\\Config\\user.conf", "user");
                 }
-            }
-            catch (Exception)
-            {
-                log.sPrint("Cannot make configs, System may break.");
-            }
             data.ProcMgr = new processMgr();
             data.ProcMgr.addProc("initsys");
             if (!Kernel.gui)
@@ -79,7 +77,7 @@ namespace FalconOS
                             fcg failed = new fcg(":Setup Warning\ntext: Your setup failed, didn't output password! Using default password 'passwd'\ncolor: green\n!dialog");
                             failed.Run();
                         }
-                        File.WriteAllText("0:\\Config\\pwd.conf", texta);
+                        File.WriteAllText("0:\\Config\\passwd.conf", texta);
                         fcg askRoot = new fcg(":System Setup [Root?]\ntext: Would you like to be root user?\ncolor: blue\n!yesno");
                         askRoot.Run();
                         if (askRoot.output)

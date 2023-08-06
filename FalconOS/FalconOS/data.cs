@@ -28,7 +28,7 @@ namespace FalconOS
         public static string ver = "v1.0.1";
 
         public static NetworkDevice net = NetworkDevice.GetDeviceByName("eth0");
-        [ManifestResourceStream(ResourceName="FalconOS.Resources.cursor.bmp")] public static byte[] cursor;
+        [ManifestResourceStream(ResourceName="FalconOS.Resources.cursor.bmp")] public static byte[] cursor = { 0 };
 
         public static string lastCMD = "";
         public static string[] protectedPaths = { "0:\\Config" };

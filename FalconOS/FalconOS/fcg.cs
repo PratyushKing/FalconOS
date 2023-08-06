@@ -13,8 +13,10 @@ namespace FalconOS
         private string config = "";
         public bool passwd = false;
         public bool output = false;
+        private ConsoleColor bFore = ConsoleColor.White;
         private ConsoleColor fore = ConsoleColor.Black;
         private ConsoleColor back = ConsoleColor.White;
+        private bool darkMode = false;
 
         public fcg(string file)
         {
@@ -116,6 +118,13 @@ namespace FalconOS
                 {
                     Console.WriteLine(" " + title + " \n");
                 }
+                Console.CursorLeft = 0;
+                Console.CursorTop = Console.WindowHeight - 1;
+                Console.BackgroundColor = color;
+                Console.ForegroundColor = back;
+                Console.Write("Press D for toggling dark mode");
+                Console.BackgroundColor = back;
+                Console.ForegroundColor = fore;
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
                 if (description.Length > 32)
                 {
@@ -451,6 +460,23 @@ namespace FalconOS
                 {
                     goto keyReading;
                 }
+            }
+        }
+
+        public void toggleDarkMode()
+        {
+            darkMode = !darkMode;
+            if (darkMode)
+            {
+                fore = ConsoleColor.White;
+                bFore = ConsoleColor.Black;
+                back = ConsoleColor.Black;
+            }
+            else
+            {
+                fore = ConsoleColor.Black;
+                bFore = ConsoleColor.White;
+                back = ConsoleColor.White;
             }
         }
     }

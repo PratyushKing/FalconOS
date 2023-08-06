@@ -23,7 +23,7 @@ namespace FalconOS
             log.sPrint("~");
             log.sPrint("~");
             log.sPrint("~");
-            log.sPrint("~                                 FAV: "); Console.ForegroundColor = ConsoleColor.White; log.sPrint(" FAlcon Vi");
+            log.sPrint("~                      FAV: "); Console.ForegroundColor = ConsoleColor.White; log.sPrint(" FAlcon Vi");
             Console.ForegroundColor = ConsoleColor.Cyan;
             log.sPrint("~");
             log.sPrint("~                                  version 0.2");
@@ -327,7 +327,12 @@ namespace FalconOS
             text = fav(File.ReadAllText(file), file, "Opened " + file);
             Console.ResetColor();
             Console.Clear();
-            
+
+            if (text != null)
+            {
+                File.WriteAllText(file, text);
+            }
+
             log.drawTitleBar("FalconOS: Shell");
             Console.SetCursorPosition(0, 3);
         }

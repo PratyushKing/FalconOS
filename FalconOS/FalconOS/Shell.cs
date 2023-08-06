@@ -700,11 +700,19 @@ namespace FalconOS
             } else if (cmd.StartsWith("export: currentdir "))
             {
                 data.currentDir = cmd.Replace("export: currentdir ", "");
-            } else if (cmd.StartsWith("man"))
+            } else if (cmd.StartsWith("man") && !(cmd.StartsWith("man ")))
             {
                 if (cmd == "man" || cmd == "man --help" || cmd == "man -h" || cmd == "man help")
                 {
                     Console.WriteLine("man v1.0.1\nFor FalconOS, powered by fcg\nusage: man <command>");
+                }
+            }
+            else if (cmd.StartsWith("man "))
+            {
+                if (File.Exists(cmd.Replace("man ", data.currentDir)))
+                {
+                    man manPg = new man(File.ReadAllText(cmd.Replace("man ", data.currentDir)));
+                    manPg.Run();
                 }
             }
             else
