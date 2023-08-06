@@ -23,7 +23,7 @@ namespace FalconOS
             {
                 Kernel.cUser = "root";
             }
-            else if (!(File.ReadAllText("0:\\Config\\user.conf").Contains(usr)))
+            else if (!(File.ReadAllText("0:\\Config\\user.confr").Contains(usr)))
             {
                 Console.WriteLine("Invalid User!");
                 goto askuser;
