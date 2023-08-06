@@ -718,6 +718,8 @@ namespace FalconOS
             } else if (cmd.StartsWith("mem ref"))
             {
                 Cosmos.Core.Memory.Heap.Collect();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Memory Refreshed!");
             }
             else
             {
