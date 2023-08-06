@@ -723,7 +723,7 @@ namespace FalconOS
             }
             else
             {
-                if (File.Exists(data.currentDir + cmd.Replace(".fa", "")))
+                if (File.Exists(data.currentDir + cmd + ".fa"))
                 {
                     executor runner = new();
                     if (cmd.Split(' ').Length > 1)
@@ -738,9 +738,9 @@ namespace FalconOS
                             runner.arg2 = cmd.Split(' ')[2];
                         }
                     }
-                    runner.executeFE(data.currentDir + cmd.Split(' ')[0].Replace(".fe", ""));
+                    runner.executeFE(data.currentDir + cmd.Split(' ')[0] + ".fa");
                 }
-                if (!String.IsNullOrWhiteSpace(cmd) || !String.IsNullOrEmpty(cmd) || File.Exists(cmd.Split(' ')[0].Replace(".fe", "")))
+                if (!String.IsNullOrWhiteSpace(cmd) || !String.IsNullOrEmpty(cmd) || File.Exists(cmd.Split(' ')[0] + ".fa"))
                 {
                     log.sPrint("-fash: " + cmd + ": command not found");
                 }
