@@ -150,7 +150,7 @@ namespace FalconOS
                 {
                     Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <Cancel>  <OK>    ").Length;
                     Console.CursorTop += 10;
-                    Console.ForegroundColor = fore;
+                    Console.ForegroundColor = bFore;
                     Console.BackgroundColor = back;
                     Console.Write(" <Cancel> ");
                     Console.BackgroundColor = ConsoleColor.Cyan;
@@ -160,7 +160,7 @@ namespace FalconOS
                 {
                     Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <Cancel>  <OK>    ").Length;
                     Console.CursorTop += 10;
-                    Console.ForegroundColor = fore;
+                    Console.ForegroundColor = bFore;
                     Console.BackgroundColor = ConsoleColor.Cyan;
                     Console.Write(" <Cancel> ");
                     Console.BackgroundColor = back;
@@ -171,7 +171,7 @@ namespace FalconOS
                 {
                     Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <Cancel>  <OK>    ").Length;
                     Console.CursorTop -= 1;
-                    Console.ForegroundColor = fore;
+                    Console.ForegroundColor = bFore;
                     Console.BackgroundColor = back;
                     Console.Write(" <Cancel> ");
                     Console.BackgroundColor = ConsoleColor.Cyan;
@@ -181,7 +181,7 @@ namespace FalconOS
                 {
                     Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <Cancel>  <OK>    ").Length;
                     Console.CursorTop -= 1;
-                    Console.ForegroundColor = fore;
+                    Console.ForegroundColor = bFore;
                     Console.BackgroundColor = ConsoleColor.Cyan;
                     Console.Write(" <Cancel> ");
                     Console.BackgroundColor = back;
@@ -403,7 +403,7 @@ namespace FalconOS
                 {
                     Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <No>  <Yes>    ").Length;
                     Console.CursorTop += 10;
-                    Console.ForegroundColor = fore;
+                    Console.ForegroundColor = bFore;
                     Console.BackgroundColor = back;
                     Console.Write(" <No> ");
                     Console.BackgroundColor = ConsoleColor.Cyan;
@@ -413,7 +413,7 @@ namespace FalconOS
                 {
                     Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <No>  <Yes>    ").Length;
                     Console.CursorTop += 10;
-                    Console.ForegroundColor = fore;
+                    Console.ForegroundColor = bFore;
                     Console.BackgroundColor = ConsoleColor.Cyan;
                     Console.Write(" <No> ");
                     Console.BackgroundColor = back;
@@ -424,7 +424,7 @@ namespace FalconOS
                 {
                     Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <No>  <Yes>    ").Length;
                     Console.CursorTop -= 1;
-                    Console.ForegroundColor = fore;
+                    Console.ForegroundColor = bFore;
                     Console.BackgroundColor = back;
                     Console.Write(" <No> ");
                     Console.BackgroundColor = ConsoleColor.Cyan;
@@ -434,7 +434,7 @@ namespace FalconOS
                 {
                     Console.CursorLeft = (Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2)) + Console.WindowWidth / 2 - (" <No>  <Yes>    ").Length;
                     Console.CursorTop -= 1;
-                    Console.ForegroundColor = fore;
+                    Console.ForegroundColor = bFore;
                     Console.BackgroundColor = ConsoleColor.Cyan;
                     Console.Write(" <No> ");
                     Console.BackgroundColor = back;
