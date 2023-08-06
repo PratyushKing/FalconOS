@@ -450,7 +450,8 @@ namespace FalconOS
                         Console.ResetColor();
                         Console.Clear();
                         return;
-                    } else
+                    }
+                    else
                     {
                         this.output = false;
                         Console.ResetColor();
