@@ -503,7 +503,8 @@ namespace FalconOS
                 fore = ConsoleColor.White;
                 bFore = ConsoleColor.Black;
                 back = ConsoleColor.Black;
-            } else
+            }
+            else
             {
                 fore = ConsoleColor.Black;
                 bFore = ConsoleColor.White;
