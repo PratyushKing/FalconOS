@@ -23,10 +23,10 @@ namespace FalconOS
             log.sPrint("~");
             log.sPrint("~");
             log.sPrint("~");
-            log.sPrint("~                      FAV: "); Console.ForegroundColor = ConsoleColor.White; log.sPrint(" FAlcon Vi");
+            log.sPrint("~                               FAV: "); Console.ForegroundColor = ConsoleColor.White; log.sPrint(" FAlcon Vi", "");
             Console.ForegroundColor = ConsoleColor.Cyan;
             log.sPrint("~");
-            log.sPrint("~                                  version 0.2");
+            log.sPrint("~                                  version 0.9");
             log.sPrint("~                               by "); Console.ForegroundColor = ConsoleColor.Yellow; log.sPrint(" Code Devel0per");
             Console.ForegroundColor = ConsoleColor.Cyan;
             log.sPrint("~                               Modified from MIV");
