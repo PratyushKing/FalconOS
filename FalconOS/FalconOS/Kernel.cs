@@ -20,8 +20,8 @@ namespace FalconOS
         public static string cUser;
         public static bool asRoot = false;
         public static string lastcmd = " ";
-        public static bool gui = false;
-        public static yindowmgr yinmgr;
+        public static bool gui = true;
+        public static yindowmgr yinmgr = new();
 
         protected override void BeforeRun()
         {
@@ -33,6 +33,8 @@ namespace FalconOS
             Console.ForegroundColor = ConsoleColor.White;
             log.sPrint("!");
             initsys init = new initsys();
+
+            yinmgr.Init();
         }
 
         protected override void Run()
@@ -214,15 +216,12 @@ namespace FalconOS
                 data.canvas.Clear(data.accentColor);
                 Sys.MouseManager.ScreenWidth = 640;
                 Sys.MouseManager.ScreenHeight = 480;
-
-                yinmgr = new();
-                yinmgr.Init();
                 yinmgr.focussedApp = yinmgr.apps[yinmgr.apps.Count - 1].getT();
                 yinmgr.drawWindow("Test", false, false, 20, 30, 200, 300);
                 yinmgr.drawWindow("Test 2", true, true, 270, 40, 200, 300);
                 //helpwin hWin = new();
                 //hWin.Init(20, 30, 200, 300);
-
+                VGAScreen.SetFont();
                 if (Sys.MouseManager.MouseState == Sys.MouseState.Left)
                 {
                     data.pressed = true;
