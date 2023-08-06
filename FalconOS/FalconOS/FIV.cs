@@ -64,7 +64,6 @@ namespace FalconOS
             int countNewLine = 0;
             int countChars = 0;
             Console.Clear();
-
             for (int i = 0; i < pos; i++)
             {
                 if (chars[i] == '\n')
