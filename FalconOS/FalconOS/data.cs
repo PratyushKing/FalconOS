@@ -31,8 +31,5 @@ namespace FalconOS
         [ManifestResourceStream(ResourceName="FalconOS.Resources.cursor.bmp")] public static byte[] cursor = { 0 };
 
         public static string lastCMD = "";
-        public static string[] protectedPaths = { "0:\\Config" };
-
-        public static processMgr ProcMgr;
-    }
+        public static string[] protectedPaths = { "0:\\Config" };    }
 }
