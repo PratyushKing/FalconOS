@@ -98,6 +98,12 @@ namespace FalconOS
                     Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
                     Console.Write(new string(' ', Console.WindowWidth / 2));
                 }
+                Console.CursorLeft = 0;
+                Console.CursorTop = Console.WindowHeight - 1;
+                Console.BackgroundColor = color;
+                Console.ForegroundColor = back;
+                Console.Write("Press D for toggling dark mode");
+                Console.BackgroundColor = back;
                 Console.CursorTop = Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2);
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2) + 1;
                 Console.ForegroundColor = fore;
@@ -118,11 +124,7 @@ namespace FalconOS
                 {
                     Console.WriteLine(" " + title + " \n");
                 }
-                Console.CursorLeft = 0;
-                Console.CursorTop = Console.WindowHeight - 1;
-                Console.BackgroundColor = color;
-                Console.ForegroundColor = back;
-                Console.Write("Press D for toggling dark mode");
+                
                 Console.BackgroundColor = back;
                 Console.ForegroundColor = fore;
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
@@ -226,6 +228,11 @@ namespace FalconOS
                         goto redraw;
                     }
                 }
+                else if (key.Key == ConsoleKey.D)
+                {
+                    toggleDarkMode();
+                    goto redraw;
+                }
                 else
                 {
                     goto keyReading;
@@ -233,6 +240,7 @@ namespace FalconOS
                 Console.Clear();
             } else if (text)
             {
+                redraw:
                 Console.BackgroundColor = color;
                 Console.ForegroundColor = fore;
                 Console.Clear();
@@ -248,7 +256,14 @@ namespace FalconOS
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2) + 1;
                 Console.ForegroundColor = fore;
                 Console.WriteLine(" " + title + " \n");
+                Console.CursorLeft = 0;
+                Console.CursorTop = Console.WindowHeight - 1;
+                Console.BackgroundColor = color;
+                Console.ForegroundColor = back;
+                Console.Write("Press F1 for toggling dark mode");
+                Console.BackgroundColor = back;
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
+                Console.CursorTop = Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2);
                 if (description.Length > 32)
                 {
                     var first = false;
@@ -303,6 +318,11 @@ namespace FalconOS
                         }
                         input += key.KeyChar;
                     }
+                    else if (key.Key == ConsoleKey.F1)
+                    {
+                        toggleDarkMode();
+                        goto redraw;
+                    }
                     key = Console.ReadKey(true);
                 }
                 if (nextPage == null)
@@ -333,7 +353,12 @@ namespace FalconOS
                     Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2);
                     Console.Write(new string(' ', Console.WindowWidth / 2));
                 }
-
+                Console.CursorLeft = 0;
+                Console.CursorTop = Console.WindowHeight - 1;
+                Console.BackgroundColor = color;
+                Console.ForegroundColor = back;
+                Console.Write("Press D for toggling dark mode");
+                Console.BackgroundColor = back;
                 Console.CursorTop = Console.WindowHeight / 2 - (Console.WindowHeight / 2 / 2);
                 Console.CursorLeft = Console.WindowWidth / 2 - (Console.WindowWidth / 2 / 2) + 1;
                 Console.ForegroundColor = fore;
@@ -455,6 +480,11 @@ namespace FalconOS
                     {
                         goto redraw;
                     }
+                }
+                else if (key.Key == ConsoleKey.D)
+                {
+                    toggleDarkMode();
+                    goto redraw;
                 }
                 else
                 {
