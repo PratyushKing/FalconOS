@@ -153,7 +153,6 @@ namespace FalconOS
                             Console.CursorLeft = 7;
                             tempI = ' ';
                         }
-
                         Console.Write(tempI);
                     }
                 }
