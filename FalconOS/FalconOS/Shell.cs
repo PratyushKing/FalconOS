@@ -739,6 +739,7 @@ namespace FalconOS
                         }
                     }
                     runner.executeFE(data.currentDir + cmd.Split(' ')[0] + ".fa");
+                    return;
                 }
                 if (!String.IsNullOrWhiteSpace(cmd) || !String.IsNullOrEmpty(cmd))
                 {
