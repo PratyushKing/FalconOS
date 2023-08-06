@@ -20,6 +20,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 using FalconOS;
 using System.Drawing;
+using System.Numerics;
 
 namespace FalconOS
 {
@@ -720,6 +721,23 @@ namespace FalconOS
             }
             else
             {
+                if (File.Exists(data.currentDir + cmd.Replace(".fa", "")))
+                {
+                    executor runner = new();
+                    if (cmd.Split(' ').Length > 1)
+                    {
+                        if (cmd.Split(' ').Length == 2)
+                        {
+                            runner.arg1 = cmd.Split(' ')[1];
+                        }
+                        if (cmd.Split(' ').Length == 3)
+                        {
+                            runner.arg1 = cmd.Split(' ')[1];
+                            runner.arg2 = cmd.Split(' ')[2];
+                        }
+                    }
+                    runner.executeFE(data.currentDir + cmd.Split(' ')[0].Replace(".fa", ""));
+                }
                 if (!String.IsNullOrWhiteSpace(cmd) || !String.IsNullOrEmpty(cmd) || File.Exists(cmd.Split(' ')[0].Replace(".fe", "")))
                 {
                     log.sPrint("-fash: " + cmd + ": command not found");
