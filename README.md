@@ -1,4 +1,5 @@
-# FalconOS
+![FalconOS](/FalconOS/gitstuff/falcon_dark.png#gh-dark-mode-only)
+![FalconOS](/FalconOS/gitstuff/falcon_light.png#gh-light-mode-only)
 <div align="center">
 Highly advanced OS, focuses on pure command line. (but better)
 <br>
@@ -9,6 +10,7 @@ Highly advanced OS, focuses on pure command line. (but better)
   </a>
   <img src="https://img.shields.io/badge/people bothering on this project-1 (my dumbass)-magenta">
   <img src="https://img.shields.io/badge/current stable-Stick 1.0-cyan">
+  <img src="https://www.aschey.tech/tokei/github/CodeDevel0per/FalconOS">
 
 <img src="FalconOS/gitstuff/DemoImage.png" />
 </div>
