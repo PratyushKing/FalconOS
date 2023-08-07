@@ -27,7 +27,7 @@ namespace FalconOS
             Console.ForegroundColor = ConsoleColor.Cyan;
             log.sPrint("~");
             log.sPrint("~                                  version 0.9");
-            log.sPrint("~                               by "); Console.ForegroundColor = ConsoleColor.Yellow; log.sPrint(" Code Devel0per");
+            log.sPrint("~                               by "); Console.ForegroundColor = ConsoleColor.Yellow; log.sPrint(" Code Devel0per", "");
             Console.ForegroundColor = ConsoleColor.Cyan;
             log.sPrint("~                               Modified from MIV");
             log.sPrint("~                      FAV is a very obvious clone of MIV.");
