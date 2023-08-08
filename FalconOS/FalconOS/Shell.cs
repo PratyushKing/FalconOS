@@ -720,6 +720,15 @@ namespace FalconOS
                 Cosmos.Core.Memory.Heap.Collect();
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Memory Refreshed!");
+            } else if (cmd.StartsWith("wait_click"))
+            {
+                while (!(Sys.MouseManager.MouseState == Sys.MouseState.Left))
+                {
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.Write("Waiting for click! (" + Sys.MouseManager.MouseState.ToString() + ")");
+                }
+                Console.SetCursorPosition(0, Console.CursorTop);
+                Console.WriteLine("Clicked!");
             }
             else
             {
