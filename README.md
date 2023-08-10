@@ -1,7 +1,7 @@
 ![FalconOS](/FalconOS/gitstuff/falcon_dark.png#gh-dark-mode-only)
 ![FalconOS](/FalconOS/gitstuff/falcon_light.png#gh-light-mode-only)
-<div align="center">
 Highly advanced OS, focuses on pure command line. (but better)
+<div align="center">
 <br>
   <img src="https://img.shields.io/github/languages/code-size/CodeDevel0per/FalconOS" />
   <img src="https://img.shields.io/github/downloads/CodeDevel0per/FalconOS/total" />
