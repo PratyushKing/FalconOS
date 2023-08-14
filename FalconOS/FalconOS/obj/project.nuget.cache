@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "3OjAac7LSxNBcZcXswHtY90Tf0IOSLEkEQpjiFu8Dv42DUATxWdBozV5JPkq/h4EeUN8bJCoBcQ9NuAGlXksxA==",
+  "dgSpecHash": "KIuachpEZ65ZjIarHOpaBCJ4jKNOHNEs02Q2FeTaCcJqzbov6TJUK06YR44adYQJaI8TEbVcoPmp3XAun/ReNA==",
   "success": true,
   "projectFilePath": "C:\\Users\\praty\\Documents\\FalconOS\\FalconOS\\FalconOS\\FalconOS.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\praty\\.nuget\\packages\\cosmos.build\\0.1.0-localbuild20230731081902\\cosmos.build.0.1.0-localbuild20230731081902.nupkg.sha512",
-    "C:\\Users\\praty\\.nuget\\packages\\cosmos.common\\0.1.0-localbuild20230731081934\\cosmos.common.0.1.0-localbuild20230731081934.nupkg.sha512",
-    "C:\\Users\\praty\\.nuget\\packages\\cosmos.core\\0.1.0-localbuild20230731081934\\cosmos.core.0.1.0-localbuild20230731081934.nupkg.sha512",
-    "C:\\Users\\praty\\.nuget\\packages\\cosmos.debug.kernel\\0.1.0-localbuild20230731081934\\cosmos.debug.kernel.0.1.0-localbuild20230731081934.nupkg.sha512",
-    "C:\\Users\\praty\\.nuget\\packages\\cosmos.hal2\\0.1.0-localbuild20230731081934\\cosmos.hal2.0.1.0-localbuild20230731081934.nupkg.sha512",
-    "C:\\Users\\praty\\.nuget\\packages\\cosmos.system2\\0.1.0-localbuild20230731081934\\cosmos.system2.0.1.0-localbuild20230731081934.nupkg.sha512",
-    "C:\\Users\\praty\\.nuget\\packages\\il2cpu.api\\0.1.0-localbuild20230731081934\\il2cpu.api.0.1.0-localbuild20230731081934.nupkg.sha512"
+    "C:\\Users\\praty\\.nuget\\packages\\cosmos.build\\0.1.0-localbuild20230813104109\\cosmos.build.0.1.0-localbuild20230813104109.nupkg.sha512",
+    "C:\\Users\\praty\\.nuget\\packages\\cosmos.common\\0.1.0-localbuild20230813104120\\cosmos.common.0.1.0-localbuild20230813104120.nupkg.sha512",
+    "C:\\Users\\praty\\.nuget\\packages\\cosmos.core\\0.1.0-localbuild20230813104120\\cosmos.core.0.1.0-localbuild20230813104120.nupkg.sha512",
+    "C:\\Users\\praty\\.nuget\\packages\\cosmos.debug.kernel\\0.1.0-localbuild20230813104120\\cosmos.debug.kernel.0.1.0-localbuild20230813104120.nupkg.sha512",
+    "C:\\Users\\praty\\.nuget\\packages\\cosmos.hal2\\0.1.0-localbuild20230813104120\\cosmos.hal2.0.1.0-localbuild20230813104120.nupkg.sha512",
+    "C:\\Users\\praty\\.nuget\\packages\\cosmos.system2\\0.1.0-localbuild20230813104120\\cosmos.system2.0.1.0-localbuild20230813104120.nupkg.sha512",
+    "C:\\Users\\praty\\.nuget\\packages\\il2cpu.api\\0.1.0-localbuild20230813104120\\il2cpu.api.0.1.0-localbuild20230813104120.nupkg.sha512"
   ],
   "logs": []
 }

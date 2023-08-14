@@ -7,6 +7,7 @@ using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Sys = Cosmos.System;
 
 namespace FalconOS
 {
@@ -73,6 +74,55 @@ namespace FalconOS
             if (Kernel.cUser == "root")
             {
                 Kernel.asRoot = true;
+            }
+        }
+
+        public static void sysctl(string args)
+        {
+            if (args == null)
+            {
+                log.sPrint("sysctl v1.0\nSysctl stands for System Control, It has basic functions for system controlling!");
+            }
+            foreach (var arg in args.Split(' '))
+            {
+                if (arg == "shutdown")
+                {
+                    log.print("System", "Shutting down.");
+                    Thread.Sleep(1000);
+                    Cosmos.System.Power.Shutdown();
+                }
+                else if (arg == "reboot")
+                {
+                    log.print("System", "Rebooting.");
+                    Thread.Sleep(1000);
+                    Cosmos.System.Power.Reboot();
+                }
+                else if (arg == "gui=true")
+                {
+                    Kernel.gui = true;
+                }
+                else if (arg == "gui=false")
+                {
+                    Kernel.gui = false;
+                }
+                else if (arg == "info")
+                {
+                    log.sPrint("Basic System Info:");
+                    log.sPrint("Disk Space: " + data.fs.GetTotalFreeSpace("0:\\") + "/" + data.fs.GetTotalSize("0:\\"));
+                    log.sPrint("Virtual Machine? [VirtualBox/VMWare/QEMU]: " + Sys.VMTools.IsVirtualBox + "/" + Sys.VMTools.IsVMWare + "/" + Sys.VMTools.IsQEMU);
+                    log.sPrint("Disks Count: " + data.fs.Disks.Count.ToString());
+                }
+                else if (arg == "proclist")
+                {
+                    log.sPrint("Processes(" + data.ProcMgr.processes.Count + "):");
+                    foreach (var process in data.ProcMgr.processes)
+                    {
+                        log.sPrint(process);
+                    }
+                } else if (arg == "cursor")
+                {
+                    Console.CursorVisible = true;
+                }
             }
         }
     }

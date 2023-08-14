@@ -43,50 +43,14 @@ namespace FalconOS
                 log.print("Yindow Manager", "Starting window manager");
                 Thread.Sleep(1500);
                 Kernel.gui = true;
-            }
-            else if (cmd == "sysctl gui=true")
+            } else if (cmd.StartsWith("sysctl"))
             {
-                Kernel.gui = true;
-            }
-            else if (cmd == "sysctl gui=false")
-            {
-                Kernel.gui = false;
-            }
-            else if (cmd == "sysctl reboot")
-            {
-                log.print("System", "Rebooting.");
-                Thread.Sleep(1000);
-                Sys.Power.Reboot();
-            }
-            else if (cmd == "sysctl shutdown")
-            {
-                log.print("System", "Shutting down.");
-                Thread.Sleep(1000);
-                Sys.Power.Shutdown();
-            }
-            else if (cmd == "sysctl info")
-            {
-                log.sPrint("Basic System Info:");
-                log.sPrint("Disk Space: " + data.fs.GetTotalFreeSpace("0:\\") + "/" + data.fs.GetTotalSize("0:\\"));
-                log.sPrint("Virtual Machine? [VirtualBox/VMWare/QEMU]: " + Sys.VMTools.IsVirtualBox + "/" + Sys.VMTools.IsVMWare + "/" + Sys.VMTools.IsQEMU);
-                log.sPrint("Disks Count: " + data.fs.Disks.Count.ToString());
-            }
-            else if (cmd.StartsWith("sysctl proclist"))
-            {
-                log.sPrint("Processes(" + data.ProcMgr.processes.Count + "):");
-                foreach (var process in data.ProcMgr.processes)
+                if (cmd == "sysctl")
                 {
-                    log.sPrint(process);
+                    sysmgr.sysctl(null);
+                    return buffer;
                 }
-            }
-            else if (cmd.StartsWith("sysctl console-cursor"))
-            {
-                Console.CursorVisible = true;
-            }
-            else if (cmd.StartsWith("sysctl"))
-            {
-                Console.WriteLine(cmd);
-                log.sPrint("Invalid Args");
+                sysmgr.sysctl(cmd.Replace("sysctl ", ""));
             }
             else if (cmd.StartsWith("falnfo"))
             {
