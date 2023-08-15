@@ -10,7 +10,7 @@ Highly advanced OS, focuses on pure command line. (but better)
     <img src="https://img.shields.io/github/license/CodeDevel0per/FalconOS" />
   </a>
   <img src="https://img.shields.io/badge/people bothering on this project-1 (my dumbass)-magenta">
-  <img src="https://img.shields.io/badge/current stable-Stick 1.0-cyan">
+  <img src="https://img.shields.io/badge/current stable-Stick-cyan">
   <img src="https://www.aschey.tech/tokei/github/CodeDevel0per/FalconOS">
 
 <img src="FalconOS/gitstuff/DemoImage.png" />
