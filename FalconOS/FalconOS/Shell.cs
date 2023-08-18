@@ -131,7 +131,7 @@ namespace FalconOS
             {
                 if (cmd.StartsWith("cd ..."))
                 {
-                    data.currentDir = "0:\\";
+                    data.currentDir = data.baseDir + "";
                     return buffer;
                 }
                 if (data.protectedPaths.Contains(cmd.Replace("cd ", data.currentDir)) && ((Kernel.cUser.ToLower() != "root") || !root))
@@ -693,6 +693,9 @@ namespace FalconOS
                 }
                 Console.SetCursorPosition(0, Console.CursorTop);
                 Console.WriteLine("Clicked!");
+            } else if (cmd.StartsWith("vextras"))
+            {
+                sysmgr.vextras(null);
             }
             else
             {

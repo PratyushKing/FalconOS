@@ -27,8 +27,8 @@ namespace FalconOS
             {
                 try
                 {
-                    var rooters = File.ReadAllText("0:\\Config\\root.conf");
-                    var passwords = File.ReadAllText("0:\\Config\\passwd.conf");
+                    var rooters = File.ReadAllText(data.baseDir + "Config\\root.conf");
+                    var passwords = File.ReadAllText(data.baseDir + "Config\\passwd.conf");
                     if (rooters.Contains(currentUser + "\n"))
                     {
                         var pass = "";

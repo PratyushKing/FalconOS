@@ -17,8 +17,9 @@ namespace FalconOS
         public static Canvas canvas;
         public static processMgr ProcMgr;
 
-        public static string currentDir = @"0:\";
-        public static string lastDir = @"0:";
+        public static string baseDir = @"0:\";
+        public static string currentDir = baseDir;
+        public static string lastDir = baseDir;
         public static Color accentColor = Color.Cyan;
         public static Color deepAccentColor = Color.DarkCyan;
         public static bool pressed = false;
@@ -29,7 +30,10 @@ namespace FalconOS
 
         public static NetworkDevice net = NetworkDevice.GetDeviceByName("eth0");
         [ManifestResourceStream(ResourceName="FalconOS.Resources.cursor.bmp")] public static byte[] cursor = { 0 };
+        [ManifestResourceStream(ResourceName="FalconOS.Resources.logo.bmp")] public static byte[] logo = { 0 };
 
         public static string lastCMD = "";
-        public static string[] protectedPaths = { "0:\\Config" };    }
+        public static string[] protectedPaths = { data.baseDir + "Config" };
+        public static bool VExtras = false; //VGA Extras, for weird screen expert stuff
+    }
 }

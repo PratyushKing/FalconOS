@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cosmos.System.Graphics;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -24,7 +25,7 @@ namespace FalconOS
             {
                 Kernel.cUser = "root";
             }
-            else if (!(File.ReadAllText("0:\\Config\\user.conf").Contains(usr)))
+            else if (!(File.ReadAllText(data.baseDir + "Config\\user.conf").Contains(usr)))
             {
                 Console.WriteLine("Invalid User!");
                 goto askuser;
@@ -53,7 +54,7 @@ namespace FalconOS
                 {
                     pass = pass.Remove(pass.Length - 1, 1);
                 }
-                if (File.ReadAllText("0:\\Config\\passwd.conf").Contains(pass))
+                if (File.ReadAllText(data.baseDir + "Config\\passwd.conf").Contains(pass))
                 {
                     Kernel.cUser = usr;
                 }
@@ -108,7 +109,7 @@ namespace FalconOS
                 else if (arg == "info")
                 {
                     log.sPrint("Basic System Info:");
-                    log.sPrint("Disk Space: " + data.fs.GetTotalFreeSpace("0:\\") + "/" + data.fs.GetTotalSize("0:\\"));
+                    log.sPrint("Disk Space: " + data.fs.GetTotalFreeSpace(data.baseDir + "") + "/" + data.fs.GetTotalSize(data.baseDir + ""));
                     log.sPrint("Virtual Machine? [VirtualBox/VMWare/QEMU]: " + Sys.VMTools.IsVirtualBox + "/" + Sys.VMTools.IsVMWare + "/" + Sys.VMTools.IsQEMU);
                     log.sPrint("Disks Count: " + data.fs.Disks.Count.ToString());
                 }
@@ -124,6 +125,21 @@ namespace FalconOS
                     Console.CursorVisible = true;
                 }
             }
+        }
+
+        public static bool vextras(string args)
+        {
+            while (true)
+            {
+                Canvas test = FullScreenCanvas.GetFullScreenCanvas(new Mode(640, 480, ColorDepth.ColorDepth32));
+                test.Clear(System.Drawing.Color.Black);
+                Sys.MouseManager.ScreenWidth = 640;
+                Sys.MouseManager.ScreenHeight = 480;
+                data.canvas.DrawImage(new Bitmap(data.logo), 10, 10, 200, 60);
+                data.canvas.Display();
+            }
+
+            return false;
         }
     }
 }

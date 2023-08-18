@@ -29,10 +29,14 @@
 
     <ItemGroup>
       <None Remove="Resources\cursor.bmp" />
+      <None Remove="Resources\falcon_dark.png" />
+      <None Remove="Resources\logo.bmp" />
     </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Include="Resources\cursor.bmp" />
+      <EmbeddedResource Include="Resources\falcon_dark.png" />
+      <EmbeddedResource Include="Resources\logo.bmp" />
     </ItemGroup>
 
     <ItemGroup>
