@@ -16,6 +16,9 @@ Highly advanced OS, focuses on pure command line. (but better)
 <img src="FalconOS/gitstuff/DemoImage.png" />
 </div>
 
+# Features Jetbrains Rider via Jetbrains Open Source Licenses
+![Rider logo](https://resources.jetbrains.com/storage/products/company/brand/logos/Rider.png)
+
 ## Features:
 - Very Stable filesystem 💪
 - FAV (text editor copied from MIV but its better which itself is copied from VIM which is based on VI) ⌨️
