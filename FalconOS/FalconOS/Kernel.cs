@@ -1,5 +1,4 @@
 ﻿using Cosmos.System.FileSystem.VFS;
-using Cosmos.System.Graphics;
 using System;
 using System.Collections.Generic;
 using Cosmos;
@@ -10,6 +9,10 @@ using System.Threading;
 using Sys = Cosmos.System;
 using System.Drawing;
 using Cosmos.HAL;
+using static System.Net.Mime.MediaTypeNames;
+using PrismAPI;
+using Cosmos.System.Graphics;
+using PrismAPI.Hardware.GPU;
 
 namespace FalconOS
 {
@@ -20,7 +23,7 @@ namespace FalconOS
         public static string cUser;
         public static bool asRoot = false;
         public static string lastcmd = " ";
-        public static bool gui = false;
+        public static bool gui = true;
         public static yindowmgr yinmgr = new();
 
         protected override void BeforeRun()
@@ -211,26 +214,21 @@ namespace FalconOS
             } else
             {
                 Cosmos.Core.Memory.Heap.Collect();
-                data.canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(640,480, ColorDepth.ColorDepth32));
+                //data.canvas = FullScreenCanvas.GetFullScreenCanvas(new Mode(640,480, ColorDepth.ColorDepth32));
+                data.canvas = new(640, 480);
 
-                data.canvas.Clear(data.accentColor);
+                data.canvas.DrawImage(0, 0, PrismAPI.Graphics.Image.FromBitmap(data.background), true);
                 Sys.MouseManager.ScreenWidth = 640;
                 Sys.MouseManager.ScreenHeight = 480;
-                yinmgr.focussedApp = yinmgr.apps[yinmgr.apps.Count - 1].getT();
-                yinmgr.drawWindow("Test", false, false, 20, 30, 200, 300);
-                yinmgr.drawWindow("Test 2", true, true, 270, 40, 200, 300);
 
-                //helpwin hWin = new();
-                //hWin.Init(20, 30, 200, 300);
                 if (Sys.MouseManager.MouseState == Sys.MouseState.Left)
                 {
                     data.pressed = true;
                 } else { data.pressed = false; }
 
-                //hWin.update();
-                yinmgr.updateWindow();
-                data.canvas.DrawImageAlpha(new Bitmap(data.cursor), (int)Sys.MouseManager.X, (int)Sys.MouseManager.Y);
-                data.canvas.Display();
+                //yinmgr.updateWindow();
+                data.canvas.DrawString(3,3, "FPS: " + );
+                data.canvas.DrawImage((int)Sys.MouseManager.X, (int)Sys.MouseManager.Y, PrismAPI.Graphics.Image.FromBitmap(data.cursor));
             }
         }
     }

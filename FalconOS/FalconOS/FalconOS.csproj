@@ -29,20 +29,28 @@
 
     <ItemGroup>
       <None Remove="Resources\cursor.bmp" />
-      <None Remove="Resources\falcon_dark.png" />
-      <None Remove="Resources\logo.bmp" />
+      <None Remove="Resources\falcon_dark.bmp" />
+      <None Remove="Resources\falcon_medium.bmp" />
+      <None Remove="Resources\wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Include="Resources\cursor.bmp" />
-      <EmbeddedResource Include="Resources\falcon_dark.png" />
-      <EmbeddedResource Include="Resources\logo.bmp" />
+      <EmbeddedResource Include="Resources\falcon_dark.bmp" />
+      <EmbeddedResource Include="Resources\falcon_medium.bmp" />
+      <EmbeddedResource Include="Resources\wallpaper.bmp" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="PrismAPI">
+        <HintPath>..\..\..\PrismAPI.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
     <ItemGroup>

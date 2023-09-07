@@ -1,6 +1,8 @@
 ﻿using Cosmos.System.FileSystem.VFS;
+using Cosmos.System.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -46,15 +48,34 @@ namespace FalconOS
                 }
             data.ProcMgr = new processMgr();
             data.ProcMgr.addProc("initsys");
+            Canvas bootScreen = FullScreenCanvas.GetFullScreenCanvas(new Mode(640, 480, ColorDepth.ColorDepth32));
+            bootScreen.Clear();
+            var pos = 0;
+            while (true)
+            {
+                Cosmos.System.MouseManager.ScreenWidth = 640;
+                Cosmos.System.MouseManager.ScreenHeight = 480;
+                bootScreen.DrawImageAlpha(new Bitmap(data.background), 0, 0);
+                bootScreen.DrawImageAlpha(new Bitmap(data.slogo), 640 / 2 - ((int)new Bitmap(data.slogo).Width / 2), 480 / 2 - ((int)new Bitmap(data.slogo).Height / 2));
+                bootScreen.DrawFilledRectangle(Color.White, 640 / 2 - ((int)new Bitmap(data.slogo).Width / 2), 480 / 2 - ((int)new Bitmap(data.slogo).Height / 2) + ((int)new Bitmap(data.slogo).Height) + 10, ((int)new Bitmap(data.slogo).Width - 1), 8);
+                bootScreen.DrawFilledRectangle(Color.FromArgb(92, 87, 255), 640 / 2 - ((int)new Bitmap(data.slogo).Width / 2), 480 / 2 - ((int)new Bitmap(data.slogo).Height / 2) + ((int)new Bitmap(data.slogo).Height) + 10, pos, 8);
+                if (pos > ((int)new Bitmap(data.slogo).Width - 1))
+                {
+                    bootScreen.Disable();
+                    break;
+                }
+                else
+                {
+                    Thread.Sleep(10);
+                    pos += 30;
+                }
+                bootScreen.Display();
+            }
             if (!Kernel.gui)
             {
                 Thread.Sleep(200);
                 if (setup)
                 {
-                    log.print("Kernel", "Setting system up!");
-                    log.print("SetupMgr", "Starting fcg");
-                    Thread.Sleep(1000);
-
                     //Setup
                     fcg Setup = new fcg(":System Setup [User]\ntext: Enter your username for this FalconOS system!\ncolor: blue\n!text");
                     Setup.Run();

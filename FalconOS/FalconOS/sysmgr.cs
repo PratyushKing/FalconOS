@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
@@ -129,17 +130,30 @@ namespace FalconOS
 
         public static bool vextras(string args)
         {
+            Canvas test = FullScreenCanvas.GetFullScreenCanvas(new Mode(640, 480, ColorDepth.ColorDepth32));
+            test.Clear();
+            var pos = 0;
             while (true)
             {
-                Canvas test = FullScreenCanvas.GetFullScreenCanvas(new Mode(640, 480, ColorDepth.ColorDepth32));
-                test.Clear(System.Drawing.Color.Black);
                 Sys.MouseManager.ScreenWidth = 640;
                 Sys.MouseManager.ScreenHeight = 480;
-                data.canvas.DrawImage(new Bitmap(data.logo), 10, 10, 200, 60);
-                data.canvas.Display();
+                test.DrawImageAlpha(new Bitmap(data.background), 0, 0);
+                test.DrawImageAlpha(new Bitmap(data.slogo), 640/2 - ((int)new Bitmap(data.slogo).Width / 2),480/2 - ((int)new Bitmap(data.slogo).Height / 2));
+                test.DrawFilledRectangle(Color.White, 640 / 2 - ((int)new Bitmap(data.slogo).Width / 2), 480 / 2 - ((int)new Bitmap(data.slogo).Height / 2) + ((int)new Bitmap(data.slogo).Height) + 10, ((int)new Bitmap(data.slogo).Width - 1), 8);
+                test.DrawFilledRectangle(Color.FromArgb(92, 87, 255), 640 / 2 - ((int)new Bitmap(data.slogo).Width / 2), 480 / 2 - ((int)new Bitmap(data.slogo).Height / 2) + ((int)new Bitmap(data.slogo).Height) + 10, pos, 8);
+                if (pos > ((int)new Bitmap(data.slogo).Width - 1))
+                {
+                    test.Disable();
+                    return true;
+                }
+                else
+                {
+                    Thread.Sleep(10);
+                    pos += 30;
+                }
+                test.Display();
             }
-
-            return false;
+            //return false;
         }
     }
 }

@@ -90,7 +90,7 @@ namespace FalconOS
         public void updateWindow()
         {
             
-            for (var i = 0; i < apps.Count; i++)
+            for (var i = 0; i < apps.Count - 1; i++)
             {
                 if (focussedApp == apps[i].getT())
                 {

@@ -696,6 +696,10 @@ namespace FalconOS
             } else if (cmd.StartsWith("vextras"))
             {
                 sysmgr.vextras(null);
+            } else if (cmd.StartsWith("fpy "))
+            {
+                fpy run = new fpy();
+                run.exec("a");
             }
             else
             {

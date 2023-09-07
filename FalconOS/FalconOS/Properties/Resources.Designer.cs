@@ -83,9 +83,19 @@ namespace FalconOS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] logo {
+        internal static byte[] falcon_medium {
             get {
-                object obj = ResourceManager.GetObject("logo", resourceCulture);
+                object obj = ResourceManager.GetObject("falcon_medium", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] wallpaper {
+            get {
+                object obj = ResourceManager.GetObject("wallpaper", resourceCulture);
                 return ((byte[])(obj));
             }
         }

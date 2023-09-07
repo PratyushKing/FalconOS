@@ -8,13 +8,14 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
+using PrismAPI;
 
 namespace FalconOS
 {
     internal class data
     {
         public static CosmosVFS fs = new CosmosVFS();
-        public static Canvas canvas;
+        public static PrismAPI.Graphics.Canvas canvas;
         public static processMgr ProcMgr;
 
         public static string baseDir = @"0:\";
@@ -29,8 +30,10 @@ namespace FalconOS
         public static string ver = "v1.0.1";
 
         public static NetworkDevice net = NetworkDevice.GetDeviceByName("eth0");
-        [ManifestResourceStream(ResourceName="FalconOS.Resources.cursor.bmp")] public static byte[] cursor = { 0 };
-        [ManifestResourceStream(ResourceName="FalconOS.Resources.logo.bmp")] public static byte[] logo = { 0 };
+        [ManifestResourceStream(ResourceName="FalconOS.Resources.cursor.bmp")] public static byte[] cursor;
+        [ManifestResourceStream(ResourceName="FalconOS.Resources.falcon_dark.bmp")] public static byte[] logo;
+        [ManifestResourceStream(ResourceName = "FalconOS.Resources.falcon_medium.bmp")] public static byte[] slogo;
+        [ManifestResourceStream(ResourceName="FalconOS.Resources.wallpaper.bmp")] public static byte[] background;
 
         public static string lastCMD = "";
         public static string[] protectedPaths = { data.baseDir + "Config" };
